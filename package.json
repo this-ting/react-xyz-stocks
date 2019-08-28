@@ -1,0 +1,30 @@
+{
+  "name": "react-xyz-stocks",
+  "version": "1.0.0",
+  "description": "Minimalist \"Google Finance\" run on React By: Ting C.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "start": "webpack-dev-server --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/this-ting/react-xyz-stocks.git"
+  },
+  "keywords": [],
+  "author": "Ting Chang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/this-ting/react-xyz-stocks/issues"
+  },
+  "homepage": "https://github.com/this-ting/react-xyz-stocks#readme",
+  "devDependencies": {
+    "css-loader": "^3.2.0",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0"
+  }
+}
