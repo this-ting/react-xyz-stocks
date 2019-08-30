@@ -26,6 +26,7 @@
         "ignoreRegExpLiterals": true
       }
     ],
-    "react/state-in-constructor": ["off"]
+    "react/state-in-constructor": ["off"],
+    "import/extensions": ["off"]
   }
 }
