@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
+import { Container } from '@material-ui/core';
+import Search from './Search.js';
 import Explore from './Explore.js';
 import Stock from './Stock.js';
 
 class Markets extends Component {
   render() {
     return (
-      <div>
-        <h2>Markets PAGE</h2>
+      <Container>
+        <Search />
         <Explore />
         <Stock />
-      </div>
+      </Container>
     );
   }
 }
