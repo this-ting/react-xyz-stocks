@@ -5,11 +5,11 @@ import Home from '../Home/Home.js';
 import Markets from '../Markets/Markets.js';
 import User from '../User/User.js';
 
-function Header() {
+export default function Header() {
   return (
     <Router>
       <AppBar position="static" className="header">
-        <Tabs variant="fullWidth">
+        <Tabs variant="fullWidth" value={0}>
           <Tab label="Home" value="0" to="/" component={NavLink} />
           <Tab label="Markets" value="1" to="/markets/" component={NavLink} />
           <Tab label="User" value="2" to="/user/" component={NavLink} />
@@ -21,5 +21,3 @@ function Header() {
     </Router>
   );
 }
-
-export default Header;
