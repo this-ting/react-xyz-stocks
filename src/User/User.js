@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Box } from '@material-ui/core';
+import Login from './Login.js';
 
-class User extends Component {
-  render() {
-    return (
-      <div>
-        <h2>USER PAGE</h2>
-      </div>
-    );
-  }
+export default function User() {
+  return (
+    <Box>
+      <Login />
+    </Box>
+  );
 }
-
-export default User;
