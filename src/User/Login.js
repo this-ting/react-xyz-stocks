@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { Grid, TextField, Typography, Button } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
+import SignInScreen from './Firebaseui.js';
 
 const useStyles = makeStyles({
   background: {
@@ -22,22 +23,7 @@ export default function Login() {
     <Grid container justify="center" alignItems="center">
       <Grid item className={classes.background} xs="7" />
       <Grid item direction="column" xs="5" className={classes.input}>
-        <Grid item>
-          <Typography variant="h5" color="textPrimary">
-            Log in to XYZ Stocks
-          </Typography>
-        </Grid>
-        <Grid item>
-          <TextField label="Email" />
-        </Grid>
-        <Grid item>
-          <TextField label="Password" />
-        </Grid>
-        <Grid item>
-          <Button size="large" variant="outlined">
-            Log in
-          </Button>
-        </Grid>
+        <SignInScreen />
       </Grid>
     </Grid>
   );
