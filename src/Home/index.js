@@ -1,11 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { Container, Button, Typography } from '@material-ui/core';
+import { Box, Container, Button, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles({
-  container: {
-    margin: 0
-  },
   banner1: {
     backgroundImage: `url(${'https://images.unsplash.com/photo-1449247709967-d4461a6a6103?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80'})`,
     backgroundPostion: 'center',
@@ -61,7 +58,7 @@ const useStyles = makeStyles({
 function Banner1() {
   const classes = useStyles();
   return (
-    <Container className={classes.banner1}>
+    <Box className={classes.banner1}>
       <Typography
         variant="h1"
         color="textSecondary"
@@ -70,14 +67,14 @@ function Banner1() {
       >
         Follow. Learn. Invest.
       </Typography>
-    </Container>
+    </Box>
   );
 }
 
 function Banner2() {
   const classes = useStyles();
   return (
-    <Container className={classes.banner2}>
+    <Box className={classes.banner2}>
       <Typography
         variant="h1"
         color="textSecondary"
@@ -86,14 +83,14 @@ function Banner2() {
       >
         Easy like XYZ
       </Typography>
-    </Container>
+    </Box>
   );
 }
 
 function Banner3() {
   const classes = useStyles();
   return (
-    <Container className={classes.banner3}>
+    <Box className={classes.banner3}>
       <Typography
         variant="h1"
         color="textSecondary"
@@ -111,17 +108,17 @@ function Banner3() {
       >
         Sign up
       </Button>
-    </Container>
+    </Box>
   );
 }
 
 export default function Home() {
   const classes = useStyles();
   return (
-    <div className={classes.container}>
+    <Box>
       <Banner1 />
       <Banner2 />
       <Banner3 />
-    </div>
+    </Box>
   );
 }
