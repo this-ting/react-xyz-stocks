@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { Box, Container, Button, Typography } from '@material-ui/core';
+import { Box, Button, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
   banner1: {
@@ -105,6 +106,8 @@ function Banner3() {
         size="large"
         variant="outlined"
         className={classes.button}
+        to="/user/"
+        component={Link}
       >
         Sign up
       </Button>
@@ -113,7 +116,6 @@ function Banner3() {
 }
 
 export default function Home() {
-  const classes = useStyles();
   return (
     <Box>
       <Banner1 />

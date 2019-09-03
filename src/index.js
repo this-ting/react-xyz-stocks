@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Header from './Header/Header.js';
-import Footer from './Footer/Footer.js';
+import Header from './Header';
+import Home from './Home';
+import Markets from './Markets';
+import User from './User';
+import Footer from './Footer';
 
 class App extends Component {
   state = {
@@ -11,11 +15,14 @@ class App extends Component {
 
   render() {
     return (
-      <>
+      <Router>
         <CssBaseline />
         <Header />
+        <Route path="/" exact component={Home} />
+        <Route path="/markets/" component={Markets} />
+        <Route path="/user/" component={User} />
         <Footer />
-      </>
+      </Router>
     );
   }
 }
