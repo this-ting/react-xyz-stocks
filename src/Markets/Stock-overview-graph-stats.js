@@ -33,9 +33,9 @@ class GraphStats extends Component {
       req.send();
       req.onload = () => {
         const data = JSON.parse(req.responseText);
-        let stat = this.state;
-        stat[key] = data;
-        this.setState(stat);
+        const info = {};
+        info[key] = data;
+        this.setState(info);
       };
     }
   }
