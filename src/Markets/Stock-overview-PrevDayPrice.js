@@ -6,20 +6,12 @@ import { Paper, Grid, Typography } from '@material-ui/core';
 class PrevDayPrice extends Component {
   state = {
     date: '',
-    open: null,
-    close: 212.59,
-    high: 214.58,
-    low: 210.9,
-    volume: 21958044,
-    uOpen: 211.94,
-    uClose: 217.34,
-    uHigh: 220.01,
-    uLow: 215.7,
-    uVolume: 21166047,
-    change: -0.27,
-    changePercent: -0.1348,
-    changeOverTime: 0,
-    symbol: 'AAPL'
+    open: '',
+    close: '',
+    high: '',
+    low: '',
+    volume: '',
+    changePercent: ''
   };
 
   componentDidMount() {
@@ -38,21 +30,13 @@ class PrevDayPrice extends Component {
         high: data.high,
         low: data.low,
         volume: data.volume,
-        uOpen: data.uOpen,
-        uClose: data.uClose,
-        uHigh: data.uHigh,
-        uLow: data.uLow,
-        uVolume: data.uVolume,
-        change: data.change,
-        changePercent: data.changePercent,
-        changeOverTime: data.changeOverTime,
-        symbol: data.symbol
+        changePercent: data.changePercent
       });
     };
   }
 
   render() {
-    let { date, open, close, high, low, volume, changePercent } = this.state;
+    const { date, open, close, high, low, volume, changePercent } = this.state;
     return (
       <Paper>
         <h2>Previous Day Price</h2>
