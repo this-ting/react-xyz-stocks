@@ -6,10 +6,11 @@ class Company extends Component {
     symbol: '',
     companyName: '',
     exchange: '',
+    sector: '',
     industry: '',
     website: '',
     description: '',
-    CEO: ''
+    ceo: ''
   };
 
   componentDidMount() {
@@ -25,39 +26,51 @@ class Company extends Component {
         symbol: data.symbol,
         companyName: data.profile.companyName,
         exchange: data.profile.exchange,
+        sector: data.profile.sector,
         industry: data.profile.industry,
         website: data.profile.website,
         description: data.profile.description,
-        CEO: data.profile.ceo
+        ceo: data.profile.ceo
       });
     };
   }
 
   render() {
+    const {
+      symbol,
+      exchange,
+      companyName,
+      website,
+      sector,
+      industry,
+      description,
+      ceo
+    } = this.state;
+
     return (
       <Paper>
         <h2>Company Info</h2>
         <Grid container direction="column">
           <Grid item>
-            {this.state.exchange}:{this.state.symbol}
-          </Grid>
-          <Grid item>
             Company:
-            {this.state.companyName}
+            {companyName}
           </Grid>
+          <Grid item>CEO: {ceo}</Grid>
           <Grid item>
-            Website:
-            {this.state.website}
+            Sector:
+            {sector}
           </Grid>
           <Grid item>
             Industry:
-            {this.state.industry}
+            {industry}
           </Grid>
+          <Grid item>{description}</Grid>
+          <Grid item>Exchange: {exchange}</Grid>
+          <Grid item>Ticker: {symbol}</Grid>
           <Grid item>
-            About:
-            {this.state.description}
+            Website:
+            {website}
           </Grid>
-          <Grid item>CEO: {this.state.CEO}</Grid>
         </Grid>
       </Paper>
     );
