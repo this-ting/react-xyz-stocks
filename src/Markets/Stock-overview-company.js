@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Paper, Grid, Typography } from '@material-ui/core';
+import { Paper, Grid } from '@material-ui/core';
 
 class Company extends Component {
   state = {
@@ -16,20 +16,19 @@ class Company extends Component {
     const req = new XMLHttpRequest();
     req.open(
       'get',
-      `https://sandbox.iexapis.com/stable/stock/aapl/company?token=Tpk_7190efa09280470180ab8bb6635da780`
+      `https://financialmodelingprep.com/api/v3/company/profile/AAPL`
     );
     req.send();
     req.onload = () => {
       const data = JSON.parse(req.responseText);
-      console.log(data);
       this.setState({
         symbol: data.symbol,
-        companyName: data.companyName,
-        exchange: data.exchange,
-        industry: data.industry,
-        website: data.website,
-        description: data.description,
-        CEO: data.CEO
+        companyName: data.profile.companyName,
+        exchange: data.profile.exchange,
+        industry: data.profile.industry,
+        website: data.profile.website,
+        description: data.profile.description,
+        CEO: data.profile.ceo
       });
     };
   }

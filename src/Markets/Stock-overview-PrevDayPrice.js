@@ -31,7 +31,6 @@ class PrevDayPrice extends Component {
     req.send();
     req.onload = () => {
       const data = JSON.parse(req.responseText);
-      console.log(data);
       this.setState({
         date: data.date,
         open: data.open,

@@ -15,7 +15,7 @@ class News extends Component {
     req.send();
     req.onload = () => {
       const data = JSON.parse(req.responseText);
-      console.log(data);
+      // console.log(data);
       this.setState({
         news: data
       });

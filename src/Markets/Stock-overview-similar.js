@@ -15,7 +15,6 @@ class Similar extends Component {
     req.send();
     req.onload = () => {
       const data = JSON.parse(req.responseText);
-      console.log(data);
       this.setState({
         similar: data
       });
