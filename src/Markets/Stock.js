@@ -5,6 +5,7 @@ import { Tabs, Tab } from '@material-ui/core';
 // Import Components
 import Ticker from './Stock-ticker.js';
 import Overview from './Stock-overview.js';
+import Financials from './Stock-financials.js';
 
 export default function Stock() {
   const [value, setValue] = React.useState(0);
@@ -21,7 +22,7 @@ export default function Stock() {
         <Tab label="Financials" />
         <Tab label="News" />
       </Tabs>
-
+      <Financials />
       <Overview />
     </div>
   );
