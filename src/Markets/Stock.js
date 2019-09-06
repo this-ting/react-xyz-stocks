@@ -3,6 +3,7 @@ import { Route, Link } from 'react-router-dom';
 import { Tabs, Tab } from '@material-ui/core';
 
 // Import Components
+import StockContext from './StockContext.js';
 import Ticker from './Stock-ticker.js';
 import Overview from './Stock-overview.js';
 import Financials from './Stock-financials.js';

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import StockContext from './StockContext.js';
 
 const Ticker = () => {
   const initialState = {
@@ -7,10 +8,13 @@ const Ticker = () => {
     ticker: ''
   };
 
+  // context
+  const input = useContext(StockContext);
+
   const [company, setCompany] = useState(initialState);
 
   useEffect(() => {
-    fetch(`https://financialmodelingprep.com/api/v3/company/profile/AAPL`)
+    fetch(`https://financialmodelingprep.com/api/v3/company/profile/${input}`)
       .then(response => response.json())
       .then(data => {
         const info = {};
@@ -20,7 +24,7 @@ const Ticker = () => {
         setCompany(info);
       })
       .catch(error => alert(error));
-  }, [company.name]);
+  }, [input]);
 
   return (
     <>
