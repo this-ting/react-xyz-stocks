@@ -19,7 +19,7 @@ class KeyFin extends Component {
     req.send();
     req.onload = () => {
       const data = JSON.parse(req.responseText).financials[0];
-      console.log(data);
+      // console.log(data);
       const info = {
         date: data.date,
         revenue: data.Revenue,

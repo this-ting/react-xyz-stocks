@@ -11,7 +11,7 @@ import Similar from './Stock-overview-similar.js';
 export default function Overview() {
   return (
     <div>
-      <h2>Chart</h2>
+      <h2>Overview</h2>
       <GraphStats />
       <PrevDayPrice />
       <Company />

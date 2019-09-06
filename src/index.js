@@ -17,6 +17,7 @@ class App extends Component {
     return (
       <Router>
         <CssBaseline />
+        <Markets />
         <Header />
         <Route path="/" exact component={Home} />
         <Route path="/markets/" component={Markets} />

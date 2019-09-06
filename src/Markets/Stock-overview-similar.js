@@ -28,7 +28,7 @@ class Similar extends Component {
 
     return (
       <Paper>
-        <h2>Company Info</h2>
+        <h2>Similar</h2>
         <Grid container direction="column">
           {showSimilar}
         </Grid>

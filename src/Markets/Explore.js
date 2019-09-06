@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
+import { Container } from '@material-ui/core';
 
-class Explore extends Component {
-  render() {
-    return (
-      <div>
-        <h2>EXPLORE PAGE</h2>
-      </div>
-    );
-  }
+function Explore() {
+  return <Container></Container>;
 }
 
 export default Explore;
