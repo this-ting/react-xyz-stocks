@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { Paper, Grid, Typography } from '@material-ui/core';
 
 import StockContext from './StockContext.js';
@@ -8,6 +8,9 @@ import StockContext from './StockContext.js';
 const PrevDayPrice = () => {
   // context
   const input = useContext(StockContext);
+
+  // check for component mount
+  const mounted = useRef(false);
 
   const initalState = {
     date: '',
@@ -22,6 +25,7 @@ const PrevDayPrice = () => {
   const [prevDay, setPrevDay] = useState(initalState);
 
   useEffect(() => {
+    mounted.curren = true;
     fetch(
       `https://sandbox.iexapis.com/stable/stock/${input}/previous?token=Tpk_7190efa09280470180ab8bb6635da780`
     )
@@ -35,9 +39,16 @@ const PrevDayPrice = () => {
         info.low = data.low;
         info.volume = data.volume;
         info.changePercent = data.changePercent;
-        setPrevDay(info);
-      });
-    // .catch(error => alert(error));
+        if (mounted.current) {
+          setPrevDay(info);
+        }
+      })
+      .catch(error => alert(error));
+
+    // Cleanup component
+    return () => {
+      mounted.current = false;
+    };
   }, [input]);
 
   if (prevDay) {
@@ -58,6 +69,11 @@ const PrevDayPrice = () => {
       </Paper>
     );
   }
+  return (
+    <>
+      <h1>LOADING</h1>
+    </>
+  );
 };
 
 export default PrevDayPrice;
