@@ -9,38 +9,36 @@ const CFS = () => {
   // check for component mount
   const mounted = useRef(false);
 
-  const initialState = {
-    cfs: [
-      {
-        opCF: '',
-        invCF: '',
-        finCF: '',
-        netCF: '',
-        freeCF: ''
-      },
-      {
-        opCF: '',
-        invCF: '',
-        finCF: '',
-        netCF: '',
-        freeCF: ''
-      },
-      {
-        opCF: '',
-        invCF: '',
-        finCF: '',
-        netCF: '',
-        freeCF: ''
-      },
-      {
-        opCF: '',
-        invCF: '',
-        finCF: '',
-        netCF: '',
-        freeCF: ''
-      }
-    ]
-  };
+  const initialState = [
+    {
+      opCF: '',
+      invCF: '',
+      finCF: '',
+      netCF: '',
+      freeCF: ''
+    },
+    {
+      opCF: '',
+      invCF: '',
+      finCF: '',
+      netCF: '',
+      freeCF: ''
+    },
+    {
+      opCF: '',
+      invCF: '',
+      finCF: '',
+      netCF: '',
+      freeCF: ''
+    },
+    {
+      opCF: '',
+      invCF: '',
+      finCF: '',
+      netCF: '',
+      freeCF: ''
+    }
+  ];
 
   const [cashFlow, setCashFlow] = useState(initialState);
   useEffect(() => {
