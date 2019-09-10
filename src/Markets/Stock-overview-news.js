@@ -1,10 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { Paper, Grid, Typography } from '@material-ui/core';
 import StockContext from './StockContext.js';
 
 const News = () => {
   // context
   const input = useContext(StockContext);
+
+  // check for component mount
+  const mounted = useRef(false);
 
   const initialState = {
     news: []
@@ -13,15 +16,22 @@ const News = () => {
   const [news, setNews] = useState(initialState);
 
   useEffect(() => {
+    mounted.current = true;
     fetch(
       `https://sandbox.iexapis.com/stable/stock/${input}/news/last/3?token=Tpk_7190efa09280470180ab8bb6635da780`
     )
       .then(response => response.json())
       .then(data => {
-        console.log(data);
-        setNews(data);
-      });
-    // .catch(error => alert(error));
+        if (mounted.current) {
+          setNews(data);
+        }
+      })
+      .catch(error => alert(error));
+
+    // Cleanup
+    return () => {
+      mounted.current = false;
+    };
   }, [input]);
 
   if (news[0]) {
@@ -51,7 +61,7 @@ const News = () => {
       </Paper>
     ));
 
-    let testArticle = (
+    const testArticle = (
       <Paper>
         <Grid container direction="row">
           <Grid container direction="column">
