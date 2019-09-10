@@ -25,7 +25,7 @@ const PrevDayPrice = () => {
   const [prevDay, setPrevDay] = useState(initalState);
 
   useEffect(() => {
-    mounted.curren = true;
+    mounted.current = true;
     fetch(
       `https://sandbox.iexapis.com/stable/stock/${input}/previous?token=Tpk_7190efa09280470180ab8bb6635da780`
     )
