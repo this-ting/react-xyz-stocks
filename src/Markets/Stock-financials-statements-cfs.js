@@ -1,10 +1,13 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import { Paper, Grid } from '@material-ui/core';
 import StockContext from './StockContext.js';
 
 const CFS = () => {
   // context
   const input = useContext(StockContext);
+
+  // check for component mount
+  const mounted = useRef(false);
 
   const initialState = {
     cfs: [
@@ -41,6 +44,7 @@ const CFS = () => {
 
   const [cashFlow, setCashFlow] = useState(initialState);
   useEffect(() => {
+    mounted.current = true;
     fetch(
       `https://financialmodelingprep.com/api/v3/financials/cash-flow-statement/${input}?period=quarter`
     )
@@ -56,9 +60,16 @@ const CFS = () => {
           cfs[i].netCF = info[i]['Net cash flow / Change in cash'];
           cfs[i].freeCF = info[i]['Free Cash Flow'];
         }
-        setCashFlow(cfs);
+        if (mounted.current) {
+          setCashFlow(cfs);
+        }
       })
       .catch(error => alert(error));
+
+    // Cleanup
+    return () => {
+      mounted.current = false;
+    };
   }, [input]);
 
   // if undefined, means data not rendered yet
@@ -80,9 +91,9 @@ const CFS = () => {
     );
   }
   return (
-    <div>
-      <h1>Loading</h1>
-    </div>
+    <>
+      <h1>LOADING</h1>
+    </>
   );
 };
 
