@@ -23,8 +23,8 @@ export default function Stock() {
         <Tab label="Financials" />
         <Tab label="News" />
       </Tabs>
-      <Financials />
       <Overview />
+      <Financials />
     </div>
   );
 }
