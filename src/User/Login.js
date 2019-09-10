@@ -22,7 +22,7 @@ export default function Login() {
   return (
     <Grid container justify="center" alignItems="center">
       <Grid item className={classes.background} xs="7" />
-      <Grid item direction="column" xs="5" className={classes.input}>
+      <Grid item xs="5" className={classes.input}>
         <SignInScreen />
       </Grid>
     </Grid>
