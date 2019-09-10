@@ -1,8 +1,12 @@
-import React, { Component } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Paper, Grid } from '@material-ui/core';
+import StockContext from './StockContext.js';
 
-class BS extends Component {
-  state = {
+const BS = () => {
+  // context
+  const input = useContext(StockContext);
+
+  const initialState = {
     bs: [
       {
         cash: '',
@@ -39,31 +43,30 @@ class BS extends Component {
     ]
   };
 
-  componentDidMount() {
-    const req = new XMLHttpRequest();
-    req.open(
-      'get',
-      `https://financialmodelingprep.com/api/v3/financials/balance-sheet-statement/AAPL?period=quarter`
-    );
-    req.send();
-    req.onload = () => {
-      const data = JSON.parse(req.responseText).financials;
-      const info = data.slice(0, 4);
-      const bs = [];
-      for (let i = 0; i < info.length; i++) {
-        bs[i] = {};
-        bs[i].cash = info[i]['Cash and cash equivalents'];
-        bs[i].currAssets = info[i]['Total current assets'];
-        bs[i].assets = info[i]['Total assets'];
-        bs[i].currLib = info[i]['Total current liabilities'];
-        bs[i].lib = info[i]['Total liabilities'];
-        bs[i].shareholdersEq = info[i]['Total shareholders equity'];
-      }
-      this.setState({ bs });
-    };
-  }
+  const [balance, setBalance] = useState(initialState);
+  useEffect(() => {
+    fetch(
+      `https://financialmodelingprep.com/api/v3/financials/balance-sheet-statement/${input}?period=quarter`
+    )
+      .then(response => response.json())
+      .then(data => {
+        let info = data.financials.slice(0, 4);
+        const bs = [];
+        for (let i = 0; i < info.length; i++) {
+          bs[i] = {};
+          bs[i].cash = info[i]['Cash and cash equivalents'];
+          bs[i].currAssets = info[i]['Total current assets'];
+          bs[i].assets = info[i]['Total assets'];
+          bs[i].currLib = info[i]['Total current liabilities'];
+          bs[i].lib = info[i]['Total liabilities'];
+          bs[i].shareholdersEq = info[i]['Total shareholders equity'];
+        }
+        setBalance(bs);
+      })
+      .catch(error => alert(error));
+  }, [input]);
 
-  render() {
+  if (balance[0]) {
     const {
       cash,
       currAssets,
@@ -71,8 +74,7 @@ class BS extends Component {
       currLib,
       lib,
       shareholdersEq
-    } = this.state.bs[0];
-
+    } = balance[0];
     return (
       <Paper>
         <Grid container direction="column">
@@ -89,6 +91,11 @@ class BS extends Component {
       </Paper>
     );
   }
-}
+  return (
+    <div>
+      <h1>Loading</h1>
+    </div>
+  );
+};
 
 export default BS;
