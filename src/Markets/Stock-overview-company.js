@@ -1,10 +1,13 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import { Paper, Grid } from '@material-ui/core';
 import StockContext from './StockContext.js';
 
 const Company = () => {
   // context
   const input = useContext(StockContext);
+
+  // check for component mount
+  const mounted = useRef(false);
 
   const initialState = {
     symbol: '',
@@ -20,6 +23,7 @@ const Company = () => {
   const [profile, setProfile] = useState(initialState);
 
   useEffect(() => {
+    mounted.current = true;
     fetch(`https://financialmodelingprep.com/api/v3/company/profile/${input}`)
       .then(response => response.json())
       .then(data => {
@@ -32,11 +36,18 @@ const Company = () => {
         info.website = data.profile.website;
         info.description = data.profile.description;
         info.ceo = data.profile.ceo;
-        setProfile(info);
+        if (mounted.current) {
+          setProfile(info);
+        }
       });
+
+    // Cleanup
+    return () => {
+      mounted.current = false;
+    };
   }, [input]);
 
-  if (profile) {
+  if (profile.symbol) {
     const {
       symbol,
       exchange,
@@ -76,6 +87,11 @@ const Company = () => {
       </Paper>
     );
   }
+  return (
+    <>
+      <h1>LOADING</h1>
+    </>
+  );
 };
 
 export default Company;
