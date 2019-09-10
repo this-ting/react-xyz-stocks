@@ -1,10 +1,15 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Paper, Grid, Typography } from '@material-ui/core';
+
+import StockContext from './StockContext.js';
 
 // returns the the same values as historical prices, can change over to historical prices when doing charts
 
-class PrevDayPrice extends Component {
-  state = {
+const PrevDayPrice = () => {
+  // context
+  const input = useContext(StockContext);
+
+  const initalState = {
     date: '',
     open: '',
     close: '',
@@ -14,29 +19,30 @@ class PrevDayPrice extends Component {
     changePercent: ''
   };
 
-  componentDidMount() {
-    const req = new XMLHttpRequest();
-    req.open(
-      'get',
-      `https://sandbox.iexapis.com/stable/stock/aapl/previous?token=Tpk_7190efa09280470180ab8bb6635da780`
-    );
-    req.send();
-    req.onload = () => {
-      const data = JSON.parse(req.responseText);
-      this.setState({
-        date: data.date,
-        open: data.open,
-        close: data.close,
-        high: data.high,
-        low: data.low,
-        volume: data.volume,
-        changePercent: data.changePercent
-      });
-    };
-  }
+  const [prevDay, setPrevDay] = useState(initalState);
 
-  render() {
-    const { date, open, close, high, low, volume, changePercent } = this.state;
+  useEffect(() => {
+    fetch(
+      `https://sandbox.iexapis.com/stable/stock/${input}/previous?token=Tpk_7190efa09280470180ab8bb6635da780`
+    )
+      .then(response => response.json())
+      .then(data => {
+        const info = {};
+        info.date = data.date;
+        info.open = data.open;
+        info.close = data.close;
+        info.high = data.high;
+        info.low = data.low;
+        info.volume = data.volume;
+        info.changePercent = data.changePercent;
+        setPrevDay(info);
+      });
+    // .catch(error => alert(error));
+  }, [input]);
+
+  if (prevDay) {
+    const { date, open, close, high, low, volume, changePercent } = prevDay;
+
     return (
       <Paper>
         <h2>Previous Day Price</h2>
@@ -52,6 +58,6 @@ class PrevDayPrice extends Component {
       </Paper>
     );
   }
-}
+};
 
 export default PrevDayPrice;
