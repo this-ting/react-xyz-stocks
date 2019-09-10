@@ -6,9 +6,8 @@ import PrevDayPrice from './Stock-overview-PrevDayPrice.js';
 import Company from './Stock-overview-company.js';
 import News from './Stock-overview-news.js';
 import KeyFin from './Stock-overview-keyfin.js';
-import Similar from './Stock-overview-similar.js';
 
-export default function Overview() {
+const Overview = () => {
   return (
     <div>
       <h2>Overview</h2>
@@ -17,7 +16,8 @@ export default function Overview() {
       <Company />
       <News />
       <KeyFin />
-      <Similar />
     </div>
   );
-}
+};
+
+export default Overview;
