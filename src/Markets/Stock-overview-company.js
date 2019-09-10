@@ -1,8 +1,12 @@
-import React, { Component } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Paper, Grid } from '@material-ui/core';
+import StockContext from './StockContext.js';
 
-class Company extends Component {
-  state = {
+const Company = () => {
+  // context
+  const input = useContext(StockContext);
+
+  const initialState = {
     symbol: '',
     companyName: '',
     exchange: '',
@@ -13,29 +17,26 @@ class Company extends Component {
     ceo: ''
   };
 
-  componentDidMount() {
-    const req = new XMLHttpRequest();
-    req.open(
-      'get',
-      `https://financialmodelingprep.com/api/v3/company/profile/AAPL`
-    );
-    req.send();
-    req.onload = () => {
-      const data = JSON.parse(req.responseText);
-      this.setState({
-        symbol: data.symbol,
-        companyName: data.profile.companyName,
-        exchange: data.profile.exchange,
-        sector: data.profile.sector,
-        industry: data.profile.industry,
-        website: data.profile.website,
-        description: data.profile.description,
-        ceo: data.profile.ceo
-      });
-    };
-  }
+  const [profile, setProfile] = useState(initialState);
 
-  render() {
+  useEffect(() => {
+    fetch(`https://financialmodelingprep.com/api/v3/company/profile/${input}`)
+      .then(response => response.json())
+      .then(data => {
+        const info = {};
+        info.symbol = data.symbol;
+        info.companyName = data.profile.companyName;
+        info.exchange = data.profile.exchange;
+        info.sector = data.profile.sector;
+        info.industry = data.profile.industry;
+        info.website = data.profile.website;
+        info.description = data.profile.description;
+        info.ceo = data.profile.ceo;
+        setProfile(info);
+      });
+  }, [input]);
+
+  if (profile) {
     const {
       symbol,
       exchange,
@@ -45,7 +46,7 @@ class Company extends Component {
       industry,
       description,
       ceo
-    } = this.state;
+    } = profile;
 
     return (
       <Paper>
@@ -75,6 +76,6 @@ class Company extends Component {
       </Paper>
     );
   }
-}
+};
 
 export default Company;
