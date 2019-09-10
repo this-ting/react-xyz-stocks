@@ -1,8 +1,12 @@
-import React, { Component } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Paper, Grid } from '@material-ui/core';
+import stockContext from './StockContext.js';
 
-class Dividends extends Component {
-  state = {
+const Dividends = () => {
+  // context
+  const input = useContext(stockContext);
+
+  const initialState = {
     exDate: '',
     paymentDate: '',
     recordDate: '',
@@ -13,29 +17,27 @@ class Dividends extends Component {
     currency: ''
   };
 
-  componentDidMount() {
-    const req = new XMLHttpRequest();
-    req.open(
-      'get',
-      `https://sandbox.iexapis.com/stable/stock/aapl/dividends?token=Tpk_7190efa09280470180ab8bb6635da780`
-    );
-    req.send();
-    req.onload = () => {
-      const data = JSON.parse(req.responseText);
-      this.setState({
-        exDate: data.exDate,
-        paymentDate: data.paymentDate,
-        recordDate: data.recordDate,
-        declaredDate: data.declaredDate,
-        amount: data.amount,
-        type: data.flag,
-        frequency: data.frequency,
-        currency: data.currency
+  const [div, setDiv] = useState(initialState);
+  useEffect(() => {
+    fetch(
+      `https://sandbox.iexapis.com/stable/stock/${input}/dividends?token=Tpk_7190efa09280470180ab8bb6635da780`
+    )
+      .then(response => response.json())
+      .then(data => {
+        const info = {};
+        info.exDate = data[0].exDate;
+        info.paymentDate = data[0].paymentDate;
+        info.recordDate = data[0].recordDate;
+        info.declaredDate = data[0].declaredDate;
+        info.amount = data[0].amount;
+        info.type = data[0].flag;
+        info.frequency = data[0].frequency;
+        info.currency = data[0].currency;
+        setDiv(info);
       });
-    };
-  }
+  }, [input]);
 
-  render() {
+  if (div) {
     const {
       exDate,
       paymentDate,
@@ -45,7 +47,8 @@ class Dividends extends Component {
       type,
       frequency,
       currency
-    } = this.state;
+    } = div;
+
     return (
       <Paper>
         <Grid container direction="column">
@@ -65,6 +68,11 @@ class Dividends extends Component {
       </Paper>
     );
   }
-}
+  return (
+    <div>
+      <h1>Loading</h1>
+    </div>
+  );
+};
 
 export default Dividends;
