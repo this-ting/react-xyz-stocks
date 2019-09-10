@@ -1,8 +1,12 @@
-import React, { Component } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Paper, Grid } from '@material-ui/core';
+import StockContext from './StockContext.js';
 
-class CFS extends Component {
-  state = {
+const CFS = () => {
+  // context
+  const input = useContext(StockContext);
+
+  const initialState = {
     cfs: [
       {
         opCF: '',
@@ -35,32 +39,31 @@ class CFS extends Component {
     ]
   };
 
-  componentDidMount() {
-    const req = new XMLHttpRequest();
-    req.open(
-      'get',
-      `https://financialmodelingprep.com/api/v3/financials/cash-flow-statement/AAPL?period=quarter`
-    );
-    req.send();
-    req.onload = () => {
-      const data = JSON.parse(req.responseText).financials;
-      const info = data.slice(0, 4);
-      const cfs = [];
-      for (let i = 0; i < info.length; i++) {
-        cfs[i] = {};
-        cfs[i].opCF = info[i]['Operating Cash Flow'];
-        cfs[i].invCF = info[i]['Investing Cash flow:'];
-        cfs[i].finCF = info[i]['Financing Cash Flow'];
-        cfs[i].netCF = info[i]['Net cash flow / Change in cash'];
-        cfs[i].freeCF = info[i]['Free Cash Flow'];
-      }
-      this.setState({ cfs });
-    };
-  }
+  const [cashFlow, setCashFlow] = useState(initialState);
+  useEffect(() => {
+    fetch(
+      `https://financialmodelingprep.com/api/v3/financials/cash-flow-statement/${input}?period=quarter`
+    )
+      .then(response => response.json())
+      .then(data => {
+        const info = data.financials.slice(0, 4);
+        const cfs = [];
+        for (let i = 0; i < info.length; i++) {
+          cfs[i] = {};
+          cfs[i].opCF = info[i]['Operating Cash Flow'];
+          cfs[i].invCF = info[i]['Investing Cash flow'];
+          cfs[i].finCF = info[i]['Financing Cash Flow'];
+          cfs[i].netCF = info[i]['Net cash flow / Change in cash'];
+          cfs[i].freeCF = info[i]['Free Cash Flow'];
+        }
+        setCashFlow(cfs);
+      })
+      .catch(error => alert(error));
+  }, [input]);
 
-  render() {
-    const { opCF, invCF, finCF, netCF, freeCF } = this.state.cfs[0];
-
+  // if undefined, means data not rendered yet
+  if (cashFlow[0]) {
+    const { opCF, invCF, finCF, netCF, freeCF } = cashFlow[0];
     return (
       <Paper>
         <Grid container direction="column">
@@ -76,6 +79,11 @@ class CFS extends Component {
       </Paper>
     );
   }
-}
+  return (
+    <div>
+      <h1>Loading</h1>
+    </div>
+  );
+};
 
 export default CFS;
