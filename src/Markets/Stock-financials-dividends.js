@@ -1,10 +1,13 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import { Paper, Grid } from '@material-ui/core';
 import stockContext from './StockContext.js';
 
 const Dividends = () => {
   // context
   const input = useContext(stockContext);
+
+  // check for component mount
+  const mounted = useRef(false);
 
   const initialState = {
     exDate: '',
@@ -19,6 +22,7 @@ const Dividends = () => {
 
   const [div, setDiv] = useState(initialState);
   useEffect(() => {
+    mounted.current = true;
     fetch(
       `https://sandbox.iexapis.com/stable/stock/${input}/dividends?token=Tpk_7190efa09280470180ab8bb6635da780`
     )
@@ -33,8 +37,14 @@ const Dividends = () => {
         info.type = data[0].flag;
         info.frequency = data[0].frequency;
         info.currency = data[0].currency;
-        setDiv(info);
+        if (mounted.current) {
+          setDiv(info);
+        }
       });
+
+    return () => {
+      mounted.current = false;
+    };
   }, [input]);
 
   if (div) {
@@ -69,9 +79,9 @@ const Dividends = () => {
     );
   }
   return (
-    <div>
-      <h1>Loading</h1>
-    </div>
+    <>
+      <h1>LOADING</h1>
+    </>
   );
 };
 
