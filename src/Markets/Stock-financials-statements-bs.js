@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import { Paper, Grid } from '@material-ui/core';
 import StockContext from './StockContext.js';
 
@@ -6,51 +6,53 @@ const BS = () => {
   // context
   const input = useContext(StockContext);
 
-  const initialState = {
-    bs: [
-      {
-        cash: '',
-        currAssets: '',
-        assets: '',
-        currLib: '',
-        lib: '',
-        shareholdersEq: ''
-      },
-      {
-        cash: '',
-        currAssets: '',
-        assets: '',
-        currLib: '',
-        lib: '',
-        shareholdersEq: ''
-      },
-      {
-        cash: '',
-        currAssets: '',
-        assets: '',
-        currLib: '',
-        lib: '',
-        shareholdersEq: ''
-      },
-      {
-        cash: '',
-        currAssets: '',
-        assets: '',
-        currLib: '',
-        lib: '',
-        shareholdersEq: ''
-      }
-    ]
-  };
+  // check for component mount
+  const mounted = useRef(false);
+
+  const initialState = [
+    {
+      cash: '',
+      currAssets: '',
+      assets: '',
+      currLib: '',
+      lib: '',
+      shareholdersEq: ''
+    },
+    {
+      cash: '',
+      currAssets: '',
+      assets: '',
+      currLib: '',
+      lib: '',
+      shareholdersEq: ''
+    },
+    {
+      cash: '',
+      currAssets: '',
+      assets: '',
+      currLib: '',
+      lib: '',
+      shareholdersEq: ''
+    },
+    {
+      cash: '',
+      currAssets: '',
+      assets: '',
+      currLib: '',
+      lib: '',
+      shareholdersEq: ''
+    }
+  ];
 
   const [balance, setBalance] = useState(initialState);
   useEffect(() => {
+    mounted.current = true;
     fetch(
       `https://financialmodelingprep.com/api/v3/financials/balance-sheet-statement/${input}?period=quarter`
     )
       .then(response => response.json())
       .then(data => {
-        let info = data.financials.slice(0, 4);
+        const info = data.financials.slice(0, 4);
         const bs = [];
         for (let i = 0; i < info.length; i++) {
           bs[i] = {};
@@ -61,9 +63,15 @@ const BS = () => {
           bs[i].lib = info[i]['Total liabilities'];
           bs[i].shareholdersEq = info[i]['Total shareholders equity'];
         }
-        setBalance(bs);
+        if (mounted.current) {
+          setBalance(bs);
+        }
       })
       .catch(error => alert(error));
+    // Cleanup
+    return () => {
+      mounted.current = false;
+    };
   }, [input]);
 
   if (balance[0]) {
@@ -92,9 +100,9 @@ const BS = () => {
     );
   }
   return (
-    <div>
-      <h1>Loading</h1>
-    </div>
+    <>
+      <h1>LOADING</h1>
+    </>
   );
 };
 
