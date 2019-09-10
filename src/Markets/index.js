@@ -14,12 +14,18 @@ export default function Markets() {
     setCompany(input);
   };
 
+  const renderStock = () => {
+    if (company !== '') {
+      return <Stock />;
+    }
+    return <Explore />;
+  };
+
   return (
     <Container>
       <StockProvider value={company}>
         <Search getCompany={getCompany} />
-        <Explore />
-        <Stock />
+        {renderStock()}
       </StockProvider>
     </Container>
   );
