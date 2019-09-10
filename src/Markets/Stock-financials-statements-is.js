@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import { Paper, Grid } from '@material-ui/core';
 import StockContext from './StockContext.js';
 
@@ -6,53 +6,55 @@ const IS = () => {
   // context
   const input = useContext(StockContext);
 
-  const initialState = {
-    is: [
-      {
-        rev: '',
-        costOfRev: '',
-        gp: '',
-        gm: '',
-        opEx: '',
-        opIncome: '',
-        ni: '',
-        npm: ''
-      },
-      {
-        rev: '',
-        costOfRev: '',
-        gp: '',
-        gm: '',
-        opEx: '',
-        opIncome: '',
-        ni: '',
-        npm: ''
-      },
-      {
-        rev: '',
-        costOfRev: '',
-        gp: '',
-        gm: '',
-        opEx: '',
-        opIncome: '',
-        ni: '',
-        npm: ''
-      },
-      {
-        rev: '',
-        costOfRev: '',
-        gp: '',
-        gm: '',
-        opEx: '',
-        opIncome: '',
-        ni: '',
-        npm: ''
-      }
-    ]
-  };
+  // check for component mount
+  const mounted = useRef(false);
+
+  const initialState = [
+    {
+      rev: '',
+      costOfRev: '',
+      gp: '',
+      gm: '',
+      opEx: '',
+      opIncome: '',
+      ni: '',
+      npm: ''
+    },
+    {
+      rev: '',
+      costOfRev: '',
+      gp: '',
+      gm: '',
+      opEx: '',
+      opIncome: '',
+      ni: '',
+      npm: ''
+    },
+    {
+      rev: '',
+      costOfRev: '',
+      gp: '',
+      gm: '',
+      opEx: '',
+      opIncome: '',
+      ni: '',
+      npm: ''
+    },
+    {
+      rev: '',
+      costOfRev: '',
+      gp: '',
+      gm: '',
+      opEx: '',
+      opIncome: '',
+      ni: '',
+      npm: ''
+    }
+  ];
 
   const [income, setIncome] = useState(initialState);
   useEffect(() => {
+    mounted.current = true;
     fetch(
       `https://financialmodelingprep.com/api/v3/financials/income-statement/${input}?period=quarter`
     )
@@ -71,9 +73,17 @@ const IS = () => {
           is[i].ni = info[i]['Net Income'];
           is[i].npm = info[i]['Net Profit Margin'];
         }
-        setIncome(is);
+        // check if mounted
+        if (mounted.current) {
+          setIncome(is);
+        }
       })
-      .catch(error => alert(error));
+      .catch(error => alert(`Error: ${error}`));
+
+    // Cleanup
+    return () => {
+      mounted.current = false;
+    };
   }, [input]);
 
   if (income[0]) {
