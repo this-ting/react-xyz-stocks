@@ -2,7 +2,8 @@ import React, { useContext, useState, useEffect, useRef } from 'react';
 import { Paper, Grid } from '@material-ui/core';
 import StockContext from './StockContext.js';
 
-const IS = () => {
+const IS = props => {
+  const { index } = props;
   // context
   const input = useContext(StockContext);
 
@@ -86,8 +87,8 @@ const IS = () => {
     };
   }, [input]);
 
-  if (income[0]) {
-    const { rev, costOfRev, gp, gm, opEx, opIncome, ni, npm } = income[0];
+  if (income[index]) {
+    const { rev, costOfRev, gp, gm, opEx, opIncome, ni, npm } = income[index];
     return (
       <Paper>
         <Grid container direction="column">

@@ -2,7 +2,8 @@ import React, { useContext, useState, useEffect, useRef } from 'react';
 import { Paper, Grid } from '@material-ui/core';
 import StockContext from './StockContext.js';
 
-const BS = () => {
+const BS = props => {
+  const { index } = props;
   // context
   const input = useContext(StockContext);
 
@@ -74,15 +75,10 @@ const BS = () => {
     };
   }, [input]);
 
-  if (balance[0]) {
-    const {
-      cash,
-      currAssets,
-      assets,
-      currLib,
-      lib,
-      shareholdersEq
-    } = balance[0];
+  if (balance[index]) {
+    const { cash, currAssets, assets, currLib, lib, shareholdersEq } = balance[
+      index
+    ];
     return (
       <Paper>
         <Grid container direction="column">

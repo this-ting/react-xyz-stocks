@@ -2,7 +2,8 @@ import React, { useContext, useState, useEffect, useRef } from 'react';
 import { Paper, Grid } from '@material-ui/core';
 import StockContext from './StockContext.js';
 
-const CFS = () => {
+const CFS = props => {
+  const { index } = props;
   // context
   const input = useContext(StockContext);
 
@@ -71,8 +72,8 @@ const CFS = () => {
   }, [input]);
 
   // if undefined, means data not rendered yet
-  if (cashFlow[0]) {
-    const { opCF, invCF, finCF, netCF, freeCF } = cashFlow[0];
+  if (cashFlow[index]) {
+    const { opCF, invCF, finCF, netCF, freeCF } = cashFlow[index];
     return (
       <Paper>
         <Grid container direction="column">
