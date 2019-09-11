@@ -53,7 +53,7 @@ const KeyFin = () => {
           <Grid item>As of the most recent quarter: {date}</Grid>
           <Grid item>Revenue: ${revenue}</Grid>
           <Grid item>Net Income: $ {netIncome}</Grid>
-          <Grid item>Net Profit Margin: {netProfitMargin} %</Grid>
+          <Grid item>Net Profit Margin: {netProfitMargin * 100} %</Grid>
           <Grid item>EPS: $ {eps}</Grid>
         </Grid>
       </Paper>

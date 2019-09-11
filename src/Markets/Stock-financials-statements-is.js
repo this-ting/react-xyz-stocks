@@ -97,11 +97,11 @@ const IS = () => {
           <Grid item>Revenue: $ {rev}</Grid>
           <Grid item>Cost of Revenue: $ {costOfRev}</Grid>
           <Grid item>Gross Profit: $ {gp}</Grid>
-          <Grid item>Gross Margin: $ {gm}</Grid>
+          <Grid item>Gross Margin: {gm * 100} %</Grid>
           <Grid item>Operating Expenses: $ {opEx}</Grid>
           <Grid item>Operating Income: $ {opIncome}</Grid>
           <Grid item>Net Income: $ {ni}</Grid>
-          <Grid item>Net Profit Margin: $ {npm}</Grid>
+          <Grid item>Net Profit Margin: {npm * 100} %</Grid>
         </Grid>
       </Paper>
     );

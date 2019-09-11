@@ -165,7 +165,7 @@ const GraphStats = () => {
         <Grid item>EPS: ${ttmEPS}</Grid>
         <Grid item>Beta: {beta}</Grid>
         <Grid item>P/E ratio: {peRatio}</Grid>
-        <Grid item>Div Yield: {dividendYield}</Grid>
+        <Grid item>Div Yield: {dividendYield * 100} %</Grid>
         <Grid item>52-week Low: {week52low}</Grid>
         <Grid item>52-week High: {week52high}</Grid>
       </Grid>

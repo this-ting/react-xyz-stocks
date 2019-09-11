@@ -64,7 +64,7 @@ const PrevDayPrice = () => {
           <Grid item> High: {high}</Grid>
           <Grid item> Low: {low}</Grid>
           <Grid item> Volume: {volume}</Grid>
-          <Grid item> ChangePercent: {changePercent}</Grid>
+          <Grid item> ChangePercent: {changePercent * 100}%</Grid>
         </Grid>
       </Paper>
     );
