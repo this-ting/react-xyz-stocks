@@ -1,9 +1,10 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
-import { Tabs, Tab, Typography, Box } from '@material-ui/core';
+import { Tabs, Tab, Typography, Box, Container } from '@material-ui/core';
 
 // Import Components
 import Ticker from './Stock-ticker.js';
+import Graph from './Stock-graph.js';
 import Overview from './Stock-overview.js';
 import Financials from './Stock-financials.js';
 import News from './Stock-news.js';
@@ -40,8 +41,10 @@ export default function Stock() {
   }
 
   return (
-    <div>
+    <>
       <Ticker />
+      <Graph />
+
       <Tabs
         value={value}
         onChange={handleChange}
@@ -61,6 +64,6 @@ export default function Stock() {
       <TabPanel value={value} index={2}>
         <News />
       </TabPanel>
-    </div>
+    </>
   );
 }
