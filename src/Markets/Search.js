@@ -9,7 +9,7 @@ const Search = props => {
     setInput(e.target.value);
   };
 
-  // pass input to index.js
+  // pass input to ./Markets/index.js
   const handleSubmit = e => {
     const { getCompany } = props;
     e.preventDefault();
