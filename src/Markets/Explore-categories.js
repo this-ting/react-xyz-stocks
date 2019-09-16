@@ -20,7 +20,7 @@ const Categories = props => {
   const sectors = [
     'Financial',
     'Healthcare',
-    'Congloermates',
+    'Conglomerates',
     'Consumer Goods',
     'Services',
     'Utilities',
