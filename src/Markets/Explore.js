@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Container } from '@material-ui/core';
 import Categories from './Explore-categories';
@@ -10,11 +10,10 @@ const useStyles = makeStyles({
   }
 });
 
-const Explore = () => {
+const Explore = ({ handleClick }) => {
   const classes = useStyles();
 
   const [sector, setSector] = useState('');
-
   const getSector = input => {
     setSector(input);
   };
@@ -29,7 +28,7 @@ const Explore = () => {
     }
     return (
       <>
-        <ExploreList sector={sector} />
+        <ExploreList sector={sector} handleClick={handleClick} />
       </>
     );
   };

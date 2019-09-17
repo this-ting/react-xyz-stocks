@@ -19,8 +19,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ExploreList = props => {
-  const { sector } = props;
+const ExploreList = ({ sector, handleClick }) => {
   const classes = useStyles();
 
   // state for previous price
@@ -66,7 +65,7 @@ const ExploreList = props => {
   if (previous) {
     return (
       <>
-        <h3>LIST OF COMPANIES IN {sector.toUpperCase()}</h3>
+        <h3>COMPANIES IN THE {sector.toUpperCase()} SECTOR</h3>
         <Paper className={classes.root}>
           <Table>
             <TableHead>
@@ -78,7 +77,7 @@ const ExploreList = props => {
             </TableHead>
             <TableBody>
               {previous.map(prev => (
-                <TableRow hover key={prev.ticker}>
+                <TableRow hover key={prev.ticker} onClick={handleClick}>
                   <TableCell component="th" scope="row">
                     {prev.ticker}
                   </TableCell>
