@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Container } from '@material-ui/core';
-import Categories from './Explore-categories';
-import ExploreList from './Explore-explorelist';
+import ExploreSector from './Explore-exploreSector';
+import SectorList from './Explore-sectorList';
 
 const useStyles = makeStyles({
   container: {
@@ -22,13 +22,13 @@ const Explore = ({ handleClick }) => {
     if (!sector) {
       return (
         <>
-          <Categories getSector={getSector} />
+          <ExploreSector getSector={getSector} />
         </>
       );
     }
     return (
       <>
-        <ExploreList sector={sector} handleClick={handleClick} />
+        <SectorList sector={sector} handleClick={handleClick} />
       </>
     );
   };

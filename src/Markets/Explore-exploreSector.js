@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Categories = props => {
+const ExploreSector = props => {
   const classes = useStyles();
   const sectors = [
     'Financial',
@@ -56,4 +56,4 @@ const Categories = props => {
   );
 };
 
-export default Categories;
+export default ExploreSector;

@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ExploreList = ({ sector, handleClick }) => {
+const SectorList = ({ sector, handleClick }) => {
   const classes = useStyles();
 
   // state for previous price
@@ -94,4 +94,4 @@ const ExploreList = ({ sector, handleClick }) => {
   return <h3>Rendering..</h3>;
 };
 
-export default ExploreList;
+export default SectorList;
