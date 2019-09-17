@@ -78,7 +78,7 @@ const ExploreList = props => {
             </TableHead>
             <TableBody>
               {previous.map(prev => (
-                <TableRow key={prev.ticker}>
+                <TableRow hover key={prev.ticker}>
                   <TableCell component="th" scope="row">
                     {prev.ticker}
                   </TableCell>
@@ -92,7 +92,7 @@ const ExploreList = props => {
       </>
     );
   }
-  return <h3>Nothing selected yet</h3>;
+  return <h3>Rendering..</h3>;
 };
 
 export default ExploreList;
