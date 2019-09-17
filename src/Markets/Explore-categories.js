@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid, Typography } from '@material-ui/core';
 
@@ -9,9 +9,6 @@ const useStyles = makeStyles({
     margin: '1em',
     textAlign: 'center',
     '&:hover': { color: 'red' }
-  },
-  container: {
-    marginBottom: '3em'
   }
 });
 
@@ -43,23 +40,18 @@ const Categories = props => {
     </Grid>
   ));
 
-  const catContainer = (
-    <Grid
-      container
-      spacing={2}
-      direction="row"
-      justify="center"
-      alignItems="center"
-      className={classes.container}
-    >
-      {category}
-    </Grid>
-  );
-
   return (
     <>
-      <h3>SECTORS</h3>
-      {catContainer}
+      <h3>EXPLORE BY SECTOR</h3>
+      <Grid
+        container
+        spacing={2}
+        direction="row"
+        justify="center"
+        alignItems="center"
+      >
+        {category}
+      </Grid>
     </>
   );
 };
