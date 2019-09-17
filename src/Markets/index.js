@@ -15,8 +15,8 @@ export default function Markets() {
   };
 
   /* 
-    State lifted up from ExploreList; handleClick is passed down to 
-    Explore => ExploreList to the onClick
+    State lifted up from SectorList; handleClick is passed down to 
+    Explore => SectorList to the onClick
   */
   const handleClick = e => {
     const value = e.currentTarget.firstElementChild.textContent;
