@@ -1,27 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { Container, Grid, Typography } from '@material-ui/core';
+import { Container } from '@material-ui/core';
 import Categories from './Explore-categories';
 import ExploreList from './Explore-explorelist';
 
+const useStyles = makeStyles({
+  container: {
+    marginBottom: '3em'
+  }
+});
+
 const Explore = () => {
+  const classes = useStyles();
+
   const [sector, setSector] = useState('');
 
   const getSector = input => {
     setSector(input);
   };
 
-  useEffect(() => {
-    console.log(sector);
-  }, [sector]);
+  const renderExplore = () => {
+    if (!sector) {
+      return (
+        <>
+          <Categories getSector={getSector} />
+        </>
+      );
+    }
+    return (
+      <>
+        <ExploreList sector={sector} />
+      </>
+    );
+  };
 
-  return (
-    <Container>
-      <h3>EXPLORE</h3>
-      <ExploreList />
-      <Categories getSector={getSector} />
-    </Container>
-  );
+  return <Container className={classes.container}>{renderExplore()}</Container>;
 };
 
 export default Explore;
