@@ -27,7 +27,7 @@ const PrevDayPrice = () => {
   useEffect(() => {
     mounted.current = true;
     fetch(
-      `https://sandbox.iexapis.com/stable/stock/${input}/previous?token=Tpk_7190efa09280470180ab8bb6635da780`
+      `https://sandbox.iexapis.com/stable/stock/${input}/previous?filter=date,open,close,high,low,volume,changePercent&token=Tpk_7190efa09280470180ab8bb6635da780`
     )
       .then(response => response.json())
       .then(data => {
