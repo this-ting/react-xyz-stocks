@@ -15,15 +15,18 @@ const useStyles = makeStyles({
 const ExploreSector = props => {
   const classes = useStyles();
   const sectors = [
-    'Financial',
-    'Healthcare',
-    'Conglomerates',
-    'Consumer Goods',
-    'Services',
-    'Utilities',
     'Basic Materials',
+    'Consumer Goods',
+    'Consumer Services',
+    'Energy',
+    'Financials',
+    'Financial Services',
+    'Healthcare',
+    'Industrials',
     'Technology',
-    'Industrial Goods'
+    'Transportation',
+    'Telecommunications',
+    'Utilities'
   ];
 
   const handleClick = e => {
