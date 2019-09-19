@@ -2,7 +2,8 @@ import React, { useState, useEffect, useContext, useRef } from 'react';
 
 import StockContext from './StockContext.js';
 
-const Graph = () => {
+const Graph = props => {
+  const { time } = props;
   // context
   const input = useContext(StockContext);
 
@@ -14,39 +15,33 @@ const Graph = () => {
   useEffect(() => {
     mounted.current = true;
     fetch(
-      `https://financialmodelingprep.com/api/v3/historical-price-full/${input}?serietype=line`
+      `https://sandbox.iexapis.com/stable/stock/${input}/chart/${time}?chartCloseOnly=true&filter=date,close,volume&token=Tpk_7190efa09280470180ab8bb6635da780`
     )
       .then(response => response.json())
       .then(data => {
-        const info = data.historical.slice(-30);
-        const lineChart = [];
-        info.map(inf => {
-          let dot = [];
-          const dateTemplate = function(date) {
-            return new Date(date);
-          };
-          let newDate = inf.date.replace('-', ', ').replace('-', ', ');
-          newDate = newDate.replace(' 0', ' ').replace(' 0', ' ');
-          dot[0] = dateTemplate(newDate);
-          dot[1] = inf.close;
-          lineChart.push(dot);
+        // re-formatting array format [[date,close, volume], [...], [...]]
+        let newData = [];
+        data.map(data => {
+          let temp = [];
+          temp[0] = new Date(data.date);
+          temp[1] = data.close;
+          // temp[2] = data.volume;
+          newData.push(temp);
         });
-        if (mounted.current) {
-          setGraphInfo(lineChart);
-          console.log(graphInfo);
-        }
+        setGraphInfo(newData);
       })
       .catch(error => alert(`Error: ${error}`));
 
     return () => {
       mounted.current = false;
     };
-  }, [input]);
+  }, [input, time]);
 
   function drawChart() {
     const data = new google.visualization.DataTable();
     data.addColumn('date', 'Date');
-    data.addColumn('number', 'Price');
+    data.addColumn('number', 'Close');
+    // data.addColumn({ type: 'number', role: 'tooltip' });
     data.addRows(graphInfo);
 
     // Set chart options
@@ -54,15 +49,17 @@ const Graph = () => {
       chart: {
         subtitle: 'in USD'
       },
+      legend: 'none',
       backgroundColor: '#fafafa',
-      width: 600,
+      width: 700,
       height: 350,
       animation: {
         startup: true,
         easing: 'out',
         duration: 5000
       },
-      hAxis: { gridlines: { color: '#333', count: 7 } }
+      vAxis: { format: 'currency' },
+      hAxis: { format: 'M/d/yy' }
     };
 
     const chart = new google.charts.Line(document.getElementById('chart_div'));
