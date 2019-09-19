@@ -10,17 +10,17 @@ const GraphStats = () => {
   // check for component mount
   const mounted = useRef(false);
 
-  // market cap
-  const [marketcap, setMarketCap] = useState('');
+  // stats
+  const [stats, setStats] = useState('');
   useEffect(() => {
     mounted.current = true;
     fetch(
-      `https://sandbox.iexapis.com/stable/stock/${input}/stats/marketcap?token=Tpk_7190efa09280470180ab8bb6635da780`
+      `https://sandbox.iexapis.com/stable/stock/${input}/stats?filter=marketcap,week52high,week52low,ttmEPS,dividendYield,peRatio,beta&token=Tpk_7190efa09280470180ab8bb6635da780`
     )
       .then(response => response.json())
       .then(data => {
         if (mounted.current) {
-          setMarketCap(data);
+          setStats(data);
         }
       })
       .catch(error => alert(error));
@@ -31,131 +31,15 @@ const GraphStats = () => {
     };
   }, [input]);
 
-  // week 52 high
-  const [week52high, setWeek52High] = useState('');
-  useEffect(() => {
-    mounted.current = true;
-    fetch(
-      `https://sandbox.iexapis.com/stable/stock/${input}/stats/week52high?token=Tpk_7190efa09280470180ab8bb6635da780`
-    )
-      .then(response => response.json())
-      .then(data => {
-        if (mounted.current) {
-          setWeek52High(data);
-        }
-      })
-      .catch(error => alert(error));
-
-    // Cleanup
-    return () => {
-      mounted.current = false;
-    };
-  }, [input]);
-
-  // week 52 low
-  const [week52low, setWeek52Low] = useState('');
-  useEffect(() => {
-    mounted.current = true;
-    fetch(
-      `https://sandbox.iexapis.com/stable/stock/${input}/stats/week52low?token=Tpk_7190efa09280470180ab8bb6635da780`
-    )
-      .then(response => response.json())
-      .then(data => {
-        if (mounted.current) {
-          setWeek52Low(data);
-        }
-      })
-      .catch(error => alert(error));
-
-    // Cleanup
-    return () => {
-      mounted.current = false;
-    };
-  }, [input]);
-
-  // ttmEPS
-  const [ttmEPS, setTtmEPS] = useState('');
-  useEffect(() => {
-    mounted.current = true;
-    fetch(
-      `https://sandbox.iexapis.com/stable/stock/${input}/stats/ttmEPS?token=Tpk_7190efa09280470180ab8bb6635da780`
-    )
-      .then(response => response.json())
-      .then(data => {
-        if (mounted.current) {
-          setTtmEPS(data);
-        }
-      })
-      .catch(error => alert(error));
-
-    // Cleanup
-    return () => {
-      mounted.current = false;
-    };
-  }, [input]);
-
-  // dividendYield
-  const [dividendYield, setDividendYield] = useState('');
-  useEffect(() => {
-    mounted.current = true;
-    fetch(
-      `https://sandbox.iexapis.com/stable/stock/${input}/stats/dividendYield?token=Tpk_7190efa09280470180ab8bb6635da780`
-    )
-      .then(response => response.json())
-      .then(data => {
-        if (mounted.current) {
-          setDividendYield(data);
-        }
-      })
-      .catch(error => alert(error));
-
-    // Cleanup
-    return () => {
-      mounted.current = false;
-    };
-  }, [input]);
-
-  // PE ratio
-  const [peRatio, setPEratio] = useState('');
-  useEffect(() => {
-    mounted.current = true;
-    fetch(
-      `https://sandbox.iexapis.com/stable/stock/${input}/stats/peRatio?token=Tpk_7190efa09280470180ab8bb6635da780`
-    )
-      .then(response => response.json())
-      .then(data => {
-        if (mounted.current) {
-          setPEratio(data);
-        }
-      })
-      .catch(error => alert(error));
-
-    // Cleanup
-    return () => {
-      mounted.current = false;
-    };
-  }, [input]);
-
-  // beta
-  const [beta, setBeta] = useState('');
-  useEffect(() => {
-    mounted.current = true;
-    fetch(
-      `https://sandbox.iexapis.com/stable/stock/${input}/stats/beta?token=Tpk_7190efa09280470180ab8bb6635da780`
-    )
-      .then(response => response.json())
-      .then(data => {
-        if (mounted.current) {
-          setBeta(data);
-        }
-      })
-      .catch(error => alert(error));
-
-    // Cleanup
-    return () => {
-      mounted.current = false;
-    };
-  }, [input]);
+  const {
+    marketcap,
+    ttmEPS,
+    beta,
+    peRatio,
+    dividendYield,
+    week52low,
+    week52high
+  } = stats;
 
   return (
     <Paper>
