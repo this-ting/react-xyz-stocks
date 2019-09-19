@@ -4,7 +4,7 @@ import { Tabs, Tab, Typography, Box, Container } from '@material-ui/core';
 
 // Import Components
 import Ticker from './Stock-ticker.js';
-import Graph from './Stock-graph.js';
+import GraphContainer from './Stock-graph-container.js';
 import Overview from './Stock-overview.js';
 import Financials from './Stock-financials.js';
 import News from './Stock-news.js';
@@ -43,7 +43,7 @@ export default function Stock() {
   return (
     <>
       <Ticker />
-      <Graph />
+      <GraphContainer />
 
       <Tabs
         value={value}
