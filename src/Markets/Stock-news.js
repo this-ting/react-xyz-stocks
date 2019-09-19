@@ -18,7 +18,7 @@ const News = () => {
   useEffect(() => {
     mounted.current = true;
     fetch(
-      `https://sandbox.iexapis.com/stable/stock/${input}/news/last/3?token=Tpk_7190efa09280470180ab8bb6635da780`
+      `https://sandbox.iexapis.com/stable/stock/${input}/news/last/3?filter=datetime,headline,source,url,image,related&token=Tpk_7190efa09280470180ab8bb6635da780`
     )
       .then(response => response.json())
       .then(data => {
