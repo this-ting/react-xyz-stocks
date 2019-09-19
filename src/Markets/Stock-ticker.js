@@ -18,12 +18,14 @@ const Ticker = () => {
 
   useEffect(() => {
     mounted.current = true;
-    fetch(`https://financialmodelingprep.com/api/v3/company/profile/${input}`)
+    fetch(
+      `https://sandbox.iexapis.com/stable/stock/${input}/company?filter=symbol,companyName,exchange&token=Tpk_7190efa09280470180ab8bb6635da780`
+    )
       .then(response => response.json())
       .then(data => {
         const info = {};
-        info.name = data.profile.companyName;
-        info.exchange = data.profile.exchange;
+        info.name = data.companyName;
+        info.exchange = data.exchange;
         info.ticker = data.symbol;
         if (mounted.current) {
           setCompany(info);

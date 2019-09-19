@@ -24,18 +24,21 @@ const Company = () => {
 
   useEffect(() => {
     mounted.current = true;
-    fetch(`https://financialmodelingprep.com/api/v3/company/profile/${input}`)
+    fetch(
+      `https://sandbox.iexapis.com/stable/stock/${input}/company?filter=symbol,companyName,exchange,sector,industry,website,description,CEO,employees&token=Tpk_7190efa09280470180ab8bb6635da780`
+    )
       .then(response => response.json())
       .then(data => {
         const info = {};
         info.symbol = data.symbol;
-        info.companyName = data.profile.companyName;
-        info.exchange = data.profile.exchange;
-        info.sector = data.profile.sector;
-        info.industry = data.profile.industry;
-        info.website = data.profile.website;
-        info.description = data.profile.description;
-        info.ceo = data.profile.ceo;
+        info.companyName = data.companyName;
+        info.exchange = data.exchange;
+        info.sector = data.sector;
+        info.industry = data.industry;
+        info.website = data.website;
+        info.description = data.description;
+        info.ceo = data.CEO;
+        info.employees = data.employees.toLocaleString();
         if (mounted.current) {
           setProfile(info);
         }
@@ -56,7 +59,8 @@ const Company = () => {
       sector,
       industry,
       description,
-      ceo
+      ceo,
+      employees
     } = profile;
 
     return (
@@ -68,6 +72,7 @@ const Company = () => {
             {companyName}
           </Grid>
           <Grid item>CEO: {ceo}</Grid>
+          <Grid item>Employees: {employees}</Grid>
           <Grid item>
             Sector:
             {sector}
