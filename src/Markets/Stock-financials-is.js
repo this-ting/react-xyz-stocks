@@ -79,7 +79,7 @@ const IS = props => {
           setIncome(is);
         }
       })
-      .catch(error => alert(`Error: ${error}`));
+      .catch(error => alert(`Error with IS component: ${error}`));
 
     // Cleanup
     return () => {

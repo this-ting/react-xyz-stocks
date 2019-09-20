@@ -35,7 +35,7 @@ const KeyFin = () => {
           setStats(info);
         }
       })
-      .catch(error => alert(`Error: ${error}`));
+      .catch(error => alert(`Error with Key Fin component: ${error}`));
 
     // Cleanup
     return () => {
