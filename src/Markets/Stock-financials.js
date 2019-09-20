@@ -47,25 +47,10 @@ function Financials() {
         <Tab label="2018Q4" {...a11yProps(3)} />
       </Tabs>
 
-      <TabPanel value={value} index={0}>
-        <IS index={0} />
-        <BS index={0} />
-        <CFS index={0} />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <IS index={1} />
-        <BS index={1} />
-        <CFS index={1} />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <IS index={2} />
-        <BS index={2} />
-        <CFS index={2} />
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        <IS index={3} />
-        <BS index={3} />
-        <CFS index={3} />
+      <TabPanel value={value} index={value}>
+        <IS index={value} />
+        <BS index={value} />
+        <CFS index={value} />
       </TabPanel>
     </Paper>
   );
