@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, InputAdornment } from '@material-ui/core';
+import { Container, TextField, InputAdornment } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import * as firebase from 'firebase/app';
 import { db } from '../Firebase.js';
 
+// import component
+import Dropdown from './Search-dropdown.js';
+
 const Search = props => {
+  const entries = [];
   const [input, setInput] = useState('');
 
   const handleChange = e => {
@@ -12,23 +16,28 @@ const Search = props => {
   };
 
   useEffect(() => {
-    console.log(input);
-    const searchDB = db.collection('search');
-    searchDB
-      .where('input', 'array-contains', input)
-      .limit(5)
-      .get()
-      .then(query => {
-        query.forEach(doc => {
-          // console.log(`${doc.id} => `);
-          // console.log(doc.data());
-          const data = doc.data();
-          console.log(data.ticker, data.company, data.exchange);
-        });
-      })
-      .catch(error =>
-        console.error(`There is an search FireStore error: ${error}`)
-      );
+    if (input) {
+      const searchDB = db.collection('search');
+      searchDB
+        .where('input', 'array-contains', input)
+        .limit(5)
+        .get()
+        .then(query => {
+          query.forEach(doc => {
+            const data = doc.data();
+            const entry = {
+              company: data.company,
+              ticker: data.ticker.toUpperCase(),
+              exchange: data.exchange.toUpperCase()
+            };
+            entries.push(entry);
+          });
+          // console.log(entries);
+        })
+        .catch(error =>
+          console.error(`There is an search FireStore error: ${error}`)
+        );
+    }
   }, [input]);
 
   // pass input to ./Markets/index.js
@@ -39,24 +48,34 @@ const Search = props => {
     setInput('');
   };
 
+  const renderDropdown = () => {
+    if (input) {
+      return <Dropdown entries={entries} />;
+    }
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
-      <TextField
-        id="search"
-        label="Look up by company or ticker"
-        margin="normal"
-        fullWidth="true"
-        value={input}
-        onChange={handleChange}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <SearchIcon />
-            </InputAdornment>
-          )
-        }}
-      />
-    </form>
+    <Container>
+      <form onSubmit={handleSubmit}>
+        <TextField
+          id="search"
+          label="Look up by company or ticker"
+          margin="normal"
+          fullWidth="true"
+          value={input}
+          onChange={handleChange}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            )
+          }}
+        />
+      </form>
+      {renderDropdown()}
+    </Container>
   );
 };
+
 export default Search;
