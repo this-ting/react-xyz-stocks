@@ -5,7 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Header from './Header';
 import Home from './Home';
 import Markets from './Markets';
-import User from './User';
+import Disclaimer from './Disclaimer';
 import Footer from './Footer';
 
 class App extends Component {
@@ -17,11 +17,11 @@ class App extends Component {
     return (
       <Router>
         <CssBaseline />
-        <Markets />
+        {/* <Markets /> */}
         <Header />
         <Route path="/" exact component={Home} />
         <Route path="/markets/" component={Markets} />
-        <Route path="/user/" component={User} />
+        <Route path="/terms/" component={Disclaimer} />
         <Footer />
       </Router>
     );
