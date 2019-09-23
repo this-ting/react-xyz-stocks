@@ -18,7 +18,11 @@ const useStyles = makeStyles({
     height: '200px'
   },
   links: {
-    textDecoration: 'none'
+    textDecoration: 'none',
+    color: 'black'
+  },
+  item: {
+    margin: 'auto'
   }
 });
 
@@ -26,8 +30,8 @@ const Footer = () => {
   const classes = useStyles();
   return (
     <Container className={classes.root}>
-      <Grid container justify="center">
-        <Grid container item alignItems="center" xs={12} sm={4}>
+      <Grid container justify="space-between" alignItems="center">
+        <Grid container item xs={12} sm={6}>
           <Grid item xs={12} sm={12}>
             <img
               src="/logo/logo_transparent.png"
@@ -36,15 +40,15 @@ const Footer = () => {
             />
           </Grid>
         </Grid>
-        <Grid container item alignItems="center" xs={12} sm={8}>
-          <Grid item xs={12} sm={4}>
+        <Grid container item direction="column" xs={12} sm={6}>
+          <Grid item xs={12} sm={6} className={classes.item}>
             <Typography variant="overline">
               <Link to="/" component={Home} className={classes.links}>
                 Home
               </Link>
             </Typography>
           </Grid>
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={6} className={classes.item}>
             <Typography variant="overline">
               <Link
                 to="/markets/"
@@ -55,7 +59,7 @@ const Footer = () => {
               </Link>
             </Typography>
           </Grid>
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={6} className={classes.item}>
             <Typography variant="overline">
               <Link
                 to="/terms/"
