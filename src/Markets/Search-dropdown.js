@@ -1,51 +1,64 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Container, List, ListItem, ListItemText } from '@material-ui/core';
+import { db } from '../Firebase.js';
 
 const useStyles = makeStyles({
   root: {
-    backgroundColor: 'grey',
+    backgroundColor: '#EAEAEA',
     opacity: '1',
     zIndex: 2,
     position: 'absolute',
-    width: '80%'
+    width: '83%'
   }
 });
 
-const Dropdown = ({ entries }) => {
+const Dropdown = ({ input }) => {
   const classes = useStyles();
-  const [haveSuggest, setHaveSuggest] = useState('');
+  const entries = [];
 
-  console.log(entries);
-  const display = entries.map(entries => {
-    return (
-      <>
-        <p>{entries.company}</p>
-        <p>{entries.ticker}</p>
-        <p>{entries.exchange}</p>
-      </>
-    );
-  });
+  const [info, setInfo] = useState('');
+  useEffect(() => {
+    if (input) {
+      const searchDB = db.collection('search');
+      searchDB
+        .where('input', 'array-contains', input)
+        .limit(5)
+        .get()
+        .then(query => {
+          query.forEach(doc => {
+            const data = doc.data();
+            const entry = {
+              company: data.company,
+              ticker: data.ticker.toUpperCase(),
+              exchange: data.exchange.toUpperCase()
+            };
+            entries.push(entry);
+          });
+          setInfo(entries);
+          console.log(entries);
+        })
+        .catch(error =>
+          console.error(`There is an search FireStore error: ${error}`)
+        );
+    }
+  }, [input]);
 
-  console.log(display);
   return (
     <Container>
       <List className={classes.root}>
-        <ListItem>
-          <ListItemText primary="Apple Inc" secondary="NASDAQ: AAPL" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Apple Inc" secondary="NASDAQ: AAPL" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Apple Inc" secondary="NASDAQ: AAPL" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Apple Inc" secondary="NASDAQ: AAPL" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Apple Inc" secondary="NASDAQ: AAPL" />
-        </ListItem>
+        {info
+          ? info.map(test => {
+              return (
+                <ListItem button>
+                  <ListItemText
+                    primary={test.company}
+                    secondary={`${test.exchange}: ${test.ticker}`}
+                  />
+                </ListItem>
+              );
+            })
+          : null}
       </List>
     </Container>
   );
