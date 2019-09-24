@@ -14,6 +14,16 @@ const useStyles = makeStyles({
   },
   logo: {
     height: '200px'
+  },
+  menuIcon: {
+    height: '35px',
+    zIndex: '3',
+    '-webkit-transition': 'color 0.3s ease',
+    '-moz-transition': 'color 0.3s ease',
+    '-0-transition': 'color 0.3s ease',
+    '&:hover': {
+      color: '#3054b9'
+    }
   }
 });
 
@@ -58,7 +68,7 @@ function Header() {
         </Hidden>
         <Hidden smUp>
           <Grid item xs={2}>
-            <MenuIcon onClick={handleClick} />
+            <MenuIcon onClick={handleClick} className={classes.menuIcon} />
           </Grid>
         </Hidden>
       </Grid>
