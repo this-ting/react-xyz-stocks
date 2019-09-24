@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Search = props => {
+const Search = ({ getCompany }) => {
   const classes = useStyles();
 
   const [input, setInput] = useState('');
@@ -23,7 +23,6 @@ const Search = props => {
 
   // pass input to ./Markets/index.js
   const handleSubmit = e => {
-    const { getCompany } = props;
     e.preventDefault();
     getCompany(input);
     setInput('');
@@ -31,7 +30,9 @@ const Search = props => {
 
   const renderDropdown = () => {
     if (input) {
-      return <Dropdown input={input} setInput={setInput} />;
+      return (
+        <Dropdown input={input} setInput={setInput} getCompany={getCompany} />
+      );
     }
   };
 

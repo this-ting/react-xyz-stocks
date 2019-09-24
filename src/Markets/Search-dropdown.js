@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Dropdown = ({ input, setInput }) => {
+const Dropdown = ({ input, setInput, getCompany }) => {
   const classes = useStyles();
   const entries = [];
 
@@ -45,7 +45,14 @@ const Dropdown = ({ input, setInput }) => {
     }
   }, [input]);
 
+  // clearing state will hide Dropdown Menu
   const handleClickAway = () => {
+    setInput('');
+  };
+
+  // lift state up to ./Markets/index.js & clear state
+  const handleClick = e => {
+    getCompany(e.currentTarget.id);
     setInput('');
   };
 
@@ -54,12 +61,12 @@ const Dropdown = ({ input, setInput }) => {
       <ClickAwayListener onClickAway={handleClickAway}>
         <List className={classes.root}>
           {info
-            ? info.map(test => {
+            ? info.map(info => {
                 return (
-                  <ListItem button>
+                  <ListItem button onClick={handleClick} id={info.ticker}>
                     <ListItemText
-                      primary={test.company}
-                      secondary={`${test.exchange}: ${test.ticker}`}
+                      primary={info.company}
+                      secondary={`${info.exchange}: ${info.ticker}`}
                     />
                   </ListItem>
                 );

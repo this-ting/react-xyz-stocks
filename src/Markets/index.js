@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
 import { Container } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 
 // Import Component
 import { StockProvider } from './StockContext.js';
 import Search from './Search.js';
 import Explore from './Explore.js';
 import Stock from './Stock.js';
+// import AddInfo from './Explore-addInfo.js';
+
+const useStyles = makeStyles({
+  root: {
+    marginTop: '11rem',
+    maxWidth: '980px'
+  }
+});
 
 export default function Markets() {
+  const classes = useStyles();
+
   const [company, setCompany] = useState('');
 
   const getCompany = input => {
@@ -21,7 +32,6 @@ export default function Markets() {
   const handleClick = e => {
     const value = e.currentTarget.firstElementChild.textContent;
     setCompany(value);
-    console.log(company);
   };
 
   const renderStock = () => {
@@ -32,7 +42,8 @@ export default function Markets() {
   };
 
   return (
-    <Container>
+    <Container className={classes.root}>
+      {/* <AddInfo /> */}
       <StockProvider value={company}>
         <Search getCompany={getCompany} />
         {renderStock()}
