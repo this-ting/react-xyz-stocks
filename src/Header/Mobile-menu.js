@@ -23,13 +23,19 @@ const useStyles = makeStyles({
     height: '35px',
     width: '35px'
   },
+  menu: {
+    '-webkit-transition': 'color 0.3s ease',
+    '-moz-transition': 'color 0.3s ease',
+    '-0-transition': 'color 0.3s ease',
+    '&:hover': {
+      color: '#fafafa',
+      backgroundColor: '#37383c'
+    }
+  },
   menuItem: {
     textDecoration: 'none',
     '&:visited': {
-      color: '#37383c'
-    },
-    '&:hover': {
-      color: '#3054b9'
+      color: 'inherit'
     }
   }
 });
@@ -38,49 +44,42 @@ const MobileMenu = ({ handleClick }) => {
   const classes = useStyles();
 
   return (
-    <nav>
-      <Container className={classes.root}>
-        <CloseIcon className={classes.closeIcon} onClick={handleClick} />
-        <List>
-          <ListItem>
-            <Typography variant="h6">
-              <NavLink
-                to="/"
-                component={Home}
-                className={classes.menuItem}
-                onClick={handleClick}
-              >
-                HOME
-              </NavLink>
-            </Typography>
+    <Container className={classes.root} component="nav">
+      <CloseIcon className={classes.closeIcon} onClick={handleClick} />
+      <List>
+        <NavLink
+          to="/"
+          component={Home}
+          className={classes.menuItem}
+          onClick={handleClick}
+        >
+          <ListItem className={classes.menu}>
+            <Typography variant="h6">HOME</Typography>
           </ListItem>
-          <ListItem>
-            <Typography variant="h6">
-              <NavLink
-                to="/markets/"
-                component={Markets}
-                className={classes.menuItem}
-                onClick={handleClick}
-              >
-                EXPLORE
-              </NavLink>
-            </Typography>
+        </NavLink>
+
+        <NavLink
+          to="/markets/"
+          component={Markets}
+          className={classes.menuItem}
+          onClick={handleClick}
+        >
+          <ListItem className={classes.menu}>
+            <Typography variant="h6">EXPLORE</Typography>
           </ListItem>
-          <ListItem>
-            <Typography variant="h6">
-              <NavLink
-                to="/markets/"
-                component={Markets}
-                className={classes.menuItem}
-                onClick={handleClick}
-              >
-                SEARCH
-              </NavLink>
-            </Typography>
+        </NavLink>
+        <NavLink
+          to="/markets/"
+          component={Markets}
+          className={classes.menuItem}
+          onClick={handleClick}
+        >
+          <ListItem className={classes.menu}>
+            <Typography variant="h6">SEARCH</Typography>
           </ListItem>
-        </List>
-      </Container>
-    </nav>
+        </NavLink>
+      </List>
+    </Container>
   );
 };
 
