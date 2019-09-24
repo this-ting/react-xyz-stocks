@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Container, TextField, InputAdornment } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 import SearchIcon from '@material-ui/icons/Search';
 
 // import component
 import Dropdown from './Search-dropdown.js';
 
+const useStyles = makeStyles({
+  root: {
+    position: 'relative'
+  }
+});
+
 const Search = props => {
+  const classes = useStyles();
+
   const [input, setInput] = useState('');
 
   const handleChange = e => {
@@ -22,12 +31,12 @@ const Search = props => {
 
   const renderDropdown = () => {
     if (input) {
-      return <Dropdown input={input} />;
+      return <Dropdown input={input} setInput={setInput} />;
     }
   };
 
   return (
-    <Container>
+    <Container className={classes.root}>
       <form onSubmit={handleSubmit}>
         <TextField
           id="search"

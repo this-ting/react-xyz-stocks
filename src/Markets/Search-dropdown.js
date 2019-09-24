@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Container, List, ListItem, ListItemText } from '@material-ui/core';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import { db } from '../Firebase.js';
 
 const useStyles = makeStyles({
   root: {
     backgroundColor: '#EAEAEA',
-    opacity: '1',
     zIndex: 2,
     position: 'absolute',
-    width: '83%'
+    width: '88%',
+    overflow: 'auto'
   }
 });
 
-const Dropdown = ({ input }) => {
+const Dropdown = ({ input, setInput }) => {
   const classes = useStyles();
   const entries = [];
 
@@ -44,22 +45,28 @@ const Dropdown = ({ input }) => {
     }
   }, [input]);
 
+  const handleClickAway = () => {
+    setInput('');
+  };
+
   return (
     <Container>
-      <List className={classes.root}>
-        {info
-          ? info.map(test => {
-              return (
-                <ListItem button>
-                  <ListItemText
-                    primary={test.company}
-                    secondary={`${test.exchange}: ${test.ticker}`}
-                  />
-                </ListItem>
-              );
-            })
-          : null}
-      </List>
+      <ClickAwayListener onClickAway={handleClickAway}>
+        <List className={classes.root}>
+          {info
+            ? info.map(test => {
+                return (
+                  <ListItem button>
+                    <ListItemText
+                      primary={test.company}
+                      secondary={`${test.exchange}: ${test.ticker}`}
+                    />
+                  </ListItem>
+                );
+              })
+            : null}
+        </List>
+      </ClickAwayListener>
     </Container>
   );
 };
