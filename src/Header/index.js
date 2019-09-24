@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AppBar, Tab, Tabs, Grid, Hidden } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import MenuIcon from '@material-ui/icons/Menu';
+
+// import component
+import MobileMenu from './Mobile-menu.js';
 
 const useStyles = makeStyles({
   header: {
@@ -16,14 +19,27 @@ const useStyles = makeStyles({
 
 function Header() {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
 
-  function handleChange(event, newValue) {
+  const handleChange = (event, newValue) => {
     setValue(newValue);
-  }
+  };
+
+  const [showMenu, setShowMenu] = useState(false);
+
+  const handleClick = () => {
+    console.log('clicked');
+    setShowMenu(prevState => {
+      if (prevState === false) {
+        return true;
+      }
+      return false;
+    });
+  };
 
   return (
     <AppBar position="absolute" color="none" className={classes.header}>
+      {showMenu === true ? <MobileMenu handleClick={handleClick} /> : null}
       <Grid container alignItems="center" justify="space-between">
         <Grid item xs={10} sm={7}>
           <img
@@ -42,7 +58,7 @@ function Header() {
         </Hidden>
         <Hidden smUp>
           <Grid item xs={2}>
-            <MenuIcon />
+            <MenuIcon onClick={handleClick} />
           </Grid>
         </Hidden>
       </Grid>
