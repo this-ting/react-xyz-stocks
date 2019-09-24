@@ -34,7 +34,7 @@ const Footer = () => {
         <Grid container item xs={12} sm={6}>
           <Grid item xs={12} sm={12}>
             <img
-              src="/logo/logo_transparent.png"
+              src="/logo/logo_transparent_horizontal.png"
               alt="logo"
               className={classes.image}
             />
