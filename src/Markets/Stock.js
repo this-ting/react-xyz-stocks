@@ -1,13 +1,24 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import { Tabs, Tab, Typography, Box, Container } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 
 // Import Components
 import Ticker from './Stock-ticker.js';
-import GraphContainer from './Stock-graph-container.js';
+import PrevDayPrice from './Stock-PrevDayPrice.js';
 import Overview from './Stock-overview.js';
 import Financials from './Stock-financials.js';
 import News from './Stock-news.js';
+
+const useStyles = makeStyles({
+  root: {
+    paddingTop: '2rem',
+    paddingBottom: '2rem'
+  },
+  tabs: {
+    paddingTop: '2rem'
+  }
+});
 
 const TabPanel = props => {
   const { children, value, index, ...other } = props;
@@ -33,7 +44,9 @@ function a11yProps(index) {
   };
 }
 
-export default function Stock() {
+const Stock = () => {
+  const classes = useStyles();
+
   const [value, setValue] = React.useState(0);
 
   function handleChange(event, newValue) {
@@ -41,11 +54,12 @@ export default function Stock() {
   }
 
   return (
-    <>
+    <Container className={classes.root}>
       <Ticker />
-      <GraphContainer />
+      <PrevDayPrice />
 
       <Tabs
+        className={classes.tabs}
         value={value}
         onChange={handleChange}
         aria-label="stock tabs example"
@@ -64,6 +78,8 @@ export default function Stock() {
       <TabPanel value={value} index={2}>
         <News />
       </TabPanel>
-    </>
+    </Container>
   );
-}
+};
+
+export default Stock;

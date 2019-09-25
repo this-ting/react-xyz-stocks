@@ -1,17 +1,19 @@
 import React from 'react';
 
 // Import Components
-import PrevDayPrice from './Stock-overview-PrevDayPrice.js';
+import GraphContainer from './Stock-overview-graphContainer.js';
 import Company from './Stock-overview-company.js';
 import KeyFin from './Stock-overview-keyfin.js';
 
 const Overview = () => {
   return (
-    <div>
-      <PrevDayPrice />
+    <>
+      <GraphContainer />
+      <br />
       <Company />
+      <br />
       <KeyFin />
-    </div>
+    </>
   );
 };
 

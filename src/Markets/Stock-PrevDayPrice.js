@@ -55,8 +55,16 @@ const PrevDayPrice = () => {
     const { date, open, close, high, low, volume, changePercent } = prevDay;
 
     return (
-      <Paper>
-        <h2>Previous Day Price</h2>
+      <>
+        <Grid container>
+          <Grid item>
+            <Typography variant="h4">{close}</Typography>
+          </Grid>
+          <Grid item>
+            <Typography variant="overline">USD</Typography>
+          </Grid>
+        </Grid>
+
         <Grid container direction="column">
           <Grid item> Date: {date}</Grid>
           <Grid item> Open: {open}</Grid>
@@ -66,7 +74,7 @@ const PrevDayPrice = () => {
           <Grid item> Volume: {volume}</Grid>
           <Grid item> ChangePercent: {changePercent * 100}%</Grid>
         </Grid>
-      </Paper>
+      </>
     );
   }
   return (
