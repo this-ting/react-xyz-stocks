@@ -6,14 +6,13 @@ import { Link } from 'react-router-dom';
 const useStyles = makeStyles({
   banner1: {
     backgroundImage: `url(${'https://images.unsplash.com/photo-1449247709967-d4461a6a6103?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80'})`,
-    backgroundPostion: 'center',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     width: '100%',
-    height: '95vh'
+    height: '100vh'
   },
   bannertext1: {
-    paddingTop: '10%'
+    paddingTop: '47vh'
   },
   banner2: {
     backgroundImage: `url(${'https://images.unsplash.com/photo-1487700160041-babef9c3cb55?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1335&q=80'})`,
@@ -24,13 +23,13 @@ const useStyles = makeStyles({
     height: '97vh'
   },
   bannertext2: {
-    paddingTop: '15%'
+    paddingTop: '10vh'
   },
   bannerText2: {
     fontSize: '5rem',
     fontWeight: '600',
     color: '#616161',
-    textAlign: 'right',
+    textAlign: 'center',
     margin: 'auto',
     paddingTop: '20%'
   },
@@ -47,9 +46,8 @@ const useStyles = makeStyles({
     fontSize: '5rem',
     fontWeight: '600',
     color: '#616161',
-    textAlign: 'right',
     margin: 'auto',
-    paddingTop: '20%'
+    paddingTop: '25vh'
   },
   button: {
     marginTop: '2em'
@@ -61,12 +59,15 @@ function Banner1() {
   return (
     <Box className={classes.banner1}>
       <Typography
-        variant="h1"
+        variant="h2"
         color="textSecondary"
         align="center"
         className={classes.bannertext1}
       >
-        Follow. Learn. Invest.
+        Grow your knowledge
+        <Typography variant="body1" color="textSecondary" align="center">
+          Learn about companies you love, easy like ZXY
+        </Typography>
       </Typography>
     </Box>
   );
@@ -77,12 +78,16 @@ function Banner2() {
   return (
     <Box className={classes.banner2}>
       <Typography
-        variant="h1"
+        variant="h2"
         color="textSecondary"
-        align="right"
+        align="center"
         className={classes.bannertext2}
       >
-        Easy like XYZ
+        NASDAQ & NYSE STOCKS
+        <Typography variant="body1" color="textSecondary" align="center">
+          Learn more about companies you love to help build your perfect
+          portfolio.
+        </Typography>
       </Typography>
     </Box>
   );
@@ -93,12 +98,12 @@ function Banner3() {
   return (
     <Box className={classes.banner3}>
       <Typography
-        variant="h1"
+        variant="h2"
         color="textSecondary"
         align="center"
         className={classes.bannertext2}
       >
-        Lets get started!
+        Let's get started!
       </Typography>
 
       <Button
@@ -106,10 +111,10 @@ function Banner3() {
         size="large"
         variant="outlined"
         className={classes.button}
-        to="/user/"
+        to="/explore/"
         component={Link}
       >
-        Sign up
+        Explore!
       </Button>
     </Box>
   );
