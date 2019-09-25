@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
+import { Typography } from '@material-ui/core';
 import StockContext from './StockContext.js';
 
 const Ticker = () => {
@@ -43,10 +44,10 @@ const Ticker = () => {
     const { name, exchange, ticker } = company;
     return (
       <>
-        <h1>{name}</h1>
-        <h2>
+        <Typography variant="h4">{name}</Typography>
+        <Typography variant="overline">
           {exchange}: {ticker}
-        </h2>
+        </Typography>
       </>
     );
   }
