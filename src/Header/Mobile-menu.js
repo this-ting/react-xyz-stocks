@@ -12,11 +12,20 @@ const useStyles = makeStyles({
   root: {
     height: '100vh',
     width: '100vw',
-    backgroundColor: '#FBFEFF',
+    backgroundColor: '#ECECEE',
     position: 'fixed',
     textAlign: 'right',
     padding: '4.5rem',
-    transition: 'margin 0.5s'
+    animation: '$showMenu 0.6s both',
+    animationTimingFunction: 'ease-out'
+  },
+  '@keyframes showMenu': {
+    from: {
+      transform: 'translate3d(100vw, 0px, 4px)'
+    },
+    to: {
+      transform: 'translate3d(0px, 0px, 0px)'
+    }
   },
   closeIcon: {
     textAlign: 'right',
