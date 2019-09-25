@@ -23,7 +23,7 @@ const Dropdown = ({ input, setInput, getCompany }) => {
     if (input) {
       const searchDB = db.collection('search');
       searchDB
-        .where('input', 'array-contains', input)
+        .where('input', 'array-contains', input.toLowerCase())
         .limit(5)
         .get()
         .then(query => {
@@ -37,7 +37,6 @@ const Dropdown = ({ input, setInput, getCompany }) => {
             entries.push(entry);
           });
           setInfo(entries);
-          console.log(entries);
         })
         .catch(error =>
           console.error(`There is an search FireStore error: ${error}`)
