@@ -15,15 +15,15 @@ const useStyles = makeStyles({
 const ExploreSector = props => {
   const classes = useStyles();
   const sectors = [
+    'Technology',
+    'Healthcare',
+    'Consumer Services',
+    'Financials',
+    'Energy',
     'Basic Materials',
     'Consumer Goods',
-    'Consumer Services',
-    'Energy',
-    'Financials',
     'Financial Services',
-    'Healthcare',
     'Industrials',
-    'Technology',
     'Transportation',
     'Telecommunications',
     'Utilities'
@@ -36,7 +36,14 @@ const ExploreSector = props => {
   };
 
   const category = sectors.map(sect => (
-    <Grid item xs={4} sm={3} className={classes.item} onClick={handleClick}>
+    <Grid
+      item
+      key={sect}
+      xs={4}
+      sm={3}
+      className={classes.item}
+      onClick={handleClick}
+    >
       <Typography variant="button" color="primary">
         {sect}
       </Typography>
