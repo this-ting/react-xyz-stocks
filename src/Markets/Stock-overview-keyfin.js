@@ -1,5 +1,14 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
-import { Paper, Grid } from '@material-ui/core';
+import {
+  Paper,
+  Container,
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+  Typography
+} from '@material-ui/core';
 import StockContext from './StockContext.js';
 
 const KeyFin = () => {
@@ -47,16 +56,37 @@ const KeyFin = () => {
     const { date, revenue, netIncome, netProfitMargin, eps } = stats;
 
     return (
-      <Paper>
-        <h2>Financials</h2>
-        <Grid container direction="column">
-          <Grid item>As of the most recent quarter: {date}</Grid>
-          <Grid item>Revenue: ${revenue}</Grid>
-          <Grid item>Net Income: $ {netIncome}</Grid>
-          <Grid item>Net Profit Margin: {netProfitMargin * 100} %</Grid>
-          <Grid item>EPS: $ {eps}</Grid>
-        </Grid>
-      </Paper>
+      <Container>
+        <Typography variant="h6">Snapshot Financials</Typography>
+        <Paper>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>As of the most recent quarter:</TableCell>
+                <TableCell>{date}</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow>
+                <TableCell>Revenue:</TableCell>
+                <TableCell>{revenue}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Net Income:</TableCell>
+                <TableCell>{netIncome}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Net Profit Margin</TableCell>
+                <TableCell>{netProfitMargin * 100} %</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>EPS</TableCell>
+                <TableCell>$ {eps}</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </Paper>
+      </Container>
     );
   }
   return (
