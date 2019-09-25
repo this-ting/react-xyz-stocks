@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import {
   Container,
@@ -27,11 +27,15 @@ const useStyles = makeStyles({
 });
 
 const Dropdown = ({ input, setInput, getCompany }) => {
+  // check for component mount
+  const mounted = useRef(false);
+
   const classes = useStyles();
   const entries = [];
 
   const [info, setInfo] = useState('');
   useEffect(() => {
+    mounted.current = true;
     if (input) {
       const searchDB = db.collection('search');
       searchDB
@@ -54,11 +58,15 @@ const Dropdown = ({ input, setInput, getCompany }) => {
           console.error(`There is an search FireStore error: ${error}`)
         );
     }
+    return () => {
+      mounted.current = false;
+    };
   }, [input]);
 
   // clearing state will hide Dropdown Menu
   const handleClickAway = () => {
     setInput('');
+    mounted.current = false;
   };
 
   // lift state up to ./Markets/index.js & clear state
