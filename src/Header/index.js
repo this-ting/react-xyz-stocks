@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { AppBar, Tab, Tabs, Grid, Hidden } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 
 // import component
+import Home from '../Home';
 import MobileMenu from './Mobile-menu.js';
 
 const useStyles = makeStyles({
@@ -48,19 +49,21 @@ function Header() {
   };
 
   return (
-    <AppBar position="absolute" color="none" className={classes.header}>
+    <AppBar position="absolute" color="default" className={classes.header}>
       {showMenu === true ? <MobileMenu handleClick={handleClick} /> : null}
       <Grid container alignItems="center" justify="space-between">
         <Grid item xs={10} sm={7}>
-          <img
-            src="/logo/logo_transparent_red.png"
-            alt="logo"
-            className={classes.logo}
-          />
+          <Link to="/" component={Home}>
+            <img
+              src="/logo/logo_transparent_red.png"
+              alt="logo"
+              className={classes.logo}
+            />
+          </Link>
         </Grid>
         <Hidden xsDown>
           <Grid item sm={5}>
-            <Tabs variant="fullWidth" value={value} onChange={handleChange}>
+            <Tabs value={value} onChange={handleChange}>
               <Tab label="Home" to="/" component={NavLink} />
               <Tab label="Markets" to="/markets/" component={NavLink} />
             </Tabs>
