@@ -30,7 +30,7 @@ const Graph = props => {
         });
         setGraphInfo(newData);
       })
-      .catch(error => alert(`Error: ${error}`));
+      .catch(error => alert(`Error with Graph: ${error}`));
 
     return () => {
       mounted.current = false;
