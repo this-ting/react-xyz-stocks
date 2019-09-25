@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Grid, Typography } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 
 // import components
@@ -11,7 +11,8 @@ import Disclaimer from '../Disclaimer';
 const useStyles = makeStyles({
   root: {
     textAlign: 'center',
-    maxWidth: '980px'
+    maxWidth: '980px',
+    position: 'sticky'
   },
   image: {
     width: '200px',
@@ -29,7 +30,7 @@ const useStyles = makeStyles({
 const Footer = () => {
   const classes = useStyles();
   return (
-    <Container className={classes.root}>
+    <Container className={classes.root} component="footer">
       <Grid container justify="space-between" alignItems="center">
         <Grid container item xs={12} sm={6}>
           <Grid item xs={12} sm={12}>
@@ -43,31 +44,31 @@ const Footer = () => {
         <Grid container item direction="column" xs={12} sm={6}>
           <Grid item xs={12} sm={6} className={classes.item}>
             <Typography variant="overline">
-              <Link to="/" component={Home} className={classes.links}>
+              <NavLink to="/" component={Home} className={classes.links}>
                 Home
-              </Link>
+              </NavLink>
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6} className={classes.item}>
             <Typography variant="overline">
-              <Link
+              <NavLink
                 to="/markets/"
                 component={Markets}
                 className={classes.links}
               >
                 Explore
-              </Link>
+              </NavLink>
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6} className={classes.item}>
             <Typography variant="overline">
-              <Link
+              <NavLink
                 to="/terms/"
                 component={Disclaimer}
                 className={classes.links}
               >
                 Terms & Conditions
-              </Link>
+              </NavLink>
             </Typography>
           </Grid>
         </Grid>
