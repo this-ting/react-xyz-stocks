@@ -1,5 +1,16 @@
 import React from 'react';
-import { Paper, Tabs, Tab, Typography, Box } from '@material-ui/core';
+import {
+  Paper,
+  Tabs,
+  Tab,
+  Typography,
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+  Box
+} from '@material-ui/core';
 
 // Import Components
 import IS from './Stock-financials-is.js';
@@ -39,8 +50,35 @@ function Financials() {
 
   return (
     <Paper>
-      <h2>Quarterly Financials</h2>
-      <Tabs value={value} onChange={handleChange}>
+      {/* <Table>
+        <TableHead>
+          <TableRow>
+            <Tabs value={value} onChange={handleChange}>
+              <TableCell>
+                <Tab label="2019Q3" {...a11yProps(0)} />
+              </TableCell>
+              <TableCell>
+                <Tab label="2019Q2" {...a11yProps(1)} />
+              </TableCell>
+              <TableCell>
+                <Tab label="2019Q1" {...a11yProps(2)} />
+              </TableCell>
+              <TableCell>
+                <Tab label="2018Q4" {...a11yProps(3)} />
+              </TableCell>
+            </Tabs>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TabPanel value={value} index={value}>
+            <IS index={value} />
+            <BS index={value} />
+            <CFS index={value} />
+          </TabPanel>
+        </TableBody>
+      </Table> */}
+
+      <Tabs value={value} onChange={handleChange} variant="fullWidth">
         <Tab label="2019Q3" {...a11yProps(0)} />
         <Tab label="2019Q2" {...a11yProps(1)} />
         <Tab label="2019Q1" {...a11yProps(2)} />
@@ -49,8 +87,11 @@ function Financials() {
 
       <TabPanel value={value} index={value}>
         <IS index={value} />
+        <br />
         <BS index={value} />
+        <br />
         <CFS index={value} />
+        <br />
       </TabPanel>
     </Paper>
   );

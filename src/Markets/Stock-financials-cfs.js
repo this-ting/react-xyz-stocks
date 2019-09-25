@@ -1,5 +1,11 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
-import { Paper, Grid } from '@material-ui/core';
+import {
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell
+} from '@material-ui/core';
 import StockContext from './StockContext.js';
 
 const CFS = props => {
@@ -75,18 +81,36 @@ const CFS = props => {
   if (cashFlow[index]) {
     const { opCF, invCF, finCF, netCF, freeCF } = cashFlow[index];
     return (
-      <Paper>
-        <Grid container direction="column">
-          <Grid item>
-            <h2>Cash Flow Statement </h2>
-          </Grid>
-          <Grid item>Operating Cash Flow: $ {opCF}</Grid>
-          <Grid item>Investing Cash flow: $ {invCF}</Grid>
-          <Grid item>Financing Cash Flow: $ {finCF}</Grid>
-          <Grid item>Net cash flow / Change in cash: $ {netCF}</Grid>
-          <Grid item>Free Cash Flow: $ {freeCF}</Grid>
-        </Grid>
-      </Paper>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>CASH FLOW STATEMENT</TableCell>
+            <TableCell align="right">(USD $)</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>Operating Cash Flow:</TableCell>
+            <TableCell align="right">{opCF.toLocaleString()}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Investing Cash flow:</TableCell>
+            <TableCell align="right">{invCF.toLocaleString()}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Financing Cash Flow:</TableCell>
+            <TableCell align="right">{finCF.toLocaleString()}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Net cash flow / Change in cash:</TableCell>
+            <TableCell align="right">{netCF.toLocaleString()}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Free Cash Flow:</TableCell>
+            <TableCell align="right">{freeCF.toLocaleString()}</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     );
   }
   return (

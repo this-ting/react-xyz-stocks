@@ -51,7 +51,7 @@ export default function Stock() {
         aria-label="stock tabs example"
       >
         <Tab label="Overview" {...a11yProps(0)} />
-        <Tab label="Financials" {...a11yProps(1)} />
+        <Tab label="Quarterly Financials" {...a11yProps(1)} />
         <Tab label="News" {...a11yProps(2)} />
       </Tabs>
 

@@ -1,5 +1,11 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
-import { Paper, Grid } from '@material-ui/core';
+import {
+  Table,
+  TableHead,
+  TableCell,
+  TableRow,
+  TableBody
+} from '@material-ui/core';
 import StockContext from './StockContext.js';
 
 const IS = props => {
@@ -90,21 +96,46 @@ const IS = props => {
   if (income[index]) {
     const { rev, costOfRev, gp, gm, opEx, opIncome, ni, npm } = income[index];
     return (
-      <Paper>
-        <Grid container direction="column">
-          <Grid item>
-            <h2>Income Statement </h2>
-          </Grid>
-          <Grid item>Revenue: $ {rev}</Grid>
-          <Grid item>Cost of Revenue: $ {costOfRev}</Grid>
-          <Grid item>Gross Profit: $ {gp}</Grid>
-          <Grid item>Gross Margin: {gm * 100} %</Grid>
-          <Grid item>Operating Expenses: $ {opEx}</Grid>
-          <Grid item>Operating Income: $ {opIncome}</Grid>
-          <Grid item>Net Income: $ {ni}</Grid>
-          <Grid item>Net Profit Margin: {npm * 100} %</Grid>
-        </Grid>
-      </Paper>
+      <Table>
+        <TableHead>
+          <TableCell>INCOME STATEMENT</TableCell>
+          <TableCell align="right">(USD $)</TableCell>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>Revenue:</TableCell>
+            <TableCell align="right">{rev}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Cost of Revenue:</TableCell>
+            <TableCell align="right">{costOfRev}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Gross Profit:</TableCell>
+            <TableCell align="right">{gp}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Gross Margin:</TableCell>
+            <TableCell align="right">{gm * 100} %</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Operating Expenses:</TableCell>
+            <TableCell align="right">{opEx}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Operating Income:</TableCell>
+            <TableCell align="right">{opIncome}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Net Income:</TableCell>
+            <TableCell align="right">{ni}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Net Profit Margin:</TableCell>
+            <TableCell align="right">{npm * 100} %</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     );
   }
   return (

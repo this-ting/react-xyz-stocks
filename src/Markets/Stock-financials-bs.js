@@ -1,8 +1,22 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
-import { Paper, Grid } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
+import {
+  Table,
+  TableHead,
+  TableBody,
+  TableCell,
+  TableRow
+} from '@material-ui/core';
 import StockContext from './StockContext.js';
 
+const useStyles = makeStyles({
+  // tableHead: {
+  //   backgroundColor: '#333333'
+  // }
+});
+
 const BS = props => {
+  const classes = useStyles();
   const { index } = props;
   // context
   const input = useContext(StockContext);
@@ -80,19 +94,40 @@ const BS = props => {
       index
     ];
     return (
-      <Paper>
-        <Grid container direction="column">
-          <Grid item>
-            <h2>Balance Statement </h2>
-          </Grid>
-          <Grid item>Cash and cash equivalents: $ {cash}</Grid>
-          <Grid item>Total current assets: $ {currAssets}</Grid>
-          <Grid item>Total assets: $ {assets}</Grid>
-          <Grid item>Total current liabilities: $ {currLib}</Grid>
-          <Grid item>Total liabilities: $ {lib}</Grid>
-          <Grid item>Total shareholders equity: $ {shareholdersEq}</Grid>
-        </Grid>
-      </Paper>
+      <Table>
+        <TableHead>
+          <TableRow className={classes.tableHead}>
+            <TableCell>BALANCE STATEMENT</TableCell>
+            <TableCell align="right">(USD $)</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>Cash and cash equivalents:</TableCell>
+            <TableCell align="right">{cash}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Total current assets:</TableCell>
+            <TableCell align="right">{currAssets}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Total assets:</TableCell>
+            <TableCell align="right">{assets}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Total current liabilities:</TableCell>
+            <TableCell align="right">{currLib}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Total liabilities:</TableCell>
+            <TableCell align="right">{lib}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Total shareholders equity:</TableCell>
+            <TableCell align="right">{shareholdersEq}</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     );
   }
   return (
