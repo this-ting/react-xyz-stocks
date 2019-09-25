@@ -1,5 +1,14 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
-import { Paper, Grid } from '@material-ui/core';
+import {
+  Paper,
+  Typography,
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+  Container
+} from '@material-ui/core';
 import StockContext from './StockContext.js';
 
 const Company = () => {
@@ -64,32 +73,46 @@ const Company = () => {
     } = profile;
 
     return (
-      <Paper>
-        <h2>Company Info</h2>
-        <Grid container direction="column">
-          <Grid item>
-            Company:
-            {companyName}
-          </Grid>
-          <Grid item>CEO: {ceo}</Grid>
-          <Grid item>Employees: {employees}</Grid>
-          <Grid item>
-            Sector:
-            {sector}
-          </Grid>
-          <Grid item>
-            Industry:
-            {industry}
-          </Grid>
-          <Grid item>{description}</Grid>
-          <Grid item>Exchange: {exchange}</Grid>
-          <Grid item>Ticker: {symbol}</Grid>
-          <Grid item>
-            Website:
-            {website}
-          </Grid>
-        </Grid>
-      </Paper>
+      <Container>
+        <Typography variant="h6">Company Profile</Typography>
+        <Paper>
+          <Table>
+            <TableBody>
+              <TableRow>
+                <TableCell>Company:</TableCell>
+                <TableCell>{companyName}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Exchange:</TableCell>
+                <TableCell>{exchange}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>CEO:</TableCell>
+                <TableCell>{ceo}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Employees:</TableCell>
+                <TableCell>{employees}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Sector:</TableCell>
+                <TableCell>{sector}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Industry::</TableCell>
+                <TableCell>{industry}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Website::</TableCell>
+                <TableCell>{website}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>{description}</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </Paper>
+      </Container>
     );
   }
   return (
