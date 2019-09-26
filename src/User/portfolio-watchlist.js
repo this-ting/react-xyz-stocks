@@ -21,6 +21,8 @@ const Watchlist = () => {
   const [watchItems, setWatchItems] = useState('');
   useEffect(() => {
     mounted.current = true;
+
+    // get user's following stocks from FireStore, then fetch API
     db.collection('users')
       .doc(user)
       .collection('stocks')
@@ -29,9 +31,28 @@ const Watchlist = () => {
         query.forEach(doc => {
           data.push(doc.data());
         });
-        setWatchItems(data);
-        console.log(data);
-      });
+        return data;
+      })
+      .then(data => {
+        let loaded = 0;
+        for (let i = 0; i < data.length; i++) {
+          fetch(
+            `https://sandbox.iexapis.com/stable/stock/${data[i].ticker}/previous?filter=date,close,changePercent,change&token=Tpk_7190efa09280470180ab8bb6635da780`
+          )
+            .then(response => response.json())
+            .then(apiData => {
+              data[i].date = apiData.date;
+              data[i].close = apiData.close;
+              data[i].changePercent = apiData.changePercent.toFixed(2);
+              data[i].change = apiData.change.toFixed(2);
+              loaded++;
+              if (loaded >= data.length) {
+                setWatchItems(data);
+              }
+            });
+        }
+      })
+      .catch(error => alert(error));
 
     return () => {
       mounted.current = false;
@@ -62,11 +83,15 @@ const Watchlist = () => {
                   <TableRow>
                     <TableCell>{items.ticker}</TableCell>
                     <TableCell>{items.company}</TableCell>
-                    <TableCell>$221.030000</TableCell>
-                    <TableCell>+1.54%</TableCell>
-                    <TableCell>+$3.45</TableCell>
-
-                    <TableCell>+19.34%</TableCell>
+                    <TableCell>{items.close}</TableCell>
+                    <TableCell>{items.changePercent}</TableCell>
+                    <TableCell>{items.change}</TableCell>
+                    <TableCell>
+                      {(
+                        ((items.entryPrice - items.close) / items.close) *
+                        100
+                      ).toFixed(2)}
+                    </TableCell>
                     <TableCell>
                       <Button variant="contained" color="primary">
                         Remove
