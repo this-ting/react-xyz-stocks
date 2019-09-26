@@ -73,8 +73,10 @@ const Company = () => {
     } = profile;
 
     return (
-      <Container>
-        <Typography variant="h6">Company Profile</Typography>
+      <>
+        <Typography variant="h6" gutterBottom>
+          Company Profile
+        </Typography>
         <Paper>
           <Table>
             <TableBody>
@@ -112,7 +114,7 @@ const Company = () => {
             </TableBody>
           </Table>
         </Paper>
-      </Container>
+      </>
     );
   }
   return (

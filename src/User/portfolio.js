@@ -90,9 +90,10 @@ const Portfolio = () => {
 
   return (
     <Container className={classes.root}>
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h5" gutterBottom>
         Portfolio
       </Typography>
+      <br />
       <Watchlist following={following} />
       <br />
       <PortfolioNews companies={companies} />

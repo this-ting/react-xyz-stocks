@@ -52,7 +52,7 @@ const PortfolioNews = ({ companies }) => {
   }, [companies]);
 
   return (
-    <Container>
+    <>
       <Typography variant="h6" gutterBottom>
         News Feed
       </Typography>
@@ -148,7 +148,7 @@ const PortfolioNews = ({ companies }) => {
             );
           })
         : null}
-    </Container>
+    </>
   );
 };
 

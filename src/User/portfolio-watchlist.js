@@ -14,8 +14,8 @@ import { db } from '../Firebase.js';
 
 const Watchlist = ({ following }) => {
   return (
-    <Container>
-      <Typography variant="h6" gutterBottom="true">
+    <>
+      <Typography variant="h6" gutterBottom>
         Watchlist
       </Typography>
       <Table>
@@ -34,7 +34,7 @@ const Watchlist = ({ following }) => {
           {following
             ? following.map(follow => {
                 return (
-                  <TableRow>
+                  <TableRow key={follow.ticker}>
                     <TableCell>{follow.ticker}</TableCell>
                     <TableCell>{follow.company}</TableCell>
                     <TableCell>{follow.close}</TableCell>
@@ -57,7 +57,7 @@ const Watchlist = ({ following }) => {
             : null}
         </TableBody>
       </Table>
-    </Container>
+    </>
   );
 };
 

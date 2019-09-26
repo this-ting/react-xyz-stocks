@@ -38,7 +38,7 @@ const GraphContainer = () => {
 
   if (value === 0) {
     return (
-      <Container>
+      <>
         <Tabs
           value={value}
           onChange={handleChange}
@@ -52,12 +52,12 @@ const GraphContainer = () => {
           <Graph time="5d" />
         </TabPanel>
         <GraphStats />
-      </Container>
+      </>
     );
   }
   if (value === 1) {
     return (
-      <Container>
+      <>
         <Tabs
           value={value}
           onChange={handleChange}
@@ -71,12 +71,12 @@ const GraphContainer = () => {
           <Graph time="1m" />
         </TabPanel>
         <GraphStats />
-      </Container>
+      </>
     );
   }
   if (value === 2) {
     return (
-      <Container>
+      <>
         <Tabs
           value={value}
           onChange={handleChange}
@@ -90,7 +90,7 @@ const GraphContainer = () => {
           <Graph time="3m" />
         </TabPanel>
         <GraphStats />
-      </Container>
+      </>
     );
   }
 };
