@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
-import { Tabs, Tab, Typography, Box, Container } from '@material-ui/core';
+import { Tabs, Tab, Typography, Box, Container, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
 // Import Components
@@ -9,6 +9,7 @@ import PrevDayPrice from './Stock-PrevDayPrice.js';
 import Overview from './Stock-overview.js';
 import Financials from './Stock-financials.js';
 import News from './Stock-news.js';
+import AddButton from './Stock-Button.js';
 
 const useStyles = makeStyles({
   root: {
@@ -55,9 +56,15 @@ const Stock = () => {
 
   return (
     <Container className={classes.root}>
-      <Ticker />
+      <Grid container justify="space-between">
+        <Grid item>
+          <Ticker />
+        </Grid>
+        <Grid item>
+          <AddButton />
+        </Grid>
+      </Grid>
       <PrevDayPrice />
-
       <Tabs
         className={classes.tabs}
         value={value}
@@ -68,7 +75,6 @@ const Stock = () => {
         <Tab label="Quarterly Financials" {...a11yProps(1)} />
         <Tab label="News" {...a11yProps(2)} />
       </Tabs>
-
       <TabPanel value={value} index={0}>
         <Overview />
       </TabPanel>
