@@ -7,6 +7,7 @@ import {
   TableBody
 } from '@material-ui/core';
 import StockContext from './StockContext.js';
+import formatNumber from '../lib';
 
 const IS = props => {
   const { index } = props;
@@ -98,39 +99,45 @@ const IS = props => {
     return (
       <Table>
         <TableHead>
-          <TableCell>INCOME STATEMENT</TableCell>
-          <TableCell align="right">(USD $)</TableCell>
+          <TableRow hover>
+            <TableCell>INCOME STATEMENT</TableCell>
+            <TableCell align="right">(USD $)</TableCell>
+          </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow>
+          <TableRow hover>
             <TableCell>Revenue:</TableCell>
-            <TableCell align="right">{rev}</TableCell>
+            <TableCell align="right">{formatNumber(parseInt(rev))}</TableCell>
           </TableRow>
-          <TableRow>
+          <TableRow hover>
             <TableCell>Cost of Revenue:</TableCell>
-            <TableCell align="right">{costOfRev}</TableCell>
+            <TableCell align="right">
+              {formatNumber(parseInt(costOfRev))}
+            </TableCell>
           </TableRow>
-          <TableRow>
+          <TableRow hover>
             <TableCell>Gross Profit:</TableCell>
-            <TableCell align="right">{gp}</TableCell>
+            <TableCell align="right">{formatNumber(parseInt(gp))}</TableCell>
           </TableRow>
-          <TableRow>
+          <TableRow hover>
             <TableCell>Gross Margin:</TableCell>
             <TableCell align="right">{gm * 100} %</TableCell>
           </TableRow>
-          <TableRow>
+          <TableRow hover>
             <TableCell>Operating Expenses:</TableCell>
-            <TableCell align="right">{opEx}</TableCell>
+            <TableCell align="right">{formatNumber(parseInt(opEx))}</TableCell>
           </TableRow>
-          <TableRow>
+          <TableRow hover>
             <TableCell>Operating Income:</TableCell>
-            <TableCell align="right">{opIncome}</TableCell>
+            <TableCell align="right">
+              {formatNumber(parseInt(opIncome))}
+            </TableCell>
           </TableRow>
-          <TableRow>
+          <TableRow hover>
             <TableCell>Net Income:</TableCell>
-            <TableCell align="right">{ni}</TableCell>
+            <TableCell align="right">{formatNumber(parseInt(ni))}</TableCell>
           </TableRow>
-          <TableRow>
+          <TableRow hover>
             <TableCell>Net Profit Margin:</TableCell>
             <TableCell align="right">{npm * 100} %</TableCell>
           </TableRow>

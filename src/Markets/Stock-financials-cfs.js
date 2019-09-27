@@ -7,6 +7,7 @@ import {
   TableCell
 } from '@material-ui/core';
 import StockContext from './StockContext.js';
+import formatNumber from '../lib';
 
 const CFS = props => {
   const { index } = props;
@@ -83,31 +84,33 @@ const CFS = props => {
     return (
       <Table>
         <TableHead>
-          <TableRow>
+          <TableRow hover>
             <TableCell>CASH FLOW STATEMENT</TableCell>
             <TableCell align="right">(USD $)</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow>
+          <TableRow hover>
             <TableCell>Operating Cash Flow:</TableCell>
-            <TableCell align="right">{opCF.toLocaleString()}</TableCell>
+            <TableCell align="right">{formatNumber(parseInt(opCF))}</TableCell>
           </TableRow>
-          <TableRow>
+          <TableRow hover>
             <TableCell>Investing Cash flow:</TableCell>
-            <TableCell align="right">{invCF.toLocaleString()}</TableCell>
+            <TableCell align="right">{formatNumber(parseInt(invCF))}</TableCell>
           </TableRow>
-          <TableRow>
+          <TableRow hover>
             <TableCell>Financing Cash Flow:</TableCell>
-            <TableCell align="right">{finCF.toLocaleString()}</TableCell>
+            <TableCell align="right">{formatNumber(parseInt(finCF))}</TableCell>
           </TableRow>
-          <TableRow>
+          <TableRow hover>
             <TableCell>Net cash flow / Change in cash:</TableCell>
-            <TableCell align="right">{netCF.toLocaleString()}</TableCell>
+            <TableCell align="right">{formatNumber(parseInt(netCF))}</TableCell>
           </TableRow>
-          <TableRow>
+          <TableRow hover>
             <TableCell>Free Cash Flow:</TableCell>
-            <TableCell align="right">{freeCF.toLocaleString()}</TableCell>
+            <TableCell align="right">
+              {formatNumber(parseInt(freeCF))}
+            </TableCell>
           </TableRow>
         </TableBody>
       </Table>

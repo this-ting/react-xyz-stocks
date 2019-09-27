@@ -10,6 +10,7 @@ import {
   Typography
 } from '@material-ui/core';
 import StockContext from './StockContext.js';
+import formatNumber from '../lib';
 
 const KeyFin = () => {
   // context
@@ -56,8 +57,10 @@ const KeyFin = () => {
     const { date, revenue, netIncome, netProfitMargin, eps } = stats;
 
     return (
-      <Container>
-        <Typography variant="h6">Snapshot Financials</Typography>
+      <>
+        <Typography variant="h6" gutterBottom>
+          Snapshot Financials
+        </Typography>
         <Paper>
           <Table>
             <TableHead>
@@ -69,11 +72,11 @@ const KeyFin = () => {
             <TableBody>
               <TableRow>
                 <TableCell>Revenue:</TableCell>
-                <TableCell>{revenue}</TableCell>
+                <TableCell>{formatNumber(parseInt(revenue))}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>Net Income:</TableCell>
-                <TableCell>{netIncome}</TableCell>
+                <TableCell>{formatNumber(parseInt(netIncome))}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>Net Profit Margin</TableCell>
@@ -86,7 +89,7 @@ const KeyFin = () => {
             </TableBody>
           </Table>
         </Paper>
-      </Container>
+      </>
     );
   }
   return (

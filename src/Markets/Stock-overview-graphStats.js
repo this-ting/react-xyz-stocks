@@ -3,6 +3,7 @@ import { Paper, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
 import StockContext from './StockContext.js';
+import formatNumber from '../lib';
 
 const useStyles = makeStyles({
   row: {
@@ -49,67 +50,70 @@ const GraphStats = () => {
     week52high
   } = stats;
 
-  return (
-    <>
-      <Typography variant="overline">
-        <Grid container direction="column" wrap="wrap">
-          <Grid container item xs={12}>
-            <Grid item xs={3}>
-              Market Cap:
+  if (stats) {
+    return (
+      <>
+        <Typography variant="overline">
+          <Grid container direction="column" wrap="wrap">
+            <Grid container item xs={12}>
+              <Grid item xs={3}>
+                Market Cap:
+              </Grid>
+              <Grid item xs={3}>
+                {formatNumber(marketcap)}
+              </Grid>
+              <Grid item xs={3}>
+                P/E ratio:
+              </Grid>
+              <Grid item xs={3}>
+                {peRatio.toFixed(2)}
+              </Grid>
             </Grid>
-            <Grid item xs={3}>
-              {marketcap}
-            </Grid>
-            <Grid item xs={3}>
-              EPS:{' '}
-            </Grid>
-            <Grid item xs={3}>
-              ${ttmEPS}
-            </Grid>
-          </Grid>
 
-          <Grid container item xs={12}>
-            <Grid item xs={3}>
-              Beta:{' '}
+            <Grid container item xs={12}>
+              <Grid item xs={3}>
+                Beta:
+              </Grid>
+              <Grid item xs={3}>
+                {beta.toFixed(2)}
+              </Grid>
+              <Grid item xs={3}>
+                52-week High:
+              </Grid>
+              <Grid item xs={3}>
+                {week52high.toFixed(2)}
+              </Grid>
             </Grid>
-            <Grid item xs={3}>
-              {beta}
-            </Grid>
-            <Grid item xs={3}>
-              P/E ratio:{' '}
-            </Grid>
-            <Grid item xs={3}>
-              {peRatio}
-            </Grid>
-          </Grid>
 
-          <Grid container item xs={12}>
-            <Grid item xs={3}>
-              Div Yield:
+            <Grid container item xs={12}>
+              <Grid item xs={3}>
+                Div Yield:
+              </Grid>
+              <Grid item xs={3}>
+                {(dividendYield * 100).toFixed(2)} %
+              </Grid>
+              <Grid item xs={3}>
+                52-week Low:
+              </Grid>
+              <Grid item xs={3}>
+                {week52low.toFixed(2)}
+              </Grid>
             </Grid>
-            <Grid item xs={3}>
-              {dividendYield * 100} %
-            </Grid>
-            <Grid item xs={3}>
-              52-week Low:{' '}
-            </Grid>
-            <Grid item xs={3}>
-              {week52low}
-            </Grid>
-          </Grid>
 
-          <Grid container item xs={12}>
-            <Grid item xs={3}>
-              52-week High:{' '}
-            </Grid>
-            <Grid item xs={3}>
-              {week52high}
+            <Grid container item xs={12}>
+              <Grid item xs={3}>
+                EPS:
+              </Grid>
+              <Grid item xs={3}>
+                ${ttmEPS}
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
-      </Typography>
-    </>
-  );
+        </Typography>
+      </>
+    );
+  }
+  return null;
 };
 
 export default GraphStats;

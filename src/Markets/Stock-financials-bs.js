@@ -8,6 +8,7 @@ import {
   TableRow
 } from '@material-ui/core';
 import StockContext from './StockContext.js';
+import formatNumber from '../lib';
 
 const useStyles = makeStyles({
   // tableHead: {
@@ -102,29 +103,29 @@ const BS = props => {
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow>
+          <TableRow hover>
             <TableCell>Cash and cash equivalents:</TableCell>
-            <TableCell align="right">{cash}</TableCell>
+            <TableCell align="right">{formatNumber(cash)}</TableCell>
           </TableRow>
-          <TableRow>
+          <TableRow hover>
             <TableCell>Total current assets:</TableCell>
-            <TableCell align="right">{currAssets}</TableCell>
+            <TableCell align="right">{formatNumber(currAssets)}</TableCell>
           </TableRow>
-          <TableRow>
+          <TableRow hover>
             <TableCell>Total assets:</TableCell>
-            <TableCell align="right">{assets}</TableCell>
+            <TableCell align="right">{formatNumber(assets)}</TableCell>
           </TableRow>
-          <TableRow>
+          <TableRow hover>
             <TableCell>Total current liabilities:</TableCell>
-            <TableCell align="right">{currLib}</TableCell>
+            <TableCell align="right">{formatNumber(currLib)}</TableCell>
           </TableRow>
-          <TableRow>
+          <TableRow hover>
             <TableCell>Total liabilities:</TableCell>
-            <TableCell align="right">{lib}</TableCell>
+            <TableCell align="right">{formatNumber(lib)}</TableCell>
           </TableRow>
-          <TableRow>
+          <TableRow hover>
             <TableCell>Total shareholders equity:</TableCell>
-            <TableCell align="right">{shareholdersEq}</TableCell>
+            <TableCell align="right">{formatNumber(shareholdersEq)}</TableCell>
           </TableRow>
         </TableBody>
       </Table>
