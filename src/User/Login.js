@@ -25,7 +25,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Login = ({ passLoginStatus }) => {
+const Login = ({ passUserID }) => {
   const classes = useStyles();
   let data = {};
   const [isSignedIn, setIsSignedIn] = useState('');
@@ -40,9 +40,9 @@ const Login = ({ passLoginStatus }) => {
         data.uid = user.uid;
         data.email = user.providerData[0].email;
         console.log(data);
-        passLoginStatus(data);
+        passUserID(data);
       } else {
-        passLoginStatus('');
+        passUserID('');
       }
     });
 

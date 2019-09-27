@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { Route, Link } from 'react-router-dom';
 import { Tabs, Tab, Typography, Box, Container, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
@@ -9,7 +9,7 @@ import PrevDayPrice from './Stock-PrevDayPrice.js';
 import Overview from './Stock-overview.js';
 import Financials from './Stock-financials.js';
 import News from './Stock-news.js';
-import AddButton from './Stock-Button.js';
+import AddButton from './Stock-addButton.js';
 
 const useStyles = makeStyles({
   root: {
@@ -48,11 +48,11 @@ function a11yProps(index) {
 const Stock = () => {
   const classes = useStyles();
 
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
 
-  function handleChange(event, newValue) {
+  const handleChange = (event, newValue) => {
     setValue(newValue);
-  }
+  };
 
   return (
     <Container className={classes.root}>
