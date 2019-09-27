@@ -32,15 +32,11 @@ const Login = ({ passUserID }) => {
   useEffect(() => {
     // Listen to the Firebase Auth state and set the local state.
     const unregisterAuthObserver = auth.onAuthStateChanged(user => {
-      console.log(user);
       setIsSignedIn(!!user);
-
-      // passing state up to User
+      // passing state up to User component
       if (user) {
-        data.uid = user.uid;
-        data.email = user.providerData[0].email;
         console.log(data);
-        passUserID(data);
+        passUserID(user.uid);
       } else {
         passUserID('');
       }

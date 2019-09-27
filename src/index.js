@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import * as firebase from 'firebase/app';
+import { auth } from './Firebase.js';
 
 // import components
 import Header from './Header';
@@ -15,6 +17,20 @@ import { LoginProvider } from './LoginContext';
 
 const App = () => {
   const [userID, setUserID] = useState('');
+  useEffect(() => {
+    const unregisterAuthObserver = auth.onAuthStateChanged(user => {
+      if (user) {
+        setUserID(user.uid);
+        console.log(user);
+      } else {
+        setUserID('');
+      }
+    });
+
+    return () => {
+      unregisterAuthObserver();
+    };
+  }, [userID]);
 
   const passUserID = data => {
     setUserID(data);
