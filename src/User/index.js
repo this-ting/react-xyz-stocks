@@ -6,9 +6,14 @@ import Login from './Login.js';
 const User = () => {
   const [loginStatus, setLoginStatus] = useState('');
 
+  // pass user login details to user component
+  const passLoginStatus = data => {
+    setLoginStatus(data);
+  };
+
   return (
     <Box>
-      <Login />
+      <Login passLoginStatus={passLoginStatus} />
     </Box>
   );
 };

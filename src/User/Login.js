@@ -25,27 +25,37 @@ const useStyles = makeStyles({
   }
 });
 
-const Login = () => {
+const Login = ({ passLoginStatus }) => {
   const classes = useStyles();
+  let data = {};
   const [isSignedIn, setIsSignedIn] = useState('');
   useEffect(() => {
     // Listen to the Firebase Auth state and set the local state.
     const unregisterAuthObserver = auth.onAuthStateChanged(user => {
       console.log(user);
       setIsSignedIn(!!user);
+
+      // passing state up to User
+      if (user) {
+        data.uid = user.uid;
+        data.email = user.providerData[0].email;
+        console.log(data);
+        passLoginStatus(data);
+      } else {
+        passLoginStatus('');
+      }
     });
 
     // Make sure we un-register Firebase observers when the component unmounts.
     return () => {
       unregisterAuthObserver();
     };
-  }, []);
+  }, [isSignedIn]);
 
   // Configure FirebaseUI.
   const uiConfig = {
     // Popup signin flow rather than redirect flow.
     signInFlow: 'popup',
-    // We will display Google and Facebook as auth providers.
     signInOptions: [
       firebase.auth.EmailAuthProvider.PROVIDER_ID,
       {
