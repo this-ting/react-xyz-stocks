@@ -5,7 +5,8 @@ import {
   TableHead,
   TableBody,
   TableCell,
-  TableRow
+  TableRow,
+  Tooltip
 } from '@material-ui/core';
 import StockContext from './StockContext.js';
 import formatNumber from '../lib';
@@ -98,7 +99,13 @@ const BS = props => {
       <Table>
         <TableHead>
           <TableRow className={classes.tableHead}>
-            <TableCell>BALANCE STATEMENT</TableCell>
+            <Tooltip
+              placement="right"
+              title="A financial statement that reports a company's assets, liabilities and shareholders' equity at a specific point in time"
+            >
+              <TableCell>BALANCE STATEMENT</TableCell>
+            </Tooltip>
+
             <TableCell align="right">(USD $)</TableCell>
           </TableRow>
         </TableHead>

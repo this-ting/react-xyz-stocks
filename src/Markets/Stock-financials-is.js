@@ -4,7 +4,8 @@ import {
   TableHead,
   TableCell,
   TableRow,
-  TableBody
+  TableBody,
+  Tooltip
 } from '@material-ui/core';
 import StockContext from './StockContext.js';
 import formatNumber from '../lib';
@@ -100,7 +101,12 @@ const IS = props => {
       <Table>
         <TableHead>
           <TableRow hover>
-            <TableCell>INCOME STATEMENT</TableCell>
+            <Tooltip
+              placement="right"
+              title="Reports a company's financial performance over a specific accounting period"
+            >
+              <TableCell>INCOME STATEMENT</TableCell>
+            </Tooltip>
             <TableCell align="right">(USD $)</TableCell>
           </TableRow>
         </TableHead>

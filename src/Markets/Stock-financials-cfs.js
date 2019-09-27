@@ -4,7 +4,8 @@ import {
   TableHead,
   TableBody,
   TableRow,
-  TableCell
+  TableCell,
+  Tooltip
 } from '@material-ui/core';
 import StockContext from './StockContext.js';
 import formatNumber from '../lib';
@@ -85,7 +86,12 @@ const CFS = props => {
       <Table>
         <TableHead>
           <TableRow hover>
-            <TableCell>CASH FLOW STATEMENT</TableCell>
+            <Tooltip
+              placement="right"
+              title="A financial statement that provides data regarding all cashflow a company receives from its ongoing operations and external investment sources."
+            >
+              <TableCell>CASH FLOW STATEMENT</TableCell>
+            </Tooltip>
             <TableCell align="right">(USD $)</TableCell>
           </TableRow>
         </TableHead>
