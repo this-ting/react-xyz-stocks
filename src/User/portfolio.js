@@ -75,18 +75,7 @@ const Portfolio = () => {
     };
   }, [uid]);
 
-  const queueRef = React.useRef([]);
   const [open, setOpen] = useState(false);
-
-  const processQueue = () => {
-    if (queueRef.current.length > 0) {
-      setOpen(true);
-    }
-  };
-
-  const handleExited = () => {
-    processQueue();
-  };
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -107,27 +96,15 @@ const Portfolio = () => {
       .delete()
       .then(() => {
         console.log(`${deleteValue} successfully deleted!`);
-        // setOpen(true);
-
-        queueRef.current.push({
-          key: new Date().getTime()
-        });
-
-        if (open) {
-          // immediately begin dismissing current message
-          // to start showing new one
-          setOpen(false);
-        } else {
-          processQueue();
-        }
+        setOpen(true);
       })
       .catch(function(error) {
         console.error('Error removing document: ', error);
       });
   };
 
-  //////////////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////////
+  // ////////////////////////////////////////////////////////////////////////////////
+  // ////////////////////////////////////////////////////////////////////////////////
 
   const [companies, setCompanies] = useState('');
   useEffect(() => {
@@ -157,7 +134,6 @@ const Portfolio = () => {
         handleDelete={handleDelete}
         open={open}
         handleClose={handleClose}
-        handleExited={handleExited}
       />
       <br />
       {/* <PortfolioNews companies={companies} /> */}
