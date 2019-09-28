@@ -35,11 +35,13 @@ const Footer = () => {
       <Grid container justify="space-between" alignItems="center">
         <Grid container item xs={12} sm={6}>
           <Grid item xs={12} sm={12}>
-            <img
-              src="/logo/logo_transparent_horizontal.png"
-              alt="logo"
-              className={classes.image}
-            />
+            <NavLink to="/" component={Home}>
+              <img
+                src="/logo/logo_transparent_horizontal.png"
+                alt="logo"
+                className={classes.image}
+              />
+            </NavLink>
           </Grid>
         </Grid>
         <Grid container item direction="column" xs={12} sm={6}>
