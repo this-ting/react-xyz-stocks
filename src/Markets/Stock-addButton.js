@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
-import { Button, Tooltip } from '@material-ui/core';
+import { Button, Tooltip, Snackbar, IconButton } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
+import CloseIcon from '@material-ui/icons/Close';
 import * as firebase from 'firebase/app';
 import { db } from '../Firebase';
 
@@ -24,30 +25,32 @@ const AddButton = ({ company }) => {
         if (doc.exists) {
           console.log(doc);
           console.log('following');
-          setWatching('Already Following');
+          setWatching(true);
         } else {
           console.log('not following');
-          setWatching('Add to Watchlist');
+          setWatching(false);
         }
       });
   }, [input]);
 
+  const [open, setOpen] = useState(false);
+
   const handleClick = () => {
-    if (watching === 'Already Following') {
+    if (watching) {
       db.collection('users')
         .doc(uid)
         .collection('stocks')
         .doc(input.toUpperCase())
         .delete()
         .then(() => {
-          console.log('Document successfully deleted!');
-          setWatching('Add to Watchlist');
+          console.log(`${input} successfully deleted!`);
+          setWatching(false);
+          setOpen(true);
         })
         .catch(function(error) {
           console.error('Error removing document: ', error);
         });
-    }
-    if (watching === 'Add to Watchlist') {
+    } else {
       db.collection('users')
         .doc(uid)
         .collection('stocks')
@@ -61,7 +64,8 @@ const AddButton = ({ company }) => {
         })
         .then(() => {
           console.log(`${input} successfully added!`);
-          setWatching('Already Following');
+          setWatching(true);
+          setOpen(true);
         })
         .catch(function(error) {
           console.error('Error removing document: ', error);
@@ -69,12 +73,49 @@ const AddButton = ({ company }) => {
     }
   };
 
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   if (uid) {
     return (
       <>
         <Button variant="contained" color="secondary" onClick={handleClick}>
-          {watching}
+          {watching ? 'Following' : 'Add to Watchlist'}
         </Button>
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right'
+          }}
+          open={open}
+          autoHideDuration={3000}
+          onClose={handleClose}
+          ContentProps={{
+            'aria-describedby': 'message-id'
+          }}
+          message={
+            <span id="message-id">
+              {watching
+                ? `${company.name} added to watchlist!`
+                : `${company.name} removed from watchlist!`}
+            </span>
+          }
+          action={[
+            <IconButton
+              key="close"
+              aria-label="close"
+              color="inherit"
+              onClick={handleClose}
+            >
+              <CloseIcon />
+            </IconButton>
+          ]}
+        />
       </>
     );
   }
