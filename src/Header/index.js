@@ -28,7 +28,7 @@ const useStyles = makeStyles({
   }
 });
 
-function Header() {
+const Header = () => {
   const classes = useStyles();
   const [value, setValue] = useState(0);
 
@@ -39,7 +39,6 @@ function Header() {
   const [showMenu, setShowMenu] = useState(false);
 
   const handleClick = () => {
-    console.log('clicked');
     setShowMenu(prevState => {
       if (prevState === false) {
         return true;
@@ -52,7 +51,7 @@ function Header() {
     <AppBar position="absolute" color="default" className={classes.header}>
       {showMenu === true ? <MobileMenu handleClick={handleClick} /> : null}
       <Grid container alignItems="center" justify="space-between">
-        <Grid item xs={10} sm={7}>
+        <Grid item xs={10} sm={6}>
           <Link to="/" component={Home}>
             <img
               src="/logo/logo_transparent_red.png"
@@ -62,10 +61,12 @@ function Header() {
           </Link>
         </Grid>
         <Hidden xsDown>
-          <Grid item sm={5}>
+          <Grid item sm={6}>
             <Tabs value={value} onChange={handleChange}>
               <Tab label="Home" to="/" component={NavLink} />
               <Tab label="Markets" to="/markets/" component={NavLink} />
+              <Tab label="Portfolio" to="/portfolio/" component={NavLink} />
+              <Tab label="User" to="/user/" component={NavLink} />
             </Tabs>
           </Grid>
         </Hidden>
@@ -77,6 +78,6 @@ function Header() {
       </Grid>
     </AppBar>
   );
-}
+};
 
 export default Header;
