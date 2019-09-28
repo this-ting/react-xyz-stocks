@@ -12,22 +12,22 @@ const PrevDayPrice = () => {
   // check for component mount
   const mounted = useRef(false);
 
-  const initalState = {
-    date: '',
-    open: '',
-    close: '',
-    high: '',
-    low: '',
-    volume: '',
-    changePercent: ''
-  };
+  // const initalState = {
+  //   date: '',
+  //   open: '',
+  //   close: '',
+  //   high: '',
+  //   low: '',
+  //   volume: '',
+  //   changePercent: ''
+  // };
 
-  const [prevDay, setPrevDay] = useState(initalState);
+  const [prevDay, setPrevDay] = useState('');
 
   useEffect(() => {
     mounted.current = true;
     fetch(
-      `https://sandbox.iexapis.com/stable/stock/${input}/previous?filter=date,open,close,high,low,volume,changePercent&token=Tpk_7190efa09280470180ab8bb6635da780`
+      `https://sandbox.iexapis.com/stable/stock/${input}/previous?filter=date,open,close,high,low,volume,changePercent,change&token=Tpk_7190efa09280470180ab8bb6635da780`
     )
       .then(response => response.json())
       .then(data => {
@@ -38,7 +38,8 @@ const PrevDayPrice = () => {
         info.high = data.high;
         info.low = data.low;
         info.volume = data.volume;
-        info.changePercent = data.changePercent;
+        info.changePercent = data.changePercent.toFixed(4);
+        info.change = data.change.toFixed(2);
         if (mounted.current) {
           setPrevDay(info);
         }
@@ -52,27 +53,40 @@ const PrevDayPrice = () => {
   }, [input]);
 
   if (prevDay) {
-    const { date, open, close, high, low, volume, changePercent } = prevDay;
+    const {
+      date,
+      open,
+      close,
+      high,
+      low,
+      volume,
+      changePercent,
+      change
+    } = prevDay;
 
     return (
       <>
-        <Grid container>
+        <Grid container spacing={2}>
           <Grid item>
             <Typography variant="h4">{close}</Typography>
           </Grid>
           <Grid item>
-            <Typography variant="overline">USD</Typography>
+            <Typography variant="h6">USD</Typography>
+          </Grid>
+          <Grid item>
+            <Typography variant="h6" color="secondary">
+              {change} ({changePercent * 100}%)
+            </Typography>
           </Grid>
         </Grid>
 
         <Grid container direction="column">
-          <Grid item> Date: {date}</Grid>
-          <Grid item> Open: {open}</Grid>
+          <Grid item> As of closing date: {date}</Grid>
+          {/* <Grid item> Open: {open}</Grid>
           <Grid item> Close: {close}</Grid>
           <Grid item> High: {high}</Grid>
           <Grid item> Low: {low}</Grid>
-          <Grid item> Volume: {volume}</Grid>
-          <Grid item> ChangePercent: {changePercent * 100}%</Grid>
+          <Grid item> Volume: {volume}</Grid> */}
         </Grid>
       </>
     );
