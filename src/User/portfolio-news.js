@@ -63,7 +63,7 @@ const PortfolioNews = ({ companies }) => {
               <>
                 <Hidden smUp>
                   <Card className={classes.root}>
-                    <a href={news.url} className={classes.link}>
+                    <a href={news.url} className={classes.link} target="_blank">
                       <CardActionArea>
                         <CardMedia
                           image={news.urlToImage}
@@ -92,7 +92,7 @@ const PortfolioNews = ({ companies }) => {
 
                 <Hidden xsDown>
                   <Card className={classes.root2}>
-                    <a href={news.url} className={classes.link}>
+                    <a href={news.url} className={classes.link} target="_blank">
                       <CardActionArea>
                         <Grid container wrap="wrap">
                           <Grid item sm={3}>
