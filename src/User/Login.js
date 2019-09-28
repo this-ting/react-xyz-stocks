@@ -1,9 +1,11 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { Component, useState, useEffect, useContext } from 'react';
 import { Typography, Grid, Paper, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import * as firebase from 'firebase/app';
 import { auth } from '../Firebase.js';
+
+import LoginContext from '../LoginContext';
 
 const useStyles = makeStyles({
   background: {
@@ -27,26 +29,7 @@ const useStyles = makeStyles({
 
 const Login = ({ passUserID }) => {
   const classes = useStyles();
-  let data = {};
-  const [isSignedIn, setIsSignedIn] = useState('');
-  useEffect(() => {
-    // Listen to the Firebase Auth state and set the local state.
-    const unregisterAuthObserver = auth.onAuthStateChanged(user => {
-      setIsSignedIn(!!user);
-      // passing state up to User component
-      if (user) {
-        console.log(data);
-        passUserID(user.uid);
-      } else {
-        passUserID('');
-      }
-    });
-
-    // Make sure we un-register Firebase observers when the component unmounts.
-    return () => {
-      unregisterAuthObserver();
-    };
-  }, [isSignedIn]);
+  const uid = useContext(LoginContext);
 
   // Configure FirebaseUI.
   const uiConfig = {
@@ -77,7 +60,7 @@ const Login = ({ passUserID }) => {
     }
   };
 
-  if (isSignedIn) {
+  if (uid) {
     return (
       <Grid container justify="center" alignItems="center">
         <Grid item className={classes.background} xs={7} />
