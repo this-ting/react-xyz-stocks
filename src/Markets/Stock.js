@@ -10,6 +10,7 @@ import Overview from './Stock-overview.js';
 import Financials from './Stock-financials.js';
 import News from './Stock-news.js';
 import AddButton from './Stock-addButton.js';
+import StockContext from './StockContext.js';
 
 const useStyles = makeStyles({
   root: {
@@ -48,20 +49,51 @@ function a11yProps(index) {
 const Stock = () => {
   const classes = useStyles();
 
+  // check for component mount
+  const mounted = useRef(false);
+
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
+  // context
+  const input = useContext(StockContext);
+
+  const [company, setCompany] = useState('');
+
+  useEffect(() => {
+    mounted.current = true;
+    fetch(
+      `https://sandbox.iexapis.com/stable/stock/${input}/company?filter=symbol,companyName,exchange&token=Tpk_7190efa09280470180ab8bb6635da780`
+    )
+      .then(response => response.json())
+      .then(data => {
+        const info = {};
+        info.name = data.companyName;
+        info.exchange = data.exchange;
+        info.ticker = data.symbol;
+        if (mounted.current) {
+          setCompany(info);
+        }
+      })
+      .catch(error => alert(error));
+
+    // Cleanup
+    return () => {
+      mounted.current = false;
+    };
+  }, [input]);
+
   return (
     <Container className={classes.root}>
       <Grid container justify="space-between">
         <Grid item>
-          <Ticker />
+          <Ticker company={company} />
         </Grid>
         <Grid item>
-          <AddButton />
+          <AddButton company={company} />
         </Grid>
       </Grid>
       <PrevDayPrice />
