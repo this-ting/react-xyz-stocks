@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/styles';
 const useStyles = makeStyles({
   root: {
     maxWidth: '980px',
-    marginTop: '2em',
+    marginTop: '11rem',
     marginBottom: '2em'
   },
   title: {
