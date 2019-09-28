@@ -30,8 +30,11 @@ const Portfolio = () => {
   // check for mounted component
   const mounted = useRef(false);
 
-  const data = [];
+  // //////////////////////////////////////////////////////////////////////////
+  // functions below are passed down as a prop to addButton
+  // //////////////////////////////////////////////////////////////////////////
 
+  const data = [];
   const [following, setFollowing] = useState('');
   useEffect(() => {
     mounted.current = true;
@@ -72,11 +75,30 @@ const Portfolio = () => {
     };
   }, [uid]);
 
-  // passed down as a prop to addButton
+  const queueRef = React.useRef([]);
+  const [open, setOpen] = useState(false);
+
+  const processQueue = () => {
+    if (queueRef.current.length > 0) {
+      setOpen(true);
+    }
+  };
+
+  const handleExited = () => {
+    processQueue();
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+
   const handleDelete = e => {
     console.log('delete');
     const deleteValue = e.currentTarget.attributes.ticker.nodeValue;
-    let newState = following.filter(follow => follow.ticker !== deleteValue);
+    const newState = following.filter(follow => follow.ticker !== deleteValue);
     setFollowing(newState);
     db.collection('users')
       .doc(uid)
@@ -84,13 +106,28 @@ const Portfolio = () => {
       .doc(deleteValue)
       .delete()
       .then(() => {
-        console.log('Document successfully deleted!');
-        setWatching('Add to Watchlist');
+        console.log(`${deleteValue} successfully deleted!`);
+        // setOpen(true);
+
+        queueRef.current.push({
+          key: new Date().getTime()
+        });
+
+        if (open) {
+          // immediately begin dismissing current message
+          // to start showing new one
+          setOpen(false);
+        } else {
+          processQueue();
+        }
       })
       .catch(function(error) {
         console.error('Error removing document: ', error);
       });
   };
+
+  //////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////
 
   const [companies, setCompanies] = useState('');
   useEffect(() => {
@@ -115,7 +152,13 @@ const Portfolio = () => {
         Portfolio
       </Typography>
       <br />
-      <Watchlist following={following} handleDelete={handleDelete} />
+      <Watchlist
+        following={following}
+        handleDelete={handleDelete}
+        open={open}
+        handleClose={handleClose}
+        handleExited={handleExited}
+      />
       <br />
       {/* <PortfolioNews companies={companies} /> */}
     </Container>

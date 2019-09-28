@@ -7,12 +7,21 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  Button
+  Button,
+  Snackbar,
+  IconButton
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
+import CloseIcon from '@material-ui/icons/Close';
 import { db } from '../Firebase.js';
 
-const Watchlist = ({ following, handleDelete }) => {
+const Watchlist = ({
+  following,
+  handleDelete,
+  open,
+  handleClose,
+  handleExited
+}) => {
   return (
     <>
       <Typography variant="h6" gutterBottom>
@@ -55,6 +64,32 @@ const Watchlist = ({ following, handleDelete }) => {
                       >
                         Remove
                       </Button>
+                      <Snackbar
+                        anchorOrigin={{
+                          vertical: 'top',
+                          horizontal: 'right'
+                        }}
+                        open={open}
+                        autoHideDuration={3000}
+                        onClose={handleClose}
+                        onExited={handleExited}
+                        ContentProps={{
+                          'aria-describedby': 'message-id'
+                        }}
+                        message={
+                          <span id="message-id">Removed from Watchlist!</span>
+                        }
+                        action={[
+                          <IconButton
+                            key="close"
+                            aria-label="close"
+                            color="inherit"
+                            onClick={handleClose}
+                          >
+                            <CloseIcon />
+                          </IconButton>
+                        ]}
+                      />
                     </TableCell>
                   </TableRow>
                 );
