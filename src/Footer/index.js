@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/styles';
 import Home from '../Home';
 import Markets from '../Markets';
 import Disclaimer from '../Disclaimer';
+import Portfolio from '../User/portfolio';
 
 const useStyles = makeStyles({
   root: {
@@ -57,6 +58,17 @@ const Footer = () => {
                 className={classes.links}
               >
                 Explore
+              </NavLink>
+            </Typography>
+          </Grid>
+          <Grid item xs={12} sm={6} className={classes.item}>
+            <Typography variant="overline">
+              <NavLink
+                to="/portfolio/"
+                component={Portfolio}
+                className={classes.links}
+              >
+                Portfolio
               </NavLink>
             </Typography>
           </Grid>
