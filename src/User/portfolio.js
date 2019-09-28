@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import {
   Container,
   Typography,
@@ -14,6 +14,7 @@ import { db } from '../Firebase.js';
 // import components
 import Watchlist from './portfolio-watchlist.js';
 import PortfolioNews from './portfolio-news.js';
+import LoginContext from '../LoginContext';
 
 const useStyles = makeStyles({
   root: {
@@ -23,20 +24,20 @@ const useStyles = makeStyles({
 });
 
 const Portfolio = () => {
+  const uid = useContext(LoginContext);
   const classes = useStyles();
 
   // check for mounted component
   const mounted = useRef(false);
 
   const data = [];
-  const user = 'PuqnfR7XgVU6N4EknUxZ';
 
   const [following, setFollowing] = useState('');
   useEffect(() => {
     mounted.current = true;
     // get user's following stocks from FireStore, then fetch API
     db.collection('users')
-      .doc(user)
+      .doc(uid)
       .collection('stocks')
       .get()
       .then(query => {
@@ -69,14 +70,34 @@ const Portfolio = () => {
     return () => {
       mounted.current = false;
     };
-  }, [user]);
+  }, [uid]);
+
+  // passed down as a prop to addButton
+  const handleDelete = e => {
+    console.log('delete');
+    const deleteValue = e.currentTarget.attributes.ticker.nodeValue;
+    let newState = following.filter(follow => follow.ticker !== deleteValue);
+    setFollowing(newState);
+    db.collection('users')
+      .doc(uid)
+      .collection('stocks')
+      .doc(deleteValue)
+      .delete()
+      .then(() => {
+        console.log('Document successfully deleted!');
+        setWatching('Add to Watchlist');
+      })
+      .catch(function(error) {
+        console.error('Error removing document: ', error);
+      });
+  };
 
   const [companies, setCompanies] = useState('');
   useEffect(() => {
     mounted.current = true;
 
     db.collection('users')
-      .doc(user)
+      .doc(uid)
       .get()
       .then(doc => {
         setCompanies(doc.data().watchlist);
@@ -86,7 +107,7 @@ const Portfolio = () => {
     return () => {
       mounted.current = false;
     };
-  }, [user]);
+  }, [uid]);
 
   return (
     <Container className={classes.root}>
@@ -94,9 +115,9 @@ const Portfolio = () => {
         Portfolio
       </Typography>
       <br />
-      <Watchlist following={following} />
+      <Watchlist following={following} handleDelete={handleDelete} />
       <br />
-      <PortfolioNews companies={companies} />
+      {/* <PortfolioNews companies={companies} /> */}
     </Container>
   );
 };

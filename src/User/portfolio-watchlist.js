@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import {
   Container,
   Typography,
@@ -12,7 +12,7 @@ import {
 import { makeStyles } from '@material-ui/styles';
 import { db } from '../Firebase.js';
 
-const Watchlist = ({ following }) => {
+const Watchlist = ({ following, handleDelete }) => {
   return (
     <>
       <Typography variant="h6" gutterBottom>
@@ -47,7 +47,12 @@ const Watchlist = ({ following }) => {
                       ).toFixed(2)}
                     </TableCell>
                     <TableCell>
-                      <Button variant="contained" color="primary">
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={handleDelete}
+                        {...{ ticker: follow.ticker }}
+                      >
                         Remove
                       </Button>
                     </TableCell>
