@@ -47,7 +47,7 @@ const Footer = () => {
         <Grid container item direction="column" xs={12} sm={6}>
           <Grid item xs={12} sm={6} className={classes.item}>
             <Typography variant="overline">
-              <NavLink to="/" component={Home} className={classes.links}>
+              <NavLink exact to="/" component={Home} className={classes.links}>
                 Home
               </NavLink>
             </Typography>

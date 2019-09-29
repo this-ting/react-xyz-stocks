@@ -64,7 +64,7 @@ const Header = () => {
         {showMenu === true ? <MobileMenu handleClick={handleClick} /> : null}
         <Grid container md alignItems="center" justify="flex-end">
           <Grid item xs={10} sm={6} md={4}>
-            <Link to="/" component={Home}>
+            <Link exact to="/" component={Home}>
               <img
                 src="/logo/logo_transparent_red.png"
                 alt="logo"
@@ -75,7 +75,11 @@ const Header = () => {
           <Hidden xsDown>
             <Grid item sm={4}>
               <Tabs centered value={value} onChange={handleChange}>
-                <Tab label="Explore" to="/markets/" component={NavLink} />
+                <Tab
+                  label="Explore"
+                  to="/markets/explore/"
+                  component={NavLink}
+                />
                 <Tab label="Portfolio" to="/portfolio/" component={NavLink} />
               </Tabs>
             </Grid>
@@ -111,7 +115,7 @@ const Header = () => {
         <Hidden xsDown>
           <Grid item sm={4}>
             <Tabs value={value} onChange={handleChange} centered>
-              <Tab label="Markets" to="/markets/" component={NavLink} />
+              <Tab label="Explore" to="/markets/explore/" component={NavLink} />
               <Tab label="Portfolio" to="/portfolio/" component={NavLink} />
             </Tabs>
           </Grid>
