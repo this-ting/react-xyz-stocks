@@ -7,6 +7,8 @@ import CloseIcon from '@material-ui/icons/Close';
 // import components
 import Home from '../Home';
 import Markets from '../Markets';
+import User from '../User';
+import Portfolio from '../User/portfolio.js';
 
 const useStyles = makeStyles({
   root: {
@@ -78,13 +80,23 @@ const MobileMenu = ({ handleClick }) => {
           </ListItem>
         </NavLink>
         <NavLink
-          to="/markets/"
-          component={Markets}
+          to="/portfolio/"
+          component={Portfolio}
           className={classes.menuItem}
           onClick={handleClick}
         >
           <ListItem className={classes.menu}>
-            <Typography variant="h6">SEARCH</Typography>
+            <Typography variant="h6">PORTFOLIO</Typography>
+          </ListItem>
+        </NavLink>
+        <NavLink
+          to="/user/"
+          component={User}
+          className={classes.menuItem}
+          onClick={handleClick}
+        >
+          <ListItem className={classes.menu}>
+            <Typography variant="h6">LOGIN / SIGNUP</Typography>
           </ListItem>
         </NavLink>
       </List>
