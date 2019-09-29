@@ -6,7 +6,7 @@ import CloseIcon from '@material-ui/icons/Close';
 
 // import components
 import Home from '../Home';
-import Markets from '../Markets';
+import Explore from '../Markets/Explore';
 import User from '../User';
 import Portfolio from '../User/portfolio.js';
 
@@ -51,18 +51,18 @@ const useStyles = makeStyles({
   }
 });
 
-const MobileMenu = ({ handleClick }) => {
+const MobileMenu = ({ handleMenuClick }) => {
   const classes = useStyles();
 
   return (
     <Container className={classes.root} component="nav">
-      <CloseIcon className={classes.closeIcon} onClick={handleClick} />
+      <CloseIcon className={classes.closeIcon} onClick={handleMenuClick} />
       <List>
         <NavLink
           to="/"
           component={Home}
           className={classes.menuItem}
-          onClick={handleClick}
+          onClick={handleMenuClick}
         >
           <ListItem className={classes.menu}>
             <Typography variant="h6">HOME</Typography>
@@ -70,10 +70,10 @@ const MobileMenu = ({ handleClick }) => {
         </NavLink>
 
         <NavLink
-          to="/markets/"
-          component={Markets}
+          to="/explore/"
+          component={Explore}
           className={classes.menuItem}
-          onClick={handleClick}
+          onClick={handleMenuClick}
         >
           <ListItem className={classes.menu}>
             <Typography variant="h6">EXPLORE</Typography>
@@ -83,7 +83,7 @@ const MobileMenu = ({ handleClick }) => {
           to="/portfolio/"
           component={Portfolio}
           className={classes.menuItem}
-          onClick={handleClick}
+          onClick={handleMenuClick}
         >
           <ListItem className={classes.menu}>
             <Typography variant="h6">PORTFOLIO</Typography>
@@ -93,7 +93,7 @@ const MobileMenu = ({ handleClick }) => {
           to="/user/"
           component={User}
           className={classes.menuItem}
-          onClick={handleClick}
+          onClick={handleMenuClick}
         >
           <ListItem className={classes.menu}>
             <Typography variant="h6">LOGIN / SIGNUP</Typography>

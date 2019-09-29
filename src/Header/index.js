@@ -49,7 +49,7 @@ const Header = () => {
 
   const [showMenu, setShowMenu] = useState(false);
 
-  const handleClick = () => {
+  const handleMenuClick = () => {
     setShowMenu(prevState => {
       if (prevState === false) {
         return true;
@@ -61,7 +61,9 @@ const Header = () => {
   if (uid) {
     return (
       <AppBar position="absolute" color="default" className={classes.header}>
-        {showMenu === true ? <MobileMenu handleClick={handleClick} /> : null}
+        {showMenu === true ? (
+          <MobileMenu handleMenuClick={handleMenuClick} />
+        ) : null}
         <Grid container md alignItems="center" justify="flex-end">
           <Grid item xs={10} sm={6} md={4}>
             <Link exact to="/" component={Home}>
@@ -75,11 +77,7 @@ const Header = () => {
           <Hidden xsDown>
             <Grid item sm={4}>
               <Tabs centered value={value} onChange={handleChange}>
-                <Tab
-                  label="Explore"
-                  to="/markets/explore/"
-                  component={NavLink}
-                />
+                <Tab label="Explore" to="/explore/" component={NavLink} />
                 <Tab label="Portfolio" to="/portfolio/" component={NavLink} />
               </Tabs>
             </Grid>
@@ -91,7 +89,10 @@ const Header = () => {
           </Hidden>
           <Hidden smUp>
             <Grid item xs={2}>
-              <MenuIcon onClick={handleClick} className={classes.menuIcon} />
+              <MenuIcon
+                onClick={handleMenuClick}
+                className={classes.menuIcon}
+              />
             </Grid>
           </Hidden>
         </Grid>
@@ -101,7 +102,9 @@ const Header = () => {
 
   return (
     <AppBar position="absolute" color="default" className={classes.header}>
-      {showMenu === true ? <MobileMenu handleClick={handleClick} /> : null}
+      {showMenu === true ? (
+        <MobileMenu handleMenuClick={handleMenuClick} />
+      ) : null}
       <Grid container alignItems="center" justify="flex-end">
         <Grid item xs={10} sm={6} md={4}>
           <Link to="/" component={Home}>
@@ -115,7 +118,7 @@ const Header = () => {
         <Hidden xsDown>
           <Grid item sm={4}>
             <Tabs value={value} onChange={handleChange} centered>
-              <Tab label="Explore" to="/markets/explore/" component={NavLink} />
+              <Tab label="Explore" to="/explore/" component={NavLink} />
               <Tab label="Portfolio" to="/portfolio/" component={NavLink} />
             </Tabs>
           </Grid>
@@ -127,7 +130,7 @@ const Header = () => {
         </Hidden>
         <Hidden smUp>
           <Grid item xs={2}>
-            <MenuIcon onClick={handleClick} className={classes.menuIcon} />
+            <MenuIcon onClick={handleMenuClick} className={classes.menuIcon} />
           </Grid>
         </Hidden>
       </Grid>
