@@ -2,17 +2,23 @@ import React, { useState, useEffect, useRef } from 'react';
 import {
   Container,
   Typography,
-  Card,
-  CardActionArea,
-  CardMedia,
-  CardContent,
-  Grid,
-  Hidden
+  Tabs,
+  Tab,
+  Box,
+  Paper
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
+// import component
+import NewsArticles from './portfolio-news-articles';
+
 const useStyles = makeStyles({
   root: {
+    flexGrow: 1,
+    display: 'flex',
+    height: '80vh'
+  },
+  card: {
     maxWidth: 600,
     margin: '2rem 0'
   },
@@ -34,120 +40,71 @@ const useStyles = makeStyles({
   },
   link: {
     textDecoration: 'none'
+  },
+  tabContent: {
+    overflow: 'auto'
   }
 });
 
+const TabPanel = props => {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <Typography
+      component="div"
+      role="tabpanel"
+      hidden={value !== index}
+      id={`vertical-tabpanel-${index}`}
+      aria-labelledby={`vertical-tab-${index}`}
+      {...other}
+    >
+      <Box p={3}>{children}</Box>
+    </Typography>
+  );
+};
+
+const a11yProps = index => {
+  return {
+    id: `vertical-tab-${index}`,
+    'aria-controls': `vertical-tabpanel-${index}`
+  };
+};
+
 const PortfolioNews = ({ companies }) => {
   const classes = useStyles();
-  const [news, setNews] = useState('');
-  useEffect(() => {
-    fetch(
-      `https://newsapi.org/v2/top-headlines?country=us&category=business&pageSize=10&apiKey=c7fbbb0c2c28409eb961604990493a89`
-    )
-      .then(response => response.json())
-      .then(data => {
-        setNews(data.articles);
-      })
-      .catch(error => console.error(error));
-  }, [companies]);
+
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   return (
     <>
       <Typography variant="h6" gutterBottom>
         News Feed
       </Typography>
-
-      {news
-        ? news.map(news => {
-            return (
-              <>
-                <Hidden smUp>
-                  <Card className={classes.root}>
-                    <a href={news.url} className={classes.link} target="_blank">
-                      <CardActionArea>
-                        <CardMedia
-                          image={news.urlToImage}
-                          className={classes.media}
-                        />
-                        <CardContent>
-                          <Typography
-                            variant="h6"
-                            color="textSecondary"
-                            component="h6"
-                          >
-                            {news.title}
-                          </Typography>
-                          <Typography
-                            variant="body2"
-                            color="textSecondary"
-                            component="p"
-                          >
-                            {news.description}
-                          </Typography>
-                        </CardContent>
-                      </CardActionArea>
-                    </a>
-                  </Card>
-                </Hidden>
-
-                <Hidden xsDown>
-                  <Card className={classes.root2}>
-                    <a href={news.url} className={classes.link} target="_blank">
-                      <CardActionArea>
-                        <Grid container wrap="wrap">
-                          <Grid item sm={3}>
-                            <CardMedia
-                              image={news.urlToImage}
-                              className={classes.media2}
-                            />
-                          </Grid>
-                          <Grid item sm={9}>
-                            <CardContent>
-                              <Typography
-                                variant="h6"
-                                color="textSecondary"
-                                component="h6"
-                              >
-                                {news.title}
-                              </Typography>
-                              <Grid container spacing={2}>
-                                <Grid item>
-                                  <Typography
-                                    variant="overline"
-                                    color="textSecondary"
-                                    component="span"
-                                  >
-                                    {news.source.name}
-                                  </Typography>
-                                </Grid>
-                                <Grid item>
-                                  <Typography
-                                    variant="overline"
-                                    color="textSecondary"
-                                    component="span"
-                                  >
-                                    {news.publishedAt}
-                                  </Typography>
-                                </Grid>
-                              </Grid>
-                              <Typography
-                                variant="body2"
-                                color="textSecondary"
-                                component="p"
-                              >
-                                {news.description}
-                              </Typography>
-                            </CardContent>
-                          </Grid>
-                        </Grid>
-                      </CardActionArea>
-                    </a>
-                  </Card>
-                </Hidden>
-              </>
-            );
-          })
-        : null}
+      <Paper className={classes.root}>
+        <Tabs
+          orientation="vertical"
+          variant="scrollable"
+          value={value}
+          onChange={handleChange}
+          aria-label="Vertical tabs example"
+          className={classes.tabs}
+        >
+          <Tab label="Top News" {...a11yProps(0)} />
+          <Tab label="Your Picks" {...a11yProps(1)} />
+          <Tab label="U.S." {...a11yProps(2)} />
+          <Tab label="Business" {...a11yProps(3)} />
+          <Tab label="Technology" {...a11yProps(4)} />
+          <Tab label="Entertainment" {...a11yProps(5)} />
+          <Tab label="Science" {...a11yProps(6)} />
+        </Tabs>
+        <TabPanel value={value} index={value} className={classes.tabContent}>
+          <NewsArticles companies={companies} value={value} />
+        </TabPanel>
+      </Paper>
     </>
   );
 };
