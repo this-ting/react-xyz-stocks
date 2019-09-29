@@ -15,7 +15,6 @@ const AddButton = ({ company }) => {
 
   const [watching, setWatching] = useState('');
   useEffect(() => {
-    console.log('Add');
     db.collection('users')
       .doc(uid)
       .collection('stocks')
@@ -30,7 +29,8 @@ const AddButton = ({ company }) => {
           console.log('not following');
           setWatching(false);
         }
-      });
+      })
+      .catch(error => console.error(error));
   }, [input]);
 
   const [open, setOpen] = useState(false);
@@ -47,7 +47,16 @@ const AddButton = ({ company }) => {
           setWatching(false);
           setOpen(true);
         })
-        .catch(function(error) {
+        .then(() => {
+          db.collection('users')
+            .doc(uid)
+            .update({
+              watchlist: firebase.firestore.FieldValue.arrayRemove(
+                input.toUpperCase()
+              )
+            });
+        })
+        .catch(error => {
           console.error('Error removing document: ', error);
         });
     } else {
@@ -67,8 +76,17 @@ const AddButton = ({ company }) => {
           setWatching(true);
           setOpen(true);
         })
-        .catch(function(error) {
-          console.error('Error removing document: ', error);
+        .then(() => {
+          db.collection('users')
+            .doc(uid)
+            .update({
+              watchlist: firebase.firestore.FieldValue.arrayUnion(
+                input.toUpperCase()
+              )
+            });
+        })
+        .catch(error => {
+          console.error('Error adding document: ', error);
         });
     }
   };
