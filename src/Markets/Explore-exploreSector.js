@@ -111,7 +111,7 @@ const ExploreSector = ({ getSector }) => {
     }
   ];
 
-  const handleClick = e => {
+  const handleSectorClick = e => {
     const input = e.currentTarget.firstChild.textContent.toLowerCase();
     getSector(input);
   };
@@ -119,11 +119,11 @@ const ExploreSector = ({ getSector }) => {
   const category = sectors.map(sect => (
     <Grid
       item
-      key={sect}
+      key={sect.name}
       xs={12}
       sm={3}
       className={classes.item}
-      onClick={handleClick}
+      onClick={handleSectorClick}
     >
       <Typography
         variant="button"
