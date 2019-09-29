@@ -1,7 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { Box, Button, Typography } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Container, Box, Button, Typography, Paper } from '@material-ui/core';
+import { Link, Redirect } from 'react-router-dom';
+import Search from '../Markets/Search';
 
 const useStyles = makeStyles({
   banner1: {
@@ -54,8 +55,9 @@ const useStyles = makeStyles({
   }
 });
 
-function Banner1() {
+function Banner1({ getCompany }) {
   const classes = useStyles();
+
   return (
     <Box className={classes.banner1}>
       <Typography
@@ -64,11 +66,15 @@ function Banner1() {
         align="center"
         className={classes.bannertext1}
       >
-        Grow your knowledge
+        Search NASDAQ & NYSE stocks
         <Typography variant="body1" color="textSecondary" align="center">
           Learn about companies you love, easy like ZXY
         </Typography>
       </Typography>
+      <br />
+      <Paper>
+        <Search getCompany={getCompany} />
+      </Paper>
     </Box>
   );
 }
@@ -120,12 +126,18 @@ function Banner3() {
   );
 }
 
-export default function Home() {
+const Home = ({ getCompany, company }) => {
+  if (company !== '') {
+    return <Redirect to="/markets/" />;
+  }
+
   return (
     <Box>
-      <Banner1 />
+      <Banner1 getCompany={getCompany} />
       <Banner2 />
       <Banner3 />
     </Box>
   );
-}
+};
+
+export default Home;

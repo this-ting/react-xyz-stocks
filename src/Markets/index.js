@@ -16,23 +16,23 @@ const useStyles = makeStyles({
   }
 });
 
-export default function Markets() {
+const Markets = ({ company, getCompany, handleClick }) => {
   const classes = useStyles();
 
-  const [company, setCompany] = useState('');
+  // const [company, setCompany] = useState('');
 
-  const getCompany = input => {
-    setCompany(input);
-  };
+  // const getCompany = input => {
+  //   setCompany(input);
+  // };
 
-  /* 
-    State lifted up from SectorList; handleClick is passed down to 
-    Explore => SectorList to the onClick
-  */
-  const handleClick = e => {
-    const value = e.currentTarget.firstElementChild.textContent;
-    setCompany(value);
-  };
+  // /*
+  //   State lifted up from SectorList; handleClick is passed down to
+  //   Explore => SectorList to the onClick
+  // */
+  // const handleClick = e => {
+  //   const value = e.currentTarget.firstElementChild.textContent;
+  //   setCompany(value);
+  // };
 
   const renderStock = () => {
     if (company !== '') {
@@ -44,10 +44,12 @@ export default function Markets() {
   return (
     <Container className={classes.root}>
       {/* <AddInfo /> */}
-      <StockProvider value={company}>
-        <Search getCompany={getCompany} />
-        {renderStock()}
-      </StockProvider>
+      {/* <StockProvider value={company}> */}
+      <Search getCompany={getCompany} />
+      {renderStock()}
+      {/* </StockProvider> */}
     </Container>
   );
-}
+};
+
+export default Markets;
