@@ -6,8 +6,9 @@ const useStyles = makeStyles({
   item: {
     flexGrow: 1,
     maxWidth: 'none',
+    backgroundColor: '#3f51b580',
     height: '190px',
-    border: '1px solid rgba(63, 81, 181, 0.5)',
+    // border: '1px solid rgba(63, 81, 181, 0.5)',
     margin: '1em',
     textAlign: 'center',
     borderRadius: '12px',
@@ -15,12 +16,14 @@ const useStyles = makeStyles({
     transition: 'all 0.3s ease',
     '&:hover': {
       transform: 'scale(1.05)',
-      boxShadow: '0px 1px 5px 0px #b4bbe0'
+      boxShadow: '0px 1px 5px 0px #b4bbe0',
+      backgroundColor: '#fafafa'
     },
     '&:hover h6': {
       textTransform: 'lowercase',
       maxInlineSize: 'fit-content',
-      fontSize: '1.6rem'
+      fontSize: '1.6rem',
+      color: '#3f63b5'
     },
     '&:hover p': {
       display: 'inline-block'
@@ -39,7 +42,8 @@ const useStyles = makeStyles({
     }
   },
   header: {
-    fontSize: '1.1rem'
+    fontSize: '1.4rem',
+    color: '#fafafa'
   },
   text: {
     display: 'none',
@@ -47,7 +51,7 @@ const useStyles = makeStyles({
   }
 });
 
-const ExploreSector = props => {
+const ExploreSector = ({ getSector }) => {
   const classes = useStyles();
   const sectors = [
     {
@@ -108,8 +112,7 @@ const ExploreSector = props => {
   ];
 
   const handleClick = e => {
-    const input = e.target.textContent.toLowerCase();
-    const { getSector } = props;
+    const input = e.currentTarget.firstChild.textContent.toLowerCase();
     getSector(input);
   };
 
@@ -132,7 +135,7 @@ const ExploreSector = props => {
       </Typography>
       <Typography
         variant="body2"
-        color="textsecondary"
+        color="textSecondary"
         className={classes.text}
       >
         {sect.desc}
