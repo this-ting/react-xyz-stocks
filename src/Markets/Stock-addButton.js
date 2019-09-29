@@ -37,7 +37,7 @@ const AddButton = ({ company }) => {
 
   const [open, setOpen] = useState(false);
 
-  const handleClick = () => {
+  const handleButtonClick = () => {
     if (watching) {
       db.collection('users')
         .doc(uid)
@@ -104,7 +104,11 @@ const AddButton = ({ company }) => {
   if (uid) {
     return (
       <>
-        <Button variant="contained" color="secondary" onClick={handleClick}>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={handleButtonClick}
+        >
           {watching ? 'Following' : 'Add to Watchlist'}
         </Button>
         <Snackbar
