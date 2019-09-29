@@ -15,22 +15,24 @@ const AddButton = ({ company }) => {
 
   const [watching, setWatching] = useState('');
   useEffect(() => {
-    db.collection('users')
-      .doc(uid)
-      .collection('stocks')
-      .doc(input.toUpperCase())
-      .get()
-      .then(doc => {
-        if (doc.exists) {
-          console.log(doc);
-          console.log('following');
-          setWatching(true);
-        } else {
-          console.log('not following');
-          setWatching(false);
-        }
-      })
-      .catch(error => console.error(error));
+    if (uid) {
+      db.collection('users')
+        .doc(uid)
+        .collection('stocks')
+        .doc(input.toUpperCase())
+        .get()
+        .then(doc => {
+          if (doc.exists) {
+            console.log(doc);
+            console.log('following');
+            setWatching(true);
+          } else {
+            console.log('not following');
+            setWatching(false);
+          }
+        })
+        .catch(error => console.error(error));
+    }
   }, [input]);
 
   const [open, setOpen] = useState(false);
