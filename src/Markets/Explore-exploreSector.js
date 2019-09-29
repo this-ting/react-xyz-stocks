@@ -4,6 +4,8 @@ import { Grid, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles({
   item: {
+    flexGrow: 1,
+    maxWidth: 'none',
     height: '190px',
     border: '1px solid rgba(63, 81, 181, 0.5)',
     margin: '1em',
@@ -141,6 +143,7 @@ const ExploreSector = props => {
   return (
     <>
       <h3>EXPLORE BY SECTOR</h3>
+
       <Grid
         container
         spacing={2}
