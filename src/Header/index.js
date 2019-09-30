@@ -38,7 +38,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Header = () => {
+const Header = ({ getCompany }) => {
   const uid = useContext(LoginContext);
   const classes = useStyles();
   const [value, setValue] = useState(0);
@@ -58,53 +58,36 @@ const Header = () => {
     });
   };
 
-  if (uid) {
-    return (
-      <AppBar position="absolute" color="default" className={classes.header}>
-        {showMenu === true ? (
-          <MobileMenu handleMenuClick={handleMenuClick} />
-        ) : null}
-        <Grid container md alignItems="center" justify="flex-end">
-          <Grid item xs={10} sm={6} md={4}>
-            <Link exact to="/" component={Home}>
-              <img
-                src="/logo/logo_transparent_red.png"
-                alt="logo"
-                className={classes.logo}
-              />
-            </Link>
-          </Grid>
-          <Hidden xsDown>
-            <Grid item sm={4}>
-              <Tabs centered value={value} onChange={handleChange}>
-                <Tab label="Explore" to="/explore/" component={NavLink} />
-                <Tab label="Portfolio" to="/portfolio/" component={NavLink} />
-              </Tabs>
-            </Grid>
-            <Grid sm={2}>
-              <IconButton aria-label="user">
-                <AccountCircleIcon />
-              </IconButton>
-            </Grid>
-          </Hidden>
-          <Hidden smUp>
-            <Grid item xs={2}>
-              <MenuIcon
-                onClick={handleMenuClick}
-                className={classes.menuIcon}
-              />
-            </Grid>
-          </Hidden>
-        </Grid>
-      </AppBar>
-    );
-  }
+  const handleClickHome = () => {
+    getCompany('');
+  };
+
+  const renderLoginButton = uid ? (
+    <IconButton aria-label="user" to="/user/" component={NavLink}>
+      <AccountCircleIcon />
+    </IconButton>
+  ) : (
+    <Button
+      variant="contained"
+      color="secondary"
+      to="/user/"
+      component={NavLink}
+    >
+      Login
+    </Button>
+  );
+
+  const renderMobileMenu =
+    showMenu === true ? (
+      <MobileMenu
+        handleMenuClick={handleMenuClick}
+        handleClickHome={handleClickHome}
+      />
+    ) : null;
 
   return (
     <AppBar position="absolute" color="default" className={classes.header}>
-      {showMenu === true ? (
-        <MobileMenu handleMenuClick={handleMenuClick} />
-      ) : null}
+      {renderMobileMenu}
       <Grid container alignItems="center" justify="flex-end">
         <Grid item xs={10} sm={6} md={4}>
           <Link to="/" component={Home}>
@@ -112,6 +95,7 @@ const Header = () => {
               src="/logo/logo_transparent_red.png"
               alt="logo"
               className={classes.logo}
+              onClick={handleClickHome}
             />
           </Link>
         </Grid>
@@ -123,9 +107,7 @@ const Header = () => {
             </Tabs>
           </Grid>
           <Grid item sm={2}>
-            <Button variant="contained" color="secondary">
-              Login
-            </Button>
+            {renderLoginButton}
           </Grid>
         </Hidden>
         <Hidden smUp>
