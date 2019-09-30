@@ -4,13 +4,10 @@ import { Grid, Paper, Container, Box } from '@material-ui/core';
 import Login from './Login.js';
 import Portfolio from './portfolio.js';
 
-const User = ({ passUserID }) => {
-  if (passUserID) {
-    return <Portfolio />;
-  }
+const User = () => {
   return (
     <Box>
-      <Login passUserID={passUserID} />
+      <Login />
     </Box>
   );
 };

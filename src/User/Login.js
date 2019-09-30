@@ -27,7 +27,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Login = ({ passUserID }) => {
+const Login = () => {
   const classes = useStyles();
   const uid = useContext(LoginContext);
 
