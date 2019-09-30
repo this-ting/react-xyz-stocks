@@ -9,6 +9,8 @@ import {
   TableHead,
   TableRow
 } from '@material-ui/core';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 // import * as firebase from 'firebase/app';
 import { db } from '../Firebase.js';
 
@@ -17,6 +19,16 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     marginTop: theme.spacing(3),
     overflowX: 'auto'
+  },
+  plus: {
+    color: '#4F9E59',
+    alignItems: 'center',
+    display: 'flex'
+  },
+  minus: {
+    color: '#D3483A',
+    alignItems: 'center',
+    display: 'flex'
   }
 }));
 
@@ -33,7 +45,8 @@ const SectorList = ({ sector, getCompany }) => {
         .then(doc => doc.data().companies)
         .then(data =>
           fetch(
-            `https://sandbox.iexapis.com/stable/stock/market/batch?symbols=${data}&types=chart&range=5d&token=Tpk_7190efa09280470180ab8bb6635da780&filter=date,close,changePercent`
+            // `https://sandbox.iexapis.com/stable/stock/market/batch?symbols=${data}&types=chart&range=5d&token=Tpk_7190efa09280470180ab8bb6635da780&filter=date,close,changePercent`
+            `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${data}&types=chart&range=5d&token=pk_0c6bc8f3cc794020a71b34f4fda09669&filter=date,close,changePercent`
           )
         )
         .then(response => response.json())
@@ -68,6 +81,25 @@ const SectorList = ({ sector, getCompany }) => {
     getCompany(input);
   };
 
+  const renderPriceColor = (change, symbol) => {
+    if (change > 0) {
+      return (
+        <TableCell align="right" className={classes.plus}>
+          {change} {symbol}
+          <ArrowUpwardIcon />
+        </TableCell>
+      );
+    }
+    if (change < 0) {
+      return (
+        <TableCell align="right" className={classes.minus}>
+          {change} {symbol}
+          <ArrowDownwardIcon />
+        </TableCell>
+      );
+    }
+  };
+
   if (previous) {
     return (
       <>
@@ -88,7 +120,7 @@ const SectorList = ({ sector, getCompany }) => {
                     {prev.ticker}
                   </TableCell>
                   <TableCell align="right">{prev.close[4]}</TableCell>
-                  <TableCell align="right">{prev.percent[4]}</TableCell>
+                  {renderPriceColor(prev.percent[4], '%')}
                 </TableRow>
               ))}
             </TableBody>

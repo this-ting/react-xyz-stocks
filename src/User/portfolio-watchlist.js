@@ -21,6 +21,16 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import { db } from '../Firebase.js';
 
 const useStyles = makeStyles({
+  plusPercent: {
+    color: '#4F9E59'
+    // alignItems: 'center',
+    // display: 'flex'
+  },
+  minusPercent: {
+    color: '#D3483A'
+    // alignItems: 'center',
+    // display: 'flex'
+  },
   plus: {
     color: '#4F9E59'
   },
@@ -42,12 +52,39 @@ const Watchlist = ({
     getCompany(input);
   };
 
-  const renderPriceColor = change => {
+  const renderPercentColor = (change, symbol) => {
     if (change > 0) {
-      return <TableCell className={classes.plus}>{change}</TableCell>;
+      return (
+        <TableCell align="right" className={classes.plusPercent}>
+          {change} {symbol}
+          <ArrowUpwardIcon />
+        </TableCell>
+      );
     }
     if (change < 0) {
-      return <TableCell className={classes.minus}>{change}</TableCell>;
+      return (
+        <TableCell align="right" className={classes.minusPercent}>
+          {change} {symbol}
+          <ArrowDownwardIcon />
+        </TableCell>
+      );
+    }
+  };
+
+  const renderPriceColor = change => {
+    if (change > 0) {
+      return (
+        <TableCell align="right" className={classes.plus}>
+          {change}
+        </TableCell>
+      );
+    }
+    if (change < 0) {
+      return (
+        <TableCell align="right" className={classes.minus}>
+          {change}
+        </TableCell>
+      );
     }
   };
 
@@ -57,9 +94,9 @@ const Watchlist = ({
           <TableRow hover key={follow.ticker} onClick={handleCompanyClick}>
             <TableCell>{follow.ticker}</TableCell>
             <TableCell>{follow.company}</TableCell>
-            <TableCell>{follow.close}</TableCell>
-            {renderPriceColor(follow.changePercent)}
+            <TableCell align="right">{follow.close}</TableCell>
             {renderPriceColor(follow.change)}
+            {renderPercentColor(follow.changePercent)}
             <TableCell>
               <Button
                 variant="contained"
@@ -108,9 +145,9 @@ const Watchlist = ({
           <TableRow>
             <TableCell>Symbol</TableCell>
             <TableCell>Company</TableCell>
-            <TableCell>Price</TableCell>
-            <TableCell>% Change</TableCell>
-            <TableCell>$ Change</TableCell>
+            <TableCell align="right">Price</TableCell>
+            <TableCell align="right">$ Change</TableCell>
+            <TableCell align="right">% Change</TableCell>
             <TableCell>Remove</TableCell>
           </TableRow>
         </TableHead>
