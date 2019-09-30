@@ -40,10 +40,10 @@ const Search = ({ getCompany }) => {
     <Container className={classes.root}>
       <form onSubmit={handleSubmit}>
         <TextField
+          fullWidth
           id="search"
           label="Look up by company or ticker"
           margin="normal"
-          fullWidth="true"
           value={input}
           onChange={handleChange}
           InputProps={{
