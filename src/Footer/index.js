@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/styles';
 
 // import components
 import Home from '../Home';
-import Markets from '../Markets';
+import Explore from '../Explore';
 import Disclaimer from '../Disclaimer';
 import Portfolio from '../User/portfolio';
 
@@ -28,18 +28,24 @@ const useStyles = makeStyles({
   }
 });
 
-const Footer = () => {
+const Footer = ({ getCompany }) => {
   const classes = useStyles();
+
+  const handleClickHome = () => {
+    getCompany('');
+  };
+
   return (
     <Container className={classes.root} component="footer">
       <Grid container justify="space-between" alignItems="center">
         <Grid container item xs={12} sm={6}>
           <Grid item xs={12} sm={12}>
-            <NavLink to="/" component={Home}>
+            <NavLink exact to="/" component={Home}>
               <img
                 src="/logo/logo_transparent_horizontal.png"
                 alt="logo"
                 className={classes.image}
+                onClick={handleClickHome}
               />
             </NavLink>
           </Grid>
@@ -47,7 +53,13 @@ const Footer = () => {
         <Grid container item direction="column" xs={12} sm={6}>
           <Grid item xs={12} sm={6} className={classes.item}>
             <Typography variant="overline">
-              <NavLink exact to="/" component={Home} className={classes.links}>
+              <NavLink
+                exact
+                to="/"
+                component={Home}
+                className={classes.links}
+                onClick={handleClickHome}
+              >
                 Home
               </NavLink>
             </Typography>
@@ -55,8 +67,8 @@ const Footer = () => {
           <Grid item xs={12} sm={6} className={classes.item}>
             <Typography variant="overline">
               <NavLink
-                to="/markets/"
-                component={Markets}
+                to="/explore/"
+                component={Explore}
                 className={classes.links}
               >
                 Explore
