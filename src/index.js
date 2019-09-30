@@ -84,7 +84,12 @@ const App = () => {
             render={() => <Stock getCompany={getCompany} />}
           />
 
-          <Route path="/portfolio/" component={Portfolio} />
+          <Route
+            path="/portfolio/"
+            render={() => (
+              <Portfolio company={company} getCompany={getCompany} />
+            )}
+          />
           <Route path="/user/" component={User} />
           <Route path="/terms/" component={Disclaimer} />
 

@@ -20,8 +20,13 @@ const Watchlist = ({
   handleDelete,
   open,
   handleClose,
-  handleExited
+  getCompany
 }) => {
+  const handleCompanyClick = e => {
+    const input = e.currentTarget.firstChild.textContent;
+    getCompany(input);
+  };
+
   return (
     <>
       <Typography variant="h6" gutterBottom>
@@ -35,7 +40,7 @@ const Watchlist = ({
             <TableCell>Price</TableCell>
             <TableCell>% change</TableCell>
             <TableCell>Change</TableCell>
-            <TableCell>Return</TableCell>
+            {/* <TableCell>Return</TableCell> */}
             <TableCell>Remove</TableCell>
           </TableRow>
         </TableHead>
@@ -43,18 +48,22 @@ const Watchlist = ({
           {following
             ? following.map(follow => {
                 return (
-                  <TableRow key={follow.ticker}>
+                  <TableRow
+                    hover
+                    key={follow.ticker}
+                    onClick={handleCompanyClick}
+                  >
                     <TableCell>{follow.ticker}</TableCell>
                     <TableCell>{follow.company}</TableCell>
                     <TableCell>{follow.close}</TableCell>
                     <TableCell>{follow.changePercent}</TableCell>
                     <TableCell>{follow.change}</TableCell>
-                    <TableCell>
+                    {/* <TableCell>
                       {(
                         ((follow.entryPrice - follow.close) / follow.close) *
                         100
                       ).toFixed(2)}
-                    </TableCell>
+                    </TableCell> */}
                     <TableCell>
                       <Button
                         variant="contained"
@@ -72,7 +81,6 @@ const Watchlist = ({
                         open={open}
                         autoHideDuration={3000}
                         onClose={handleClose}
-                        onExited={handleExited}
                         ContentProps={{
                           'aria-describedby': 'message-id'
                         }}

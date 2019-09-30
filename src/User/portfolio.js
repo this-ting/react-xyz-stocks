@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
+import { Redirect } from 'react-router-dom';
 import {
   Container,
   Typography,
@@ -25,7 +26,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Portfolio = () => {
+const Portfolio = ({ company, getCompany }) => {
   const uid = useContext(LoginContext);
   const classes = useStyles();
 
@@ -57,7 +58,8 @@ const Portfolio = () => {
           let loaded = 0;
           for (let i = 0; i < data.length; i++) {
             fetch(
-              `https://sandbox.iexapis.com/stable/stock/${data[i].ticker}/previous?filter=date,close,changePercent,change&token=Tpk_7190efa09280470180ab8bb6635da780`
+              // `https://sandbox.iexapis.com/stable/stock/${data[i].ticker}/previous?filter=date,close,changePercent,change&token=Tpk_7190efa09280470180ab8bb6635da780`
+              `https://cloud.iexapis.com/stable/stock/${data[i].ticker}/previous?filter=date,close,changePercent,change&token=pk_0c6bc8f3cc794020a71b34f4fda09669`
             )
               .then(response => response.json())
               .then(apiData => {
@@ -139,7 +141,7 @@ const Portfolio = () => {
     };
   }, [uid]);
 
-  if (uid) {
+  if (uid && !company) {
     return (
       <Container className={classes.root}>
         <Typography variant="h5" gutterBottom>
@@ -151,11 +153,16 @@ const Portfolio = () => {
           handleDelete={handleDelete}
           open={open}
           handleClose={handleClose}
+          getCompany={getCompany}
         />
         <br />
         <PortfolioNews companies={companies} />
       </Container>
     );
+  }
+
+  if (uid && company) {
+    return <Redirect push to="/stock/" />;
   }
 
   return <User />;
