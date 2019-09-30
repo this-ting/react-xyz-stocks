@@ -70,28 +70,37 @@ const Dropdown = ({ input, setInput, getCompany }) => {
   };
 
   // lift state up to ./Markets/index.js & clear state
-  const handleClick = e => {
-    getCompany(e.currentTarget.id);
+  const handleClickDropdown = e => {
+    getCompany(e.currentTarget.id.toUpperCase());
+    console.log(
+      `search-dropdown: handleClickDropdown() => ${e.currentTarget.id.toUpperCase()}`
+    );
     setInput('');
+    mounted.current = false;
   };
+
+  const renderDropdown = info
+    ? info.map(inf => {
+        return (
+          <ListItem
+            button
+            onClick={handleClickDropdown}
+            id={inf.ticker}
+            key={inf.ticker}
+          >
+            <ListItemText
+              primary={inf.company}
+              secondary={`${inf.exchange}: ${inf.ticker}`}
+            />
+          </ListItem>
+        );
+      })
+    : null;
 
   return (
     <Container>
       <ClickAwayListener onClickAway={handleClickAway}>
-        <List className={classes.root}>
-          {info
-            ? info.map(info => {
-                return (
-                  <ListItem button onClick={handleClick} id={info.ticker}>
-                    <ListItemText
-                      primary={info.company}
-                      secondary={`${info.exchange}: ${info.ticker}`}
-                    />
-                  </ListItem>
-                );
-              })
-            : null}
-        </List>
+        <List className={classes.root}>{renderDropdown}</List>
       </ClickAwayListener>
     </Container>
   );
