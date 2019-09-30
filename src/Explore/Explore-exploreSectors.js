@@ -39,6 +39,9 @@ const useStyles = makeStyles({
     },
     '&:active p': {
       display: 'inline-block'
+    },
+    '@media (max-width: 600px)': {
+      height: '100px'
     }
   },
   header: {
