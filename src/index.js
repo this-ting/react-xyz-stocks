@@ -10,7 +10,6 @@ import { auth, db } from './Firebase.js';
 // import components
 import Header from './Header';
 import Home from './Home';
-import Markets from './Markets';
 import User from './User';
 import Disclaimer from './Disclaimer';
 import Footer from './Footer';
@@ -61,16 +60,6 @@ const App = () => {
     setCompany(input);
   };
 
-  /* 
-    State lifted up from SectorList; handleClick is passed down to 
-    Explore => SectorList to the onClick
-  */
-  const handleClick = e => {
-    const value = e.currentTarget.firstElementChild.textContent;
-    console.log(e.currentTarget);
-    // setCompany(value);
-  };
-
   return (
     <Router>
       <LoginProvider value={userID}>
@@ -88,13 +77,7 @@ const App = () => {
           />
           <Route
             path="/explore/"
-            render={() => (
-              <Explore
-                company={company}
-                getCompany={getCompany}
-                handleClick={handleClick}
-              />
-            )}
+            render={() => <Explore company={company} getCompany={getCompany} />}
           />
           <Route
             path="/stock/"

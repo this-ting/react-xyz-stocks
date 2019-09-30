@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const SectorList = ({ sector, handleClick, company }) => {
+const SectorList = ({ sector, getCompany }) => {
   const classes = useStyles();
 
   // state for previous price
@@ -63,6 +63,11 @@ const SectorList = ({ sector, handleClick, company }) => {
     }
   }, [sector]);
 
+  const handleCompanyClick = e => {
+    const input = e.currentTarget.firstChild.textContent;
+    getCompany(input);
+  };
+
   if (previous) {
     return (
       <>
@@ -78,13 +83,7 @@ const SectorList = ({ sector, handleClick, company }) => {
             </TableHead>
             <TableBody>
               {previous.map(prev => (
-                <TableRow
-                  hover
-                  key={prev.ticker}
-                  onClick={() => {
-                    handleClick();
-                  }}
-                >
+                <TableRow hover key={prev.ticker} onClick={handleCompanyClick}>
                   <TableCell component="th" scope="row">
                     {prev.ticker}
                   </TableCell>

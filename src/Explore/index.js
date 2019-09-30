@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import { Container } from '@material-ui/core';
-import ExploreSector from './Explore-exploreSector';
+import ExploreSectors from './Explore-exploreSectors';
 import SectorList from './Explore-sectorList';
 import Search from '../Search';
 
@@ -13,7 +14,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Explore = ({ handleClick, getCompany, company }) => {
+const Explore = ({ getCompany, company }) => {
   const classes = useStyles();
 
   const [sector, setSector] = useState('');
@@ -22,10 +23,14 @@ const Explore = ({ handleClick, getCompany, company }) => {
   };
 
   const renderExplore = !sector ? (
-    <ExploreSector getSector={getSector} />
+    <ExploreSectors getSector={getSector} />
   ) : (
-    <SectorList company={company} sector={sector} handleClick={handleClick} />
+    <SectorList sector={sector} getCompany={getCompany} />
   );
+
+  if (company !== '') {
+    return <Redirect to="/stock/" />;
+  }
 
   return (
     <Container className={classes.root}>

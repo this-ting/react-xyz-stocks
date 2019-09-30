@@ -51,7 +51,7 @@ const useStyles = makeStyles({
   }
 });
 
-const ExploreSector = ({ getSector }) => {
+const ExploreSectors = ({ getSector }) => {
   const classes = useStyles();
   const sectors = [
     {
@@ -160,4 +160,4 @@ const ExploreSector = ({ getSector }) => {
   );
 };
 
-export default ExploreSector;
+export default ExploreSectors;
