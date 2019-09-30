@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Paper,
@@ -19,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const SectorList = ({ sector, handleClick }) => {
+const SectorList = ({ sector, handleClick, company }) => {
   const classes = useStyles();
 
   // state for previous price
@@ -70,14 +71,20 @@ const SectorList = ({ sector, handleClick }) => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Company</TableCell>
+                <TableCell>Symbol</TableCell>
                 <TableCell align="right">Price</TableCell>
                 <TableCell align="right">% Change</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {previous.map(prev => (
-                <TableRow hover key={prev.ticker} onClick={handleClick}>
+                <TableRow
+                  hover
+                  key={prev.ticker}
+                  onClick={() => {
+                    handleClick();
+                  }}
+                >
                   <TableCell component="th" scope="row">
                     {prev.ticker}
                   </TableCell>
@@ -94,4 +101,4 @@ const SectorList = ({ sector, handleClick }) => {
   return <h3>Rendering..</h3>;
 };
 
-export default SectorList;
+export default withRouter(SectorList);
