@@ -12,8 +12,11 @@ import Portfolio from '../User/portfolio';
 const useStyles = makeStyles({
   root: {
     textAlign: 'center',
-    maxWidth: '980px',
-    position: 'sticky'
+    maxWidth: '2000px',
+    position: 'sticky',
+    backgroundColor: '#dad8d9',
+    width: '100%',
+    paddingBottom: '3rem'
   },
   image: {
     width: '200px',
