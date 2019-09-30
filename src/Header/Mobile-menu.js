@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import { Container, Grid, List, ListItem, Typography } from '@material-ui/core';
@@ -6,9 +6,10 @@ import CloseIcon from '@material-ui/icons/Close';
 
 // import components
 import Home from '../Home';
-import Explore from '../Markets/Explore';
+import Explore from '../Explore';
 import User from '../User';
 import Portfolio from '../User/portfolio.js';
+import LoginContext from '../LoginContext';
 
 const useStyles = makeStyles({
   root: {
@@ -51,8 +52,11 @@ const useStyles = makeStyles({
   }
 });
 
-const MobileMenu = ({ handleMenuClick }) => {
+const MobileMenu = ({ handleMenuClick, handleClickHome }) => {
+  const uid = useContext(LoginContext);
   const classes = useStyles();
+
+  const renderLogin = uid ? 'USER' : 'LOGIN / SIGNUP';
 
   return (
     <Container className={classes.root} component="nav">
@@ -62,7 +66,10 @@ const MobileMenu = ({ handleMenuClick }) => {
           to="/"
           component={Home}
           className={classes.menuItem}
-          onClick={handleMenuClick}
+          onClick={() => {
+            handleClickHome();
+            handleMenuClick();
+          }}
         >
           <ListItem className={classes.menu}>
             <Typography variant="h6">HOME</Typography>
@@ -96,7 +103,7 @@ const MobileMenu = ({ handleMenuClick }) => {
           onClick={handleMenuClick}
         >
           <ListItem className={classes.menu}>
-            <Typography variant="h6">LOGIN / SIGNUP</Typography>
+            <Typography variant="h6">{renderLogin}</Typography>
           </ListItem>
         </NavLink>
       </List>
