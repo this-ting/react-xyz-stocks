@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
 import { Paper, Grid } from '@material-ui/core';
-import stockContext from './StockContext.js';
+import stockContext from '../StockContext.js';
 
 const Dividends = () => {
   // context

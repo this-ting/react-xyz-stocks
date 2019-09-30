@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Tabs, Tab, Typography, Box, Container, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
@@ -10,12 +10,14 @@ import Overview from './Stock-overview.js';
 import Financials from './Stock-financials.js';
 import News from './Stock-news.js';
 import AddButton from './Stock-addButton.js';
-import StockContext from './StockContext.js';
+import StockContext from '../StockContext.js';
 
 const useStyles = makeStyles({
   root: {
     paddingTop: '2rem',
-    paddingBottom: '2rem'
+    paddingBottom: '2rem',
+    marginTop: '11rem',
+    maxWidth: '980px'
   },
   tabs: {
     paddingTop: '2rem'
@@ -39,12 +41,12 @@ const TabPanel = props => {
   );
 };
 
-function a11yProps(index) {
+const a11yProps = index => {
   return {
     id: `stock-tab-${index}`,
     'aria-controls': `stock-tabpanel-${index}`
   };
-}
+};
 
 const Stock = () => {
   const classes = useStyles();

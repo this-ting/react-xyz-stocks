@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import { Typography } from '@material-ui/core';
-import StockContext from './StockContext.js';
+import StockContext from '../StockContext.js';
 
 const Ticker = ({ company }) => {
   if (company) {

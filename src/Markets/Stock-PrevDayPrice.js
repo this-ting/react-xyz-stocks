@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import { Paper, Grid, Typography } from '@material-ui/core';
 
-import StockContext from './StockContext.js';
+import StockContext from '../StockContext.js';
 
 // returns the the same values as historical prices, can change over to historical prices when doing charts
 

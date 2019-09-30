@@ -7,7 +7,7 @@ import { db } from '../Firebase';
 
 // import Components
 import LoginContext from '../LoginContext.js';
-import StockContext from './StockContext';
+import StockContext from '../StockContext';
 
 const AddButton = ({ company }) => {
   const uid = useContext(LoginContext);

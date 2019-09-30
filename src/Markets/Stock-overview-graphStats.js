@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, useRef } from 'react';
 import { Paper, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
-import StockContext from './StockContext.js';
+import StockContext from '../StockContext.js';
 import formatNumber from '../lib';
 
 const useStyles = makeStyles({

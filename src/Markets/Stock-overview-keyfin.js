@@ -9,7 +9,7 @@ import {
   TableCell,
   Typography
 } from '@material-ui/core';
-import StockContext from './StockContext.js';
+import StockContext from '../StockContext.js';
 import formatNumber from '../lib';
 
 const KeyFin = () => {

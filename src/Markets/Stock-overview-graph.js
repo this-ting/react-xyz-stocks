@@ -1,8 +1,15 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
+import { makeStyles } from '@material-ui/styles';
+import StockContext from '../StockContext.js';
 
-import StockContext from './StockContext.js';
+const useStyles = makeStyles({
+  root: {
+    position: 'relative'
+  }
+});
 
 const Graph = props => {
+  const classes = useStyles();
   const { time } = props;
   // context
   const input = useContext(StockContext);
@@ -51,7 +58,6 @@ const Graph = props => {
       },
       legend: 'none',
       backgroundColor: '#fafafa',
-      width: 700,
       height: 350,
       animation: {
         startup: true,
@@ -72,7 +78,7 @@ const Graph = props => {
 
   return (
     <>
-      <div id="chart_div" />
+      <div id="chart_div" className={classes.root} />
     </>
   );
 };

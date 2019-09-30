@@ -9,7 +9,7 @@ import {
   TableCell,
   Container
 } from '@material-ui/core';
-import StockContext from './StockContext.js';
+import StockContext from '../StockContext.js';
 
 const Company = () => {
   // context
@@ -101,11 +101,11 @@ const Company = () => {
                 <TableCell>{sector}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>Industry::</TableCell>
+                <TableCell>Industry:</TableCell>
                 <TableCell>{industry}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>Website::</TableCell>
+                <TableCell>Website:</TableCell>
                 <TableCell>{website}</TableCell>
               </TableRow>
               <TableRow>

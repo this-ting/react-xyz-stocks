@@ -10,7 +10,7 @@ import {
   Hidden
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import StockContext from './StockContext.js';
+import StockContext from '../StockContext.js';
 
 const useStyles = makeStyles({
   root: {
