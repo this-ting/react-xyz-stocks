@@ -58,7 +58,7 @@ const Header = ({ getCompany }) => {
     });
   };
 
-  const handleClickHome = () => {
+  const handleExitStock = () => {
     getCompany('');
   };
 
@@ -81,7 +81,7 @@ const Header = ({ getCompany }) => {
     showMenu === true ? (
       <MobileMenu
         handleMenuClick={handleMenuClick}
-        handleClickHome={handleClickHome}
+        handleExitStock={handleExitStock}
       />
     ) : null;
 
@@ -95,13 +95,18 @@ const Header = ({ getCompany }) => {
               src="/logo/logo_transparent_red.png"
               alt="logo"
               className={classes.logo}
-              onClick={handleClickHome}
+              onClick={handleExitStock}
             />
           </Link>
         </Grid>
         <Hidden xsDown>
           <Grid item sm={4}>
-            <Tabs value={value} onChange={handleChange} centered>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              centered
+              onClick={handleExitStock}
+            >
               <Tab label="Explore" to="/explore/" component={NavLink} />
               <Tab label="Portfolio" to="/portfolio/" component={NavLink} />
             </Tabs>

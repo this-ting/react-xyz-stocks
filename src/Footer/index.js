@@ -31,7 +31,7 @@ const useStyles = makeStyles({
 const Footer = ({ getCompany }) => {
   const classes = useStyles();
 
-  const handleClickHome = () => {
+  const handleExitStock = () => {
     getCompany('');
   };
 
@@ -45,7 +45,7 @@ const Footer = ({ getCompany }) => {
                 src="/logo/logo_transparent_horizontal.png"
                 alt="logo"
                 className={classes.image}
-                onClick={handleClickHome}
+                onClick={handleExitStock}
               />
             </NavLink>
           </Grid>
@@ -58,7 +58,7 @@ const Footer = ({ getCompany }) => {
                 to="/"
                 component={Home}
                 className={classes.links}
-                onClick={handleClickHome}
+                onClick={handleExitStock}
               >
                 Home
               </NavLink>
@@ -70,6 +70,7 @@ const Footer = ({ getCompany }) => {
                 to="/explore/"
                 component={Explore}
                 className={classes.links}
+                onClick={handleExitStock}
               >
                 Explore
               </NavLink>
@@ -81,6 +82,7 @@ const Footer = ({ getCompany }) => {
                 to="/portfolio/"
                 component={Portfolio}
                 className={classes.links}
+                onClick={handleExitStock}
               >
                 Portfolio
               </NavLink>
@@ -92,6 +94,7 @@ const Footer = ({ getCompany }) => {
                 to="/terms/"
                 component={Disclaimer}
                 className={classes.links}
+                onClick={handleExitStock}
               >
                 Terms & Conditions
               </NavLink>

@@ -52,7 +52,7 @@ const useStyles = makeStyles({
   }
 });
 
-const MobileMenu = ({ handleMenuClick, handleClickHome }) => {
+const MobileMenu = ({ handleMenuClick, handleExitStock }) => {
   const uid = useContext(LoginContext);
   const classes = useStyles();
 
@@ -67,7 +67,7 @@ const MobileMenu = ({ handleMenuClick, handleClickHome }) => {
           component={Home}
           className={classes.menuItem}
           onClick={() => {
-            handleClickHome();
+            handleExitStock();
             handleMenuClick();
           }}
         >
@@ -80,7 +80,10 @@ const MobileMenu = ({ handleMenuClick, handleClickHome }) => {
           to="/explore/"
           component={Explore}
           className={classes.menuItem}
-          onClick={handleMenuClick}
+          onClick={() => {
+            handleExitStock();
+            handleMenuClick();
+          }}
         >
           <ListItem className={classes.menu}>
             <Typography variant="h6">EXPLORE</Typography>
@@ -90,7 +93,10 @@ const MobileMenu = ({ handleMenuClick, handleClickHome }) => {
           to="/portfolio/"
           component={Portfolio}
           className={classes.menuItem}
-          onClick={handleMenuClick}
+          onClick={() => {
+            handleExitStock();
+            handleMenuClick();
+          }}
         >
           <ListItem className={classes.menu}>
             <Typography variant="h6">PORTFOLIO</Typography>
@@ -100,7 +106,10 @@ const MobileMenu = ({ handleMenuClick, handleClickHome }) => {
           to="/user/"
           component={User}
           className={classes.menuItem}
-          onClick={handleMenuClick}
+          onClick={() => {
+            handleExitStock();
+            handleMenuClick();
+          }}
         >
           <ListItem className={classes.menu}>
             <Typography variant="h6">{renderLogin}</Typography>
