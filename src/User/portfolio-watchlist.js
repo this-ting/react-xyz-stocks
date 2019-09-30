@@ -1,3 +1,5 @@
+/* eslint-disable no-useless-escape */
+/* eslint-disable-next-line prettier/prettier */
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import {
   Container,
@@ -18,6 +20,15 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 
 import { db } from '../Firebase.js';
 
+const useStyles = makeStyles({
+  plus: {
+    color: '#4F9E59'
+  },
+  minus: {
+    color: '#D3483A'
+  }
+});
+
 const Watchlist = ({
   following,
   handleDelete,
@@ -25,9 +36,19 @@ const Watchlist = ({
   handleClose,
   getCompany
 }) => {
+  const classes = useStyles();
   const handleCompanyClick = e => {
     const input = e.currentTarget.firstChild.textContent;
     getCompany(input);
+  };
+
+  const renderPriceColor = change => {
+    if (change > 0) {
+      return <TableCell className={classes.plus}>{change}</TableCell>;
+    }
+    if (change < 0) {
+      return <TableCell className={classes.minus}>{change}</TableCell>;
+    }
   };
 
   const renderRows = following
@@ -37,14 +58,8 @@ const Watchlist = ({
             <TableCell>{follow.ticker}</TableCell>
             <TableCell>{follow.company}</TableCell>
             <TableCell>{follow.close}</TableCell>
-            <TableCell>{follow.changePercent}</TableCell>
-            <TableCell>{follow.change}</TableCell>
-            {/* <TableCell>
-              {(
-                ((follow.entryPrice - follow.close) / follow.close) *
-                100
-              ).toFixed(2)}
-            </TableCell> */}
+            {renderPriceColor(follow.changePercent)}
+            {renderPriceColor(follow.change)}
             <TableCell>
               <Button
                 variant="contained"
@@ -96,7 +111,6 @@ const Watchlist = ({
             <TableCell>Price</TableCell>
             <TableCell>% Change</TableCell>
             <TableCell>$ Change</TableCell>
-            {/* <TableCell>Return</TableCell> */}
             <TableCell>Remove</TableCell>
           </TableRow>
         </TableHead>
