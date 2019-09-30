@@ -21,10 +21,10 @@ const Search = ({ getCompany }) => {
     setInput(e.target.value);
   };
 
-  // pass input to ./Markets/index.js
-  const handleSubmit = e => {
+  // pass input to ./index.js
+  const handleSearchSubmit = e => {
     e.preventDefault();
-    getCompany(input);
+    getCompany(input.toUpperCase());
     setInput('');
   };
 
@@ -38,7 +38,7 @@ const Search = ({ getCompany }) => {
 
   return (
     <Container className={classes.root}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSearchSubmit}>
         <TextField
           fullWidth
           id="search"
