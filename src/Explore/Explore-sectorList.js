@@ -7,7 +7,8 @@ import {
   TableBody,
   TableCell,
   TableHead,
-  TableRow
+  TableRow,
+  Hidden
 } from '@material-ui/core';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
@@ -46,7 +47,7 @@ const SectorList = ({ sector, getCompany }) => {
         .then(data =>
           fetch(
             // `https://sandbox.iexapis.com/stable/stock/market/batch?symbols=${data}&types=chart&range=5d&token=Tpk_7190efa09280470180ab8bb6635da780&filter=date,close,changePercent`
-            `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${data}&types=chart&range=5d&token=pk_0c6bc8f3cc794020a71b34f4fda09669&filter=date,close,changePercent`
+            `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${data}&types=chart,company&range=5d&token=pk_0c6bc8f3cc794020a71b34f4fda09669&filter=date,close,changePercent,companyName`
           )
         )
         .then(response => response.json())
@@ -54,9 +55,10 @@ const SectorList = ({ sector, getCompany }) => {
           const info = [];
           const companies = Object.keys(data);
           for (let i = 0; i < companies.length; i++) {
-            const { chart } = data[companies[i]];
+            const { chart, company } = data[companies[i]];
             const price = {
               ticker: companies[i],
+              name: company.companyName,
               date: [],
               close: [],
               percent: []
@@ -108,14 +110,24 @@ const SectorList = ({ sector, getCompany }) => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Symbol</TableCell>
-                <TableCell align="right">Price</TableCell>
+                <Hidden smUp>
+                  <TableCell>Symbol</TableCell>
+                  <TableCell align="right">Price</TableCell>
+                </Hidden>
+                <Hidden xsDown>
+                  <TableCell>Company</TableCell>
+                  <TableCell>Symbol</TableCell>
+                  <TableCell align="right">Price (USD $)</TableCell>
+                </Hidden>
                 <TableCell align="right">% Change</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {previous.map(prev => (
                 <TableRow hover key={prev.ticker} onClick={handleCompanyClick}>
+                  <Hidden xsDown>
+                    <TableCell>{prev.name}</TableCell>
+                  </Hidden>
                   <TableCell component="th" scope="row">
                     {prev.ticker}
                   </TableCell>
