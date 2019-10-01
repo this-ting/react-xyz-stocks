@@ -41,6 +41,11 @@ const useStyles = makeStyles({
   link: {
     textDecoration: 'none'
   },
+  tabHeader: {
+    '@media (max-width: 600px)': {
+      fontSize: '0.5rem'
+    }
+  },
   tabContent: {
     overflow: 'auto'
   }
@@ -93,13 +98,37 @@ const PortfolioNews = ({ companies }) => {
           aria-label="Vertical tabs example"
           className={classes.tabs}
         >
-          <Tab label="Top News" {...a11yProps(0)} />
-          <Tab label="Your Picks" {...a11yProps(1)} />
-          <Tab label="U.S." {...a11yProps(2)} />
-          <Tab label="Business" {...a11yProps(3)} />
-          <Tab label="Technology" {...a11yProps(4)} />
-          <Tab label="Entertainment" {...a11yProps(5)} />
-          <Tab label="Science" {...a11yProps(6)} />
+          <Tab
+            label="Top News"
+            {...a11yProps(0)}
+            className={classes.tabHeader}
+          />
+          <Tab
+            label="Your Picks"
+            {...a11yProps(1)}
+            className={classes.tabHeader}
+          />
+          <Tab label="U.S." {...a11yProps(2)} className={classes.tabHeader} />
+          <Tab
+            label="Business"
+            {...a11yProps(3)}
+            className={classes.tabHeader}
+          />
+          <Tab
+            label="Technology"
+            {...a11yProps(4)}
+            className={classes.tabHeader}
+          />
+          <Tab
+            label="Entertainment"
+            {...a11yProps(5)}
+            className={classes.tabHeader}
+          />
+          <Tab
+            label="Science"
+            {...a11yProps(6)}
+            className={classes.tabHeader}
+          />
         </Tabs>
         <TabPanel value={value} index={value} className={classes.tabContent}>
           <NewsArticles companies={companies} value={value} />
