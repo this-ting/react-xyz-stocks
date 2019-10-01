@@ -11,12 +11,14 @@ import {
   TableCell,
   Button,
   Snackbar,
-  IconButton
+  IconButton,
+  Hidden
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import CloseIcon from '@material-ui/icons/Close';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 import { db } from '../Firebase.js';
 
@@ -93,19 +95,25 @@ const Watchlist = ({
         return (
           <TableRow hover key={follow.ticker} onClick={handleCompanyClick}>
             <TableCell>{follow.ticker}</TableCell>
-            <TableCell>{follow.company}</TableCell>
-            <TableCell align="right">{follow.close}</TableCell>
-            {renderPriceColor(follow.change)}
+            <Hidden smUp>
+              <TableCell align="right">{follow.close}</TableCell>
+            </Hidden>
+
+            <Hidden xsDown>
+              <TableCell>{follow.company}</TableCell>
+              <TableCell align="right">{follow.close}</TableCell>
+              {/* {renderPriceColor(follow.change)} */}
+            </Hidden>
+
             {renderPercentColor(follow.changePercent)}
             <TableCell>
-              <Button
-                variant="contained"
-                color="primary"
+              <IconButton
+                color="inherit"
                 onClick={handleDelete}
                 {...{ ticker: follow.ticker }}
               >
-                Remove
-              </Button>
+                <DeleteIcon />
+              </IconButton>
               <Snackbar
                 anchorOrigin={{
                   vertical: 'top',
@@ -144,9 +152,17 @@ const Watchlist = ({
         <TableHead>
           <TableRow>
             <TableCell>Symbol</TableCell>
-            <TableCell>Company</TableCell>
-            <TableCell align="right">Price</TableCell>
-            <TableCell align="right">$ Change</TableCell>
+            <Hidden smUp>
+              <TableCell align="right">Price</TableCell>
+            </Hidden>
+
+            <Hidden xsDown>
+              <TableCell>Company</TableCell>
+              <TableCell align="right">Price</TableCell>
+              {/* {renderPriceColor(follow.change)} */}
+            </Hidden>
+
+            {/* <TableCell align="right">$ Change</TableCell> */}
             <TableCell align="right">% Change</TableCell>
             <TableCell>Remove</TableCell>
           </TableRow>
