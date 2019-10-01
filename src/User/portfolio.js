@@ -22,7 +22,8 @@ import User from './index.js';
 const useStyles = makeStyles({
   root: {
     marginTop: '11rem',
-    maxWidth: '980px'
+    maxWidth: '980px',
+    marginBottom: '3rem'
   }
 });
 
