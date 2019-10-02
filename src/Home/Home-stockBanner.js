@@ -122,7 +122,6 @@ const StockBanner = ({ getCompany }) => {
                 </Typography>
                 <Typography variant="body2" component="p">
                   {renderPriceColor(active.latestPrice, active.changePercent)}
-                  {/* {active.latestPrice} ({active.changePercent} %) */}
                 </Typography>
               </CardContent>
             </Card>
@@ -209,8 +208,6 @@ const StockBanner = ({ getCompany }) => {
           </Grid>
         </Hidden>
       </Container>
-
-      {/* <Paper className={classes.news}>{renderFeatured}</Paper> */}
     </Box>
   );
 };
