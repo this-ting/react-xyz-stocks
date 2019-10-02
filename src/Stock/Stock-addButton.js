@@ -69,7 +69,6 @@ const AddButton = ({ company }) => {
         .set({
           ticker: input.toUpperCase(),
           exchange: company.exchange,
-          entryPrice: 123,
           addedOn: firebase.firestore.FieldValue.serverTimestamp(),
           company: company.name
         })
