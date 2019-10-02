@@ -30,7 +30,7 @@ function a11yProps(index) {
   };
 }
 
-function Financials() {
+const Financials = () => {
   const [value, setValue] = React.useState(0);
 
   function handleChange(event, newValue) {
@@ -55,6 +55,6 @@ function Financials() {
       </TabPanel>
     </Paper>
   );
-}
+};
 
 export default Financials;
