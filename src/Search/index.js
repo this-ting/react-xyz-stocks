@@ -8,7 +8,8 @@ import Dropdown from './Search-dropdown.js';
 
 const useStyles = makeStyles({
   root: {
-    position: 'relative'
+    position: 'relative',
+    padding: '0'
   }
 });
 
