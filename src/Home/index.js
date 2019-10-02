@@ -134,7 +134,7 @@ const useStyles = makeStyles({
     // maxWidth: '200px',
     margin: '1rem 0',
     '&:hover': {
-      cursor: 'pointer',
+      cursor: 'pointer'
     }
   },
   plus: {
@@ -145,7 +145,7 @@ const useStyles = makeStyles({
   }
 });
 
-function Banner1({ getCompany }) {
+const Banner1 = ({ getCompany }) => {
   const classes = useStyles();
 
   return (
@@ -178,9 +178,9 @@ function Banner1({ getCompany }) {
       </Container>
     </Box>
   );
-}
+};
 
-function NewsBanner() {
+const NewsBanner = () => {
   const classes = useStyles();
   const [news, setNews] = useState('');
   useEffect(() => {
@@ -303,7 +303,7 @@ function NewsBanner() {
       </Box>
     </>
   );
-}
+};
 
 const StockBanner = ({ getCompany }) => {
   const classes = useStyles();
@@ -460,7 +460,7 @@ const StockBanner = ({ getCompany }) => {
   );
 };
 
-function Banner3() {
+const Banner3 = () => {
   const classes = useStyles();
   return (
     <>
@@ -480,7 +480,7 @@ function Banner3() {
       </Box>
     </>
   );
-}
+};
 
 const Home = ({ getCompany, company }) => {
   if (company !== '') {
