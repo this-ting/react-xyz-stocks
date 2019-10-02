@@ -30,6 +30,11 @@ const useStyles = makeStyles(theme => ({
     color: '#D3483A',
     alignItems: 'center',
     display: 'flex'
+  },
+  row: {
+    '&:hover': {
+      cursor: 'pointer'
+    }
   }
 }));
 
@@ -46,8 +51,8 @@ const SectorList = ({ sector, getCompany }) => {
         .then(doc => doc.data().companies)
         .then(data =>
           fetch(
-            // `https://sandbox.iexapis.com/stable/stock/market/batch?symbols=${data}&types=chart&range=5d&token=Tpk_7190efa09280470180ab8bb6635da780&filter=date,close,changePercent`
-            `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${data}&types=chart,company&range=5d&token=pk_0c6bc8f3cc794020a71b34f4fda09669&filter=date,close,changePercent,companyName`
+            `https://sandbox.iexapis.com/stable/stock/market/batch?symbols=${data}&types=chart,company&range=5d&token=Tpk_7190efa09280470180ab8bb6635da780&&filter=date,close,changePercent,companyName`
+            // `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${data}&types=chart,company&range=5d&token=pk_0c6bc8f3cc794020a71b34f4fda09669&filter=date,close,changePercent,companyName`
           )
         )
         .then(response => response.json())
@@ -79,7 +84,7 @@ const SectorList = ({ sector, getCompany }) => {
   }, [sector]);
 
   const handleCompanyClick = e => {
-    const input = e.currentTarget.firstChild.textContent;
+    const input = e.currentTarget.attributes.ticker.nodeValue;
     getCompany(input);
   };
 
@@ -103,6 +108,25 @@ const SectorList = ({ sector, getCompany }) => {
   };
 
   if (previous) {
+    const renderRows = previous.map(prev => (
+      <TableRow
+        hover
+        key={prev.ticker}
+        {...{ ticker: prev.ticker }}
+        onClick={handleCompanyClick}
+        className={classes.row}
+      >
+        <Hidden xsDown>
+          <TableCell>{prev.name}</TableCell>
+        </Hidden>
+        <TableCell component="th" scope="row">
+          {prev.ticker}
+        </TableCell>
+        <TableCell align="right">{prev.close[4]}</TableCell>
+        {renderPriceColor(prev.percent[4], '%')}
+      </TableRow>
+    ));
+
     return (
       <>
         <h3>COMPANIES IN THE {sector.toUpperCase()} SECTOR</h3>
@@ -122,20 +146,7 @@ const SectorList = ({ sector, getCompany }) => {
                 <TableCell align="right">% Change</TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
-              {previous.map(prev => (
-                <TableRow hover key={prev.ticker} onClick={handleCompanyClick}>
-                  <Hidden xsDown>
-                    <TableCell>{prev.name}</TableCell>
-                  </Hidden>
-                  <TableCell component="th" scope="row">
-                    {prev.ticker}
-                  </TableCell>
-                  <TableCell align="right">{prev.close[4]}</TableCell>
-                  {renderPriceColor(prev.percent[4], '%')}
-                </TableRow>
-              ))}
-            </TableBody>
+            <TableBody>{renderRows}</TableBody>
           </Table>
         </Paper>
       </>
@@ -144,4 +155,4 @@ const SectorList = ({ sector, getCompany }) => {
   return <h3>Rendering..</h3>;
 };
 
-export default withRouter(SectorList);
+export default SectorList;
