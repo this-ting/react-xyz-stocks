@@ -71,7 +71,7 @@ const CFS = props => {
           setCashFlow(cfs);
         }
       })
-      .catch(error => alert(`Error with CFS component: ${error}`));
+      .catch(error => console.error(`Error with CFS component: ${error}`));
 
     // Cleanup
     return () => {

@@ -84,7 +84,7 @@ const BS = props => {
           setBalance(bs);
         }
       })
-      .catch(error => alert(`Error with BS component: ${error}`));
+      .catch(error => console.error(`Error with BS component: ${error}`));
     // Cleanup
     return () => {
       mounted.current = false;
