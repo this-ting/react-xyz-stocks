@@ -13,7 +13,7 @@ import Home from './Home';
 import User from './User';
 import Disclaimer from './Disclaimer';
 import Footer from './Footer';
-import Portfolio from './User/portfolio.js';
+import Portfolio from './Portfolio';
 import { LoginProvider } from './LoginContext';
 import { StockProvider } from './StockContext.js';
 import Stock from './Stock';

@@ -17,7 +17,7 @@ import { db } from '../Firebase.js';
 import Watchlist from './portfolio-watchlist.js';
 import PortfolioNews from './portfolio-news.js';
 import LoginContext from '../LoginContext';
-import User from './index.js';
+import User from '../User';
 
 const useStyles = makeStyles({
   root: {

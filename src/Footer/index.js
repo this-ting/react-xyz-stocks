@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/styles';
 import Home from '../Home';
 import Explore from '../Explore';
 import Disclaimer from '../Disclaimer';
-import Portfolio from '../User/portfolio';
+import Portfolio from '../Portfolio';
 
 const useStyles = makeStyles({
   root: {

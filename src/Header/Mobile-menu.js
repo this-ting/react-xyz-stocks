@@ -8,7 +8,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Home from '../Home';
 import Explore from '../Explore';
 import User from '../User';
-import Portfolio from '../User/portfolio.js';
+import Portfolio from '../Portfolio';
 import LoginContext from '../LoginContext';
 
 const useStyles = makeStyles({
