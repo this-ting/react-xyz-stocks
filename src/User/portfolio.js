@@ -59,8 +59,8 @@ const Portfolio = ({ company, getCompany }) => {
           let loaded = 0;
           for (let i = 0; i < data.length; i++) {
             fetch(
-              // `https://sandbox.iexapis.com/stable/stock/${data[i].ticker}/previous?filter=date,close,changePercent,change&token=Tpk_7190efa09280470180ab8bb6635da780`
-              `https://cloud.iexapis.com/stable/stock/${data[i].ticker}/previous?filter=date,close,changePercent,change&token=pk_0c6bc8f3cc794020a71b34f4fda09669`
+              `https://sandbox.iexapis.com/stable/stock/${data[i].ticker}/previous?filter=date,close,changePercent,change&token=Tpk_7190efa09280470180ab8bb6635da780`
+              // `https://cloud.iexapis.com/stable/stock/${data[i].ticker}/previous?filter=date,close,changePercent,change&token=pk_0c6bc8f3cc794020a71b34f4fda09669`
             )
               .then(response => response.json())
               .then(apiData => {
@@ -93,7 +93,6 @@ const Portfolio = ({ company, getCompany }) => {
   };
 
   const handleDelete = e => {
-    console.log('delete');
     const deleteValue = e.currentTarget.attributes.ticker.nodeValue;
     const newState = following.filter(follow => follow.ticker !== deleteValue);
     setFollowing(newState);
@@ -103,7 +102,6 @@ const Portfolio = ({ company, getCompany }) => {
       .doc(deleteValue)
       .delete()
       .then(() => {
-        console.log(`${deleteValue} successfully deleted!`);
         setOpen(true);
       })
       .then(() => {
@@ -132,7 +130,6 @@ const Portfolio = ({ company, getCompany }) => {
         .doc(uid)
         .get()
         .then(doc => {
-          console.log('useEffect' + doc.data().watchlist);
           setCompanies(doc.data().watchlist);
         })
         .catch(error => console.error(error));
