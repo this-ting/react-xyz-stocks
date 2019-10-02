@@ -1,19 +1,14 @@
-/* eslint-disable no-useless-escape */
-/* eslint-disable-next-line prettier/prettier */
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React from 'react';
 import {
-  Container,
   Typography,
   Table,
   TableHead,
   TableBody,
   TableRow,
   TableCell,
-  Button,
   Snackbar,
   IconButton,
-  Hidden,
-  CircularProgress
+  Hidden
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import CloseIcon from '@material-ui/icons/Close';
@@ -26,13 +21,9 @@ import { db } from '../Firebase.js';
 const useStyles = makeStyles({
   plusPercent: {
     color: '#4F9E59'
-    // alignItems: 'center',
-    // display: 'flex'
   },
   minusPercent: {
     color: '#D3483A'
-    // alignItems: 'center',
-    // display: 'flex'
   },
   plus: {
     color: '#4F9E59'

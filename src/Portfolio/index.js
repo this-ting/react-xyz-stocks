@@ -1,14 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
-import {
-  Container,
-  Typography,
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableCell
-} from '@material-ui/core';
+import { Container, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import * as firebase from 'firebase/app';
 import { db } from '../Firebase.js';
@@ -17,7 +9,6 @@ import { db } from '../Firebase.js';
 import Watchlist from './portfolio-watchlist.js';
 import PortfolioNews from './portfolio-news.js';
 import LoginContext from '../LoginContext';
-import User from '../User';
 
 const useStyles = makeStyles({
   root: {
@@ -163,7 +154,7 @@ const Portfolio = ({ company, getCompany }) => {
     return <Redirect push to="/stock/" />;
   }
 
-  return <User />;
+  return <Redirect push to="/user/" />;
 };
 
 export default Portfolio;
