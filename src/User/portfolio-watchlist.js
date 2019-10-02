@@ -12,7 +12,8 @@ import {
   Button,
   Snackbar,
   IconButton,
-  Hidden
+  Hidden,
+  CircularProgress
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import CloseIcon from '@material-ui/icons/Close';
@@ -38,6 +39,11 @@ const useStyles = makeStyles({
   },
   minus: {
     color: '#D3483A'
+  },
+  row: {
+    '&:hover': {
+      cursor: 'pointer'
+    }
   }
 });
 
@@ -50,7 +56,7 @@ const Watchlist = ({
 }) => {
   const classes = useStyles();
   const handleCompanyClick = e => {
-    const input = e.currentTarget.firstChild.textContent;
+    const input = e.currentTarget.attributes.ticker.nodeValue;
     getCompany(input);
   };
 
@@ -93,14 +99,24 @@ const Watchlist = ({
   const renderRows = following
     ? following.map(follow => {
         return (
-          <TableRow hover key={follow.ticker} onClick={handleCompanyClick}>
-            <TableCell>{follow.ticker}</TableCell>
+          <TableRow hover key={follow.ticker} className={classes.row}>
+            <TableCell
+              {...{ ticker: follow.ticker }}
+              onClick={handleCompanyClick}
+            >
+              {follow.ticker}
+            </TableCell>
             <Hidden smUp>
               <TableCell align="right">{follow.close}</TableCell>
             </Hidden>
 
             <Hidden xsDown>
-              <TableCell>{follow.company}</TableCell>
+              <TableCell
+                {...{ ticker: follow.ticker }}
+                onClick={handleCompanyClick}
+              >
+                {follow.company}
+              </TableCell>
               <TableCell align="right">{follow.close}</TableCell>
               {/* {renderPriceColor(follow.change)} */}
             </Hidden>
