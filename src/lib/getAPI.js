@@ -7,7 +7,6 @@ const getAPI = function(method, param, callback) {
   req.open(method.toLowerCase(), api + param + token);
   req.send();
   req.onload = () => {
-    // console.log(req.responseText);
     const data = JSON.parse(req.responseText);
     callback(data);
   };
