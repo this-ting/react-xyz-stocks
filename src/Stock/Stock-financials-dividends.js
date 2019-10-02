@@ -25,6 +25,7 @@ const Dividends = () => {
     mounted.current = true;
     fetch(
       `https://sandbox.iexapis.com/stable/stock/${input}/dividends?token=Tpk_7190efa09280470180ab8bb6635da780`
+      // `https://cloud.iexapis.com/stable/stock/${input}/dividends?token=pk_0c6bc8f3cc794020a71b34f4fda09669`
     )
       .then(response => response.json())
       .then(data => {

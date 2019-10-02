@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Button, Tooltip, Snackbar, IconButton } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
 import CloseIcon from '@material-ui/icons/Close';
 import * as firebase from 'firebase/app';
 import { db } from '../Firebase';
@@ -91,7 +90,6 @@ const AddButton = ({ company }) => {
     if (reason === 'clickaway') {
       return;
     }
-
     setOpen(false);
   };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Tabs, Tab, Typography, Box } from '@material-ui/core';
+import { Tabs, Tab, Typography, Box } from '@material-ui/core';
 
 // import components
 import Graph from './Stock-overview-graph.js';

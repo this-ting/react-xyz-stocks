@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
-import { Paper, Grid, Typography } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 
 import StockContext from '../StockContext.js';
 
@@ -12,23 +12,13 @@ const PrevDayPrice = () => {
   // check for component mount
   const mounted = useRef(false);
 
-  // const initalState = {
-  //   date: '',
-  //   open: '',
-  //   close: '',
-  //   high: '',
-  //   low: '',
-  //   volume: '',
-  //   changePercent: ''
-  // };
-
   const [prevDay, setPrevDay] = useState('');
 
   useEffect(() => {
     mounted.current = true;
     fetch(
-      // `https://sandbox.iexapis.com/stable/stock/${input}/previous?filter=date,open,close,high,low,volume,changePercent,change&token=Tpk_7190efa09280470180ab8bb6635da780`
-      `https://cloud.iexapis.com/stable/stock/${input}/previous?filter=date,open,close,high,low,volume,changePercent,change&token=pk_0c6bc8f3cc794020a71b34f4fda09669`
+      `https://sandbox.iexapis.com/stable/stock/${input}/previous?filter=date,open,close,high,low,volume,changePercent,change&token=Tpk_7190efa09280470180ab8bb6635da780`
+      // `https://cloud.iexapis.com/stable/stock/${input}/previous?filter=date,open,close,high,low,volume,changePercent,change&token=pk_0c6bc8f3cc794020a71b34f4fda09669`
     )
       .then(response => response.json())
       .then(data => {

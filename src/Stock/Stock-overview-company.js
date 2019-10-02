@@ -3,11 +3,9 @@ import {
   Paper,
   Typography,
   Table,
-  TableHead,
   TableBody,
   TableRow,
-  TableCell,
-  Container
+  TableCell
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import StockContext from '../StockContext.js';
@@ -26,24 +24,13 @@ const Company = () => {
   // check for component mount
   const mounted = useRef(false);
 
-  const initialState = {
-    symbol: '',
-    companyName: '',
-    exchange: '',
-    sector: '',
-    industry: '',
-    website: '',
-    description: '',
-    ceo: ''
-  };
-
-  const [profile, setProfile] = useState(initialState);
+  const [profile, setProfile] = useState('');
 
   useEffect(() => {
     mounted.current = true;
     fetch(
-      // `https://sandbox.iexapis.com/stable/stock/${input}/company?filter=symbol,companyName,exchange,sector,industry,website,description,CEO,employees&token=Tpk_7190efa09280470180ab8bb6635da780`
-      `https://cloud.iexapis.com/stable/stock/${input}/company?filter=symbol,companyName,exchange,sector,industry,website,description,CEO,employees&token=pk_0c6bc8f3cc794020a71b34f4fda09669`
+      `https://sandbox.iexapis.com/stable/stock/${input}/company?filter=symbol,companyName,exchange,sector,industry,website,description,CEO,employees&token=Tpk_7190efa09280470180ab8bb6635da780`
+      // `https://cloud.iexapis.com/stable/stock/${input}/company?filter=symbol,companyName,exchange,sector,industry,website,description,CEO,employees&token=pk_0c6bc8f3cc794020a71b34f4fda09669`
     )
       .then(response => response.json())
       .then(data => {
@@ -68,9 +55,8 @@ const Company = () => {
     };
   }, [input]);
 
-  if (profile.symbol) {
+  if (profile) {
     const {
-      symbol,
       exchange,
       companyName,
       website,

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import {
-  Paper,
   Grid,
   Typography,
   Card,
@@ -178,20 +177,3 @@ const News = () => {
 };
 
 export default News;
-
-/*
-"datetime": 1567544912000,
-"headline": "The latest Apple AirPods are down to their lowest price ever",
-"source": "USA Today",
-"url": "https://cloud.iexapis.com/v1/news/article/8aceb77d-cde7-4ffa-9e66-7253cc6b8789",
-"summary": "A sale on Apple products is a pretty rare occurrence, which is why we were surprised to find that the latest AirPods have dipped to a new low price.",
-"related": "AAPL",
-"image": "https://cloud.iexapis.com/v1/news/image/8aceb77d-cde7-4ffa-9e66-7253cc6b8789",
-"lang": "en",
-"hasPaywall": false
-
-
-let newDate = new Date(1567544912000)
-newDate.toGMTString()
-"Tue, 03 Sep 2019 21:08:32 GMT"
-*/

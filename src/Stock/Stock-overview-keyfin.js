@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
 import {
   Paper,
-  Container,
   Table,
   TableHead,
   TableBody,
@@ -27,15 +26,7 @@ const KeyFin = () => {
   // check for component mount
   const mounted = useRef(false);
 
-  const initialState = {
-    date: 'N/A',
-    revenue: 'N/A',
-    netIncome: 'N/A',
-    netProfitMargin: 'N/A',
-    eps: 'N/A'
-  };
-
-  const [stats, setStats] = useState(initialState);
+  const [stats, setStats] = useState('');
   useEffect(() => {
     mounted.current = true;
     fetch(
@@ -55,7 +46,6 @@ const KeyFin = () => {
       })
       .catch(error => {
         console.error(`Error with Key Fin component: ${error}`);
-        setStats(initialState);
       });
 
     // Cleanup
@@ -70,7 +60,7 @@ const KeyFin = () => {
     return (
       <>
         <Typography variant="h6" gutterBottom>
-          Snapshot Financials
+          Financial Snapshot
         </Typography>
         <Paper>
           <Table>
