@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Container,
   Typography,
   Card,
   CardActionArea,
   CardMedia,
   CardContent,
   Grid,
-  Hidden,
-  Tabs,
-  Tab,
-  Box,
-  Paper
+  Hidden
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
@@ -53,15 +48,20 @@ const NewsArticles = ({ value, companies }) => {
     const url = () => {
       if (value === 0) {
         return `https://newsapi.org/v2/top-headlines?country=us&category=business&pageSize=5&apiKey=c7fbbb0c2c28409eb961604990493a89`;
-      } else if (value === 2) {
-        `https://newsapi.org/v2/top-headlines?country=us&category=general&pageSize=5&apiKey=c7fbbb0c2c28409eb961604990493a89`;
-      } else if (value === 3) {
+      }
+      if (value === 2) {
+        return `https://newsapi.org/v2/top-headlines?country=us&category=general&pageSize=5&apiKey=c7fbbb0c2c28409eb961604990493a89`;
+      }
+      if (value === 3) {
         return `https://newsapi.org/v2/top-headlines?sources=the-washington-post,the-telegraph,the-new-york-times,the-globe-and-mail,reuters,financial-post,australian-financial-review,bloomberg,business-insider,cnbc,financial-post,fortune,the-wall-street-journal&apiKey=c7fbbb0c2c28409eb961604990493a89`;
-      } else if (value === 4) {
+      }
+      if (value === 4) {
         return `https://newsapi.org/v2/top-headlines?country=us&category=technology&pageSize=5&apiKey=c7fbbb0c2c28409eb961604990493a89`;
-      } else if (value === 5) {
+      }
+      if (value === 5) {
         return `https://newsapi.org/v2/top-headlines?country=us&category=entertainment&pageSize=5&apiKey=c7fbbb0c2c28409eb961604990493a89`;
-      } else if (value === 6) {
+      }
+      if (value === 6) {
         return `https://newsapi.org/v2/top-headlines?country=us&category=science&pageSize=5&apiKey=c7fbbb0c2c28409eb961604990493a89`;
       }
     };
@@ -104,7 +104,12 @@ const NewsArticles = ({ value, companies }) => {
           <>
             <Hidden smUp>
               <Card className={classes.card}>
-                <a href={news.url} className={classes.link} target="_blank">
+                <a
+                  href={news.url}
+                  className={classes.link}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
                   <CardActionArea>
                     <CardMedia
                       image={news.urlToImage}
@@ -133,7 +138,12 @@ const NewsArticles = ({ value, companies }) => {
 
             <Hidden xsDown>
               <Card className={classes.root2}>
-                <a href={news.url} className={classes.link} target="_blank">
+                <a
+                  href={news.url}
+                  className={classes.link}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
                   <CardActionArea>
                     <Grid container wrap="wrap">
                       <Grid item sm={3}>
@@ -205,6 +215,7 @@ const NewsArticles = ({ value, companies }) => {
                       <a
                         href={news.url}
                         className={classes.link}
+                        rel="noopener noreferrer"
                         target="_blank"
                       >
                         <CardActionArea>
@@ -238,6 +249,7 @@ const NewsArticles = ({ value, companies }) => {
                       <a
                         href={news.url}
                         className={classes.link}
+                        rel="noopener noreferrer"
                         target="_blank"
                       >
                         <CardActionArea>
