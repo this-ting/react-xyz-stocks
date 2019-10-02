@@ -15,7 +15,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 // import component
 import Home from '../Home';
-import MobileMenu from './Mobile-menu.js';
+import MobileMenu from './Header-mobileMenu.js';
 import LoginContext from '../LoginContext';
 
 const useStyles = makeStyles({
