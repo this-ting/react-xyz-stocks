@@ -118,7 +118,7 @@ const Company = () => {
                 <TableCell>{website}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell colspan={2}>{description}</TableCell>
+                <TableCell colSpan={2}>{description}</TableCell>
               </TableRow>
             </TableBody>
           </Table>
