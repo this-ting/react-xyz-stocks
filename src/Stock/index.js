@@ -22,10 +22,20 @@ const useStyles = makeStyles({
   },
   tabs: {
     paddingTop: '2rem'
+  },
+  tabHeader: {
+    fontSize: '1.02rem',
+    '@media (max-width: 600px)': {
+      fontSize: '1rem'
+    }
+  },
+  tab: {
+    padding: 0
   }
 });
 
 const TabPanel = props => {
+  const classes = useStyles();
   const { children, value, index, ...other } = props;
 
   return (
@@ -37,7 +47,9 @@ const TabPanel = props => {
       aria-labelledby={`stock-tab-${index}`}
       {...other}
     >
-      <Box p={3}>{children}</Box>
+      <Box p={3} className={classes.tab}>
+        {children}
+      </Box>
     </Typography>
   );
 };
@@ -69,7 +81,8 @@ const Stock = ({ getCompany }) => {
   useEffect(() => {
     mounted.current = true;
     fetch(
-      `https://sandbox.iexapis.com/stable/stock/${input}/company?filter=symbol,companyName,exchange&token=Tpk_7190efa09280470180ab8bb6635da780`
+      // `https://sandbox.iexapis.com/stable/stock/${input}/company?filter=symbol,companyName,exchange&token=Tpk_7190efa09280470180ab8bb6635da780`
+      `https://cloud.iexapis.com/stable/stock/${input}/company?filter=symbol,companyName,exchange&token=pk_0c6bc8f3cc794020a71b34f4fda09669`
     )
       .then(response => response.json())
       .then(data => {
@@ -81,7 +94,7 @@ const Stock = ({ getCompany }) => {
           setCompany(info);
         }
       })
-      .catch(error => alert(error));
+      .catch(error => console.error(`Stock component error: ${error}`));
 
     // Cleanup
     return () => {
@@ -93,7 +106,7 @@ const Stock = ({ getCompany }) => {
     <Container className={classes.root}>
       <Search getCompany={getCompany} />
       <br />
-      <Grid container justify="space-between">
+      <Grid container justify="space-between" spacing={1}>
         <Grid item>
           <Ticker company={company} />
         </Grid>
