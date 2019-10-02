@@ -72,7 +72,12 @@ const News = () => {
       <>
         <Hidden smUp>
           <Card className={classes.root}>
-            <a href={n.url} className={classes.link} target="_blank">
+            <a
+              href={n.url}
+              className={classes.link}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               <CardActionArea>
                 <CardMedia image={n.image} className={classes.media} />
                 <CardContent>
@@ -114,7 +119,12 @@ const News = () => {
 
         <Hidden xsDown>
           <Card className={classes.root2}>
-            <a href={n.url} className={classes.link} target="_blank">
+            <a
+              href={n.url}
+              className={classes.link}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               <CardActionArea>
                 <Grid container wrap="wrap">
                   <Grid item sm={3}>
