@@ -42,7 +42,7 @@ const useStyles = makeStyles({
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     width: '100%',
-    height: '97vh'
+    height: '100vh'
   },
   bannertext2: {
     paddingTop: '10vh'
@@ -61,7 +61,7 @@ const useStyles = makeStyles({
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     width: '100%',
-    height: '97vh',
+    height: '100vh',
     textAlign: 'center'
   },
   bannerText3: {
@@ -83,7 +83,7 @@ const useStyles = makeStyles({
     paddingTop: '8rem',
     '@media (max-width: 600px)': {
       fontSize: '2.5rem',
-      paddingTop: '5rem'
+      paddingTop: '3rem'
     }
   },
   news: {
@@ -91,7 +91,7 @@ const useStyles = makeStyles({
     height: '65vh',
     padding: '0 2rem',
     '@media (max-width: 600px)': {
-      height: '76vh',
+      height: '72vh',
       padding: '0 1rem'
     }
   },
@@ -129,6 +129,19 @@ const useStyles = makeStyles({
     '@media (max-width: 600px)': {
       width: '90%'
     }
+  },
+  stockCard: {
+    // maxWidth: '200px',
+    margin: '1rem 0',
+    '&:hover': {
+      cursor: 'pointer',
+    }
+  },
+  plus: {
+    color: '#4F9E59'
+  },
+  minus: {
+    color: '#D3483A'
   }
 });
 
@@ -158,7 +171,9 @@ function Banner1({ getCompany }) {
         </Typography>
         <br />
         <Paper className={classes.search}>
-          <Search getCompany={getCompany} />
+          <Container>
+            <Search getCompany={getCompany} />
+          </Container>
         </Paper>
       </Container>
     </Box>
@@ -290,6 +305,161 @@ function NewsBanner() {
   );
 }
 
+const StockBanner = ({ getCompany }) => {
+  const classes = useStyles();
+  const [actives, setActives] = useState('');
+  useEffect(() => {
+    fetch(
+      `https://cloud.iexapis.com/stable/stock/market/collection/list?collectionName=mostactive&displayPercent=true&token=pk_0c6bc8f3cc794020a71b34f4fda09669&filter=symbol,companyName,primaryExchange,latestPrice,changePercent`
+    )
+      .then(response => response.json())
+      .then(data => {
+        setActives(data);
+      })
+      .catch(error => console.error(error));
+  }, []);
+
+  const handleCompanyClick = e => {
+    const input = e.currentTarget.attributes.ticker.value;
+    getCompany(input);
+  };
+
+  const renderPriceColor = (price, percent) => {
+    if (percent > 0) {
+      return (
+        <Typography variant="body2" component="p" className={classes.plus}>
+          {price} ({percent} %)
+          <br />
+        </Typography>
+      );
+    }
+    if (percent < 0) {
+      return (
+        <Typography variant="body2" component="p" className={classes.minus}>
+          {price} ({percent} %)
+          <br />
+        </Typography>
+      );
+    }
+  };
+
+  const renderActives = actives
+    ? actives.map(active => {
+        return (
+          <>
+            <Card
+              className={classes.stockCard}
+              {...{ ticker: active.symbol }}
+              onClick={handleCompanyClick}
+            >
+              <CardContent>
+                <Typography
+                  className={classes.title}
+                  color="textSecondary"
+                  gutterBottom
+                >
+                  Most Active
+                </Typography>
+                <Typography variant="h5" component="h2">
+                  {active.companyName}
+                </Typography>
+                <Typography className={classes.pos} color="textSecondary">
+                  {active.primaryExchange} :{active.symbol}
+                </Typography>
+                <Typography variant="body2" component="p">
+                  {renderPriceColor(active.latestPrice, active.changePercent)}
+                  {/* {active.latestPrice} ({active.changePercent} %) */}
+                </Typography>
+              </CardContent>
+            </Card>
+          </>
+        );
+      })
+    : null;
+
+  const [gainers, setGainer] = useState('');
+  useEffect(() => {
+    fetch(
+      `https://cloud.iexapis.com/stable/stock/market/collection/list?collectionName=gainers&displayPercent=true&token=pk_0c6bc8f3cc794020a71b34f4fda09669&filter=symbol,companyName,primaryExchange,latestPrice,changePercent`
+    )
+      .then(response => response.json())
+      .then(data => {
+        setGainer(data);
+      })
+      .catch(error => console.error(error));
+  }, []);
+
+  const renderGainers = gainers
+    ? gainers.map(gainer => {
+        return (
+          <>
+            <Card
+              className={classes.stockCard}
+              {...{ ticker: gainer.symbol }}
+              onClick={handleCompanyClick}
+            >
+              <CardContent>
+                <Typography
+                  className={classes.title}
+                  color="textSecondary"
+                  gutterBottom
+                >
+                  Gainers
+                </Typography>
+                <Typography variant="h5" component="h2">
+                  {gainer.companyName}
+                </Typography>
+                <Typography className={classes.pos} color="textSecondary">
+                  {gainer.primaryExchange} :{gainer.symbol}
+                </Typography>
+                <Typography variant="body2" component="p">
+                  {renderPriceColor(gainer.latestPrice, gainer.changePercent)}
+                </Typography>
+              </CardContent>
+            </Card>
+          </>
+        );
+      })
+    : null;
+
+  return (
+    <Box className={classes.banner3}>
+      <Typography
+        variant="h2"
+        color="textSecondary"
+        align="center"
+        className={classes.bannertext4}
+      >
+        Featured Stocks
+      </Typography>
+      <Container className={classes.news}>
+        <Hidden xsDown>
+          <Grid container spacing={8}>
+            <Grid item xs={6}>
+              {renderActives}
+            </Grid>
+            <Grid item xs={6}>
+              {renderGainers}
+            </Grid>
+          </Grid>
+        </Hidden>
+        <Hidden smUp>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              {renderActives}
+            </Grid>
+            <Grid item xs={12}>
+              {renderGainers}
+            </Grid>
+          </Grid>
+        </Hidden>
+      </Container>
+
+      {/* <Paper className={classes.news}>{renderFeatured}</Paper> */}
+    </Box>
+  );
+};
+
 function Banner3() {
   const classes = useStyles();
   return (
@@ -308,27 +478,6 @@ function Banner3() {
           </Typography>
         </Typography>
       </Box>
-      <Box className={classes.banner3}>
-        <Typography
-          variant="h2"
-          color="textSecondary"
-          align="center"
-          className={classes.bannertext2}
-        >
-          Let's get started!
-        </Typography>
-
-        <Button
-          color="primary"
-          size="large"
-          variant="outlined"
-          className={classes.button}
-          to="/explore/"
-          component={Link}
-        >
-          Explore!
-        </Button>
-      </Box>
     </>
   );
 }
@@ -341,8 +490,8 @@ const Home = ({ getCompany, company }) => {
   return (
     <Box>
       <Banner1 getCompany={getCompany} />
-
-      <Banner3 />
+      <StockBanner getCompany={getCompany} />
+      {/* <Banner3 /> */}
       <NewsBanner />
     </Box>
   );
