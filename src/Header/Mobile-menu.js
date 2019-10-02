@@ -19,12 +19,12 @@ const useStyles = makeStyles({
     position: 'fixed',
     textAlign: 'right',
     padding: '4.5rem',
-    animation: '$showMenu 0.6s both',
+    animation: '$showMenu 0.3s both',
     animationTimingFunction: 'ease-out'
   },
   '@keyframes showMenu': {
     from: {
-      transform: 'translate3d(100vw, 0px, 4px)'
+      transform: 'translate3d(100vw, 0px, 0px)'
     },
     to: {
       transform: 'translate3d(0px, 0px, 0px)'
@@ -36,9 +36,7 @@ const useStyles = makeStyles({
     width: '35px'
   },
   menu: {
-    '-webkit-transition': 'color 0.3s ease',
-    '-moz-transition': 'color 0.3s ease',
-    '-0-transition': 'color 0.3s ease',
+    transition: 'color 0.3s ease',
     '&:hover': {
       color: '#fafafa',
       backgroundColor: '#37383c'

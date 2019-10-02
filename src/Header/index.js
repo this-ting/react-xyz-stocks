@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import {
   AppBar,
@@ -29,9 +29,7 @@ const useStyles = makeStyles({
   menuIcon: {
     height: '35px',
     zIndex: '3',
-    '-webkit-transition': 'color 0.3s ease',
-    '-moz-transition': 'color 0.3s ease',
-    '-0-transition': 'color 0.3s ease',
+    transition: 'color 0.3s ease',
     '&:hover': {
       color: '#3054b9'
     }
