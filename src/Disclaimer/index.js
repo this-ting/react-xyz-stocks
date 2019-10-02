@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Grid, Typography } from '@material-ui/core';
+import { Container, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles({
@@ -27,7 +27,7 @@ const Disclaimer = () => {
         carefully before using the{' '}
         <a href="https://react-xyz-stocks.firebaseapp.com/">
           https://react-xyz-stocks.firebaseapp.com/
-        </a>
+        </a>{' '}
         website (the "Service") operated by XYZ Stocks ("us", "we", or "our").
         <br />
         <br />
@@ -72,7 +72,7 @@ const Disclaimer = () => {
         className={classes.title}
         gutterBottom="true"
       >
-        Termination{' '}
+        Termination
       </Typography>
       <Typography variant="body1" gutterBottom="true">
         We may terminate or suspend access to our Service immediately, without
@@ -91,7 +91,7 @@ const Disclaimer = () => {
         className={classes.title}
         gutterBottom="true"
       >
-        Governing Law{' '}
+        Governing Law
       </Typography>
 
       <Typography variant="body1" gutterBottom="true">
@@ -104,7 +104,7 @@ const Disclaimer = () => {
         held to be invalid or unenforceable by a court, the remaining provisions
         of these Terms will remain in effect. These Terms constitute the entire
         agreement between us regarding our Service, and supersede and replace
-        any prior agreements we might have between us regarding the Service.{' '}
+        any prior agreements we might have between us regarding the Service.
         <br />
         <br />
       </Typography>
@@ -113,7 +113,7 @@ const Disclaimer = () => {
         className={classes.title}
         gutterBottom="true"
       >
-        Changes{' '}
+        Changes
       </Typography>
 
       <Typography variant="body1" gutterBottom="true">
@@ -133,11 +133,66 @@ const Disclaimer = () => {
         className={classes.title}
         gutterBottom="true"
       >
-        Contact Us{' '}
+        Contact Us
       </Typography>
 
       <Typography variant="body1" gutterBottom="true">
         If you have any questions about these Terms, please contact us. <br />
+        <br />
+      </Typography>
+
+      <Typography variant="h2" gutterBottom="true">
+        Disclaimer
+      </Typography>
+
+      <Typography variant="body1" gutterBottom="true">
+        The information contained on
+        <a href="https://react-xyz-stocks.firebaseapp.com/">
+          https://react-xyz-stocks.firebaseapp.com/
+        </a>
+        website and XYZ Stocks mobile app (the "Service") is for general
+        information purposes only.
+        <br />
+        <br />
+        XYZ Stocks assumes no responsibility for errors or omissions in the
+        contents on the Service.
+        <br />
+        <br />
+        In no event shall XYZ Stocks be liable for any special, direct,
+        indirect, consequential, or incidental damages or any damages
+        whatsoever, whether in an action of contract, negligence or other tort,
+        arising out of or in connection with the use of the Service or the
+        contents of the Service. XYZ Stocks reserves the right to make
+        additions, deletions, or modification to the contents on the Service at
+        any time without prior notice. This Disclaimer for XYZ Stocks has been
+        created with the help of [TermsFeed](https://www.termsfeed.com/).
+        <br />
+        <br />
+        XYZ Stocks does not warrant that the website is free of viruses or other
+        harmful components.
+        <br />
+      </Typography>
+
+      <Typography
+        variant="subtitle1"
+        className={classes.title}
+        gutterBottom="true"
+      >
+        External links disclaimer
+      </Typography>
+
+      <Typography variant="body1" gutterBottom="true">
+        <a href="https://react-xyz-stocks.firebaseapp.com/">
+          https://react-xyz-stocks.firebaseapp.com/
+        </a>{' '}
+        website and XYZ Stocks mobile app may contain links to external websites
+        that are not provided or maintained by or in any way affiliated with XYZ
+        Stocks
+        <br />
+        <br />
+        Please note that the XYZ Stocks does not guarantee the accuracy,
+        relevance, timeliness, or completeness of any information on these
+        external websites.
         <br />
       </Typography>
     </Container>
