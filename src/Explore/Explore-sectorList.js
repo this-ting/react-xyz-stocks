@@ -51,7 +51,7 @@ const SectorList = ({ sector, getCompany }) => {
         .then(doc => doc.data().companies)
         .then(data =>
           fetch(
-            `https://sandbox.iexapis.com/stable/stock/market/batch?symbols=${data}&types=chart,company&range=5d&token=Tpk_7190efa09280470180ab8bb6635da780&&filter=date,close,changePercent,companyName`
+            `https://sandbox.iexapis.com/stable/stock/market/batch?symbols=${data}&types=chart,company&range=5d&token=Tpk_7190efa09280470180ab8bb6635da780&filter=date,close,changePercent,companyName`
             // `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${data}&types=chart,company&range=5d&token=pk_0c6bc8f3cc794020a71b34f4fda09669&filter=date,close,changePercent,companyName`
           )
         )
