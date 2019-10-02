@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import { Container } from '@material-ui/core';
@@ -22,10 +22,10 @@ const Explore = ({ getCompany, company }) => {
     setSector(input);
   };
 
-  const renderExplore = !sector ? (
-    <ExploreSectors getSector={getSector} />
-  ) : (
+  const renderExplore = sector ? (
     <SectorList sector={sector} getCompany={getCompany} />
+  ) : (
+    <ExploreSectors getSector={getSector} />
   );
 
   if (company !== '') {
