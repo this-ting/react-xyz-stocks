@@ -9,10 +9,18 @@ import {
   TableCell,
   Typography
 } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 import StockContext from '../StockContext.js';
 import formatNumber from '../lib';
 
+const useStyles = makeStyles({
+  cell: {
+    width: '50%'
+  }
+});
+
 const KeyFin = () => {
+  const classes = useStyles();
   // context
   const input = useContext(StockContext);
 
@@ -20,11 +28,11 @@ const KeyFin = () => {
   const mounted = useRef(false);
 
   const initialState = {
-    date: '',
-    revenue: '',
-    netIncome: '',
-    netProfitMargin: '',
-    eps: ''
+    date: 'N/A',
+    revenue: 'N/A',
+    netIncome: 'N/A',
+    netProfitMargin: 'N/A',
+    eps: 'N/A'
   };
 
   const [stats, setStats] = useState(initialState);
@@ -45,7 +53,10 @@ const KeyFin = () => {
           setStats(info);
         }
       })
-      .catch(error => alert(`Error with Key Fin component: ${error}`));
+      .catch(error => {
+        console.error(`Error with Key Fin component: ${error}`);
+        setStats(initialState);
+      });
 
     // Cleanup
     return () => {
@@ -65,25 +76,29 @@ const KeyFin = () => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>As of the most recent quarter:</TableCell>
+                <TableCell className={classes.cell}>
+                  As of the most recent quarter:
+                </TableCell>
                 <TableCell>{date}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               <TableRow>
-                <TableCell>Revenue:</TableCell>
+                <TableCell className={classes.cell}>Revenue:</TableCell>
                 <TableCell>{formatNumber(parseInt(revenue))}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>Net Income:</TableCell>
+                <TableCell className={classes.cell}>Net Income:</TableCell>
                 <TableCell>{formatNumber(parseInt(netIncome))}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>Net Profit Margin</TableCell>
+                <TableCell className={classes.cell}>
+                  Net Profit Margin
+                </TableCell>
                 <TableCell>{netProfitMargin * 100} %</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>EPS</TableCell>
+                <TableCell className={classes.cell}>EPS</TableCell>
                 <TableCell>$ {eps}</TableCell>
               </TableRow>
             </TableBody>
