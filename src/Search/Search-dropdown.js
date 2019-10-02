@@ -1,12 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { makeStyles } from '@material-ui/styles';
-import {
-  Container,
-  Paper,
-  List,
-  ListItem,
-  ListItemText
-} from '@material-ui/core';
+import { Container, List, ListItem, ListItemText } from '@material-ui/core';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import { db } from '../Firebase.js';
 
@@ -72,9 +66,6 @@ const Dropdown = ({ input, setInput, getCompany }) => {
   // lift state up to ./Markets/index.js & clear state
   const handleClickDropdown = e => {
     getCompany(e.currentTarget.id.toUpperCase());
-    console.log(
-      `search-dropdown: handleClickDropdown() => ${e.currentTarget.id.toUpperCase()}`
-    );
     setInput('');
     mounted.current = false;
   };
