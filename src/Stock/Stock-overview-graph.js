@@ -22,7 +22,8 @@ const Graph = props => {
   useEffect(() => {
     mounted.current = true;
     fetch(
-      `https://sandbox.iexapis.com/stable/stock/${input}/chart/${time}?chartCloseOnly=true&filter=date,close,volume&token=Tpk_7190efa09280470180ab8bb6635da780`
+      // `https://sandbox.iexapis.com/stable/stock/${input}/chart/${time}?chartCloseOnly=true&filter=date,close,volume&token=Tpk_7190efa09280470180ab8bb6635da780`
+      `https://cloud.iexapis.com/stable/stock/${input}/chart/${time}?chartCloseOnly=true&filter=date,close,volume&token=pk_0c6bc8f3cc794020a71b34f4fda09669`
     )
       .then(response => response.json())
       .then(data => {
@@ -37,7 +38,7 @@ const Graph = props => {
         });
         setGraphInfo(newData);
       })
-      .catch(error => alert(`Error with Graph: ${error}`));
+      .catch(error => console.error(`Error with Graph: ${error}`));
 
     return () => {
       mounted.current = false;
@@ -56,8 +57,11 @@ const Graph = props => {
       chart: {
         subtitle: 'in USD'
       },
-      legend: 'none',
+      legend: {
+        position: 'none'
+      },
       backgroundColor: '#fafafa',
+      width: '90%',
       height: 350,
       animation: {
         startup: true,

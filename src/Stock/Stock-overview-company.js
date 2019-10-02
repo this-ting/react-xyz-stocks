@@ -9,9 +9,17 @@ import {
   TableCell,
   Container
 } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 import StockContext from '../StockContext.js';
 
+const useStyles = makeStyles({
+  cell: {
+    width: '50%'
+  }
+});
+
 const Company = () => {
+  const classes = useStyles();
   // context
   const input = useContext(StockContext);
 
@@ -34,7 +42,8 @@ const Company = () => {
   useEffect(() => {
     mounted.current = true;
     fetch(
-      `https://sandbox.iexapis.com/stable/stock/${input}/company?filter=symbol,companyName,exchange,sector,industry,website,description,CEO,employees&token=Tpk_7190efa09280470180ab8bb6635da780`
+      // `https://sandbox.iexapis.com/stable/stock/${input}/company?filter=symbol,companyName,exchange,sector,industry,website,description,CEO,employees&token=Tpk_7190efa09280470180ab8bb6635da780`
+      `https://cloud.iexapis.com/stable/stock/${input}/company?filter=symbol,companyName,exchange,sector,industry,website,description,CEO,employees&token=pk_0c6bc8f3cc794020a71b34f4fda09669`
     )
       .then(response => response.json())
       .then(data => {
@@ -81,35 +90,35 @@ const Company = () => {
           <Table>
             <TableBody>
               <TableRow>
-                <TableCell>Company:</TableCell>
+                <TableCell className={classes.cell}>Company:</TableCell>
                 <TableCell>{companyName}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>Exchange:</TableCell>
+                <TableCell className={classes.cell}>Exchange:</TableCell>
                 <TableCell>{exchange}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>CEO:</TableCell>
+                <TableCell className={classes.cell}>CEO:</TableCell>
                 <TableCell>{ceo}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>Employees:</TableCell>
+                <TableCell className={classes.cell}>Employees:</TableCell>
                 <TableCell>{employees}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>Sector:</TableCell>
+                <TableCell className={classes.cell}>Sector:</TableCell>
                 <TableCell>{sector}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>Industry:</TableCell>
+                <TableCell className={classes.cell}>Industry:</TableCell>
                 <TableCell>{industry}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>Website:</TableCell>
+                <TableCell className={classes.cell}>Website:</TableCell>
                 <TableCell>{website}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>{description}</TableCell>
+                <TableCell colspan={2}>{description}</TableCell>
               </TableRow>
             </TableBody>
           </Table>

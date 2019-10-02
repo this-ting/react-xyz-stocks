@@ -27,7 +27,8 @@ const PrevDayPrice = () => {
   useEffect(() => {
     mounted.current = true;
     fetch(
-      `https://sandbox.iexapis.com/stable/stock/${input}/previous?filter=date,open,close,high,low,volume,changePercent,change&token=Tpk_7190efa09280470180ab8bb6635da780`
+      // `https://sandbox.iexapis.com/stable/stock/${input}/previous?filter=date,open,close,high,low,volume,changePercent,change&token=Tpk_7190efa09280470180ab8bb6635da780`
+      `https://cloud.iexapis.com/stable/stock/${input}/previous?filter=date,open,close,high,low,volume,changePercent,change&token=pk_0c6bc8f3cc794020a71b34f4fda09669`
     )
       .then(response => response.json())
       .then(data => {
@@ -44,7 +45,7 @@ const PrevDayPrice = () => {
           setPrevDay(info);
         }
       })
-      .catch(error => alert(error));
+      .catch(error => console.error(`PrevDay component error: ${error}`));
 
     // Cleanup component
     return () => {

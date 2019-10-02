@@ -6,8 +6,8 @@ import StockContext from '../StockContext.js';
 import formatNumber from '../lib';
 
 const useStyles = makeStyles({
-  row: {
-    display: 'inline-flex'
+  title: {
+    fontWeight: '500'
   }
 });
 
@@ -24,7 +24,8 @@ const GraphStats = () => {
   useEffect(() => {
     mounted.current = true;
     fetch(
-      `https://sandbox.iexapis.com/stable/stock/${input}/stats?filter=marketcap,week52high,week52low,ttmEPS,dividendYield,peRatio,beta&token=Tpk_7190efa09280470180ab8bb6635da780`
+      // `https://sandbox.iexapis.com/stable/stock/${input}/stats?filter=marketcap,week52high,week52low,ttmEPS,dividendYield,peRatio,beta&token=Tpk_7190efa09280470180ab8bb6635da780`
+      `https://cloud.iexapis.com/stable/stock/${input}/stats?filter=marketcap,week52high,week52low,ttmEPS,dividendYield,peRatio,beta&token=pk_0c6bc8f3cc794020a71b34f4fda09669`
     )
       .then(response => response.json())
       .then(data => {
@@ -32,7 +33,7 @@ const GraphStats = () => {
           setStats(data);
         }
       })
-      .catch(error => alert(error));
+      .catch(error => console.error(`GraphStats component error: ${error}`));
 
     // Cleanup
     return () => {
@@ -56,13 +57,13 @@ const GraphStats = () => {
         <Typography variant="overline">
           <Grid container direction="column" wrap="wrap">
             <Grid container item xs={12}>
-              <Grid item xs={3}>
-                Market Cap:
+              <Grid item xs={3} className={classes.title}>
+                Mkt Cap:
               </Grid>
               <Grid item xs={3}>
                 {formatNumber(marketcap)}
               </Grid>
-              <Grid item xs={3}>
+              <Grid item xs={3} className={classes.title}>
                 P/E ratio:
               </Grid>
               <Grid item xs={3}>
@@ -71,29 +72,29 @@ const GraphStats = () => {
             </Grid>
 
             <Grid container item xs={12}>
-              <Grid item xs={3}>
+              <Grid item xs={3} className={classes.title}>
                 Beta:
               </Grid>
               <Grid item xs={3}>
                 {beta.toFixed(2)}
               </Grid>
-              <Grid item xs={3}>
-                52-week High:
+              <Grid item xs={3} className={classes.title}>
+                52W High:
               </Grid>
               <Grid item xs={3}>
                 {week52high.toFixed(2)}
               </Grid>
             </Grid>
 
-            <Grid container item xs={12}>
+            <Grid container item xs={12} className={classes.title}>
               <Grid item xs={3}>
                 Div Yield:
               </Grid>
               <Grid item xs={3}>
                 {(dividendYield * 100).toFixed(2)} %
               </Grid>
-              <Grid item xs={3}>
-                52-week Low:
+              <Grid item xs={3} className={classes.title}>
+                52W Low:
               </Grid>
               <Grid item xs={3}>
                 {week52low.toFixed(2)}
@@ -101,7 +102,7 @@ const GraphStats = () => {
             </Grid>
 
             <Grid container item xs={12}>
-              <Grid item xs={3}>
+              <Grid item xs={3} className={classes.title}>
                 EPS:
               </Grid>
               <Grid item xs={3}>
