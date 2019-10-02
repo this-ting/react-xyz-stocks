@@ -79,7 +79,7 @@ const SectorList = ({ sector, getCompany }) => {
           }
           setPrevious(info);
         })
-        .catch(error => console.log(error));
+        .catch(error => console.error(error));
     }
   }, [sector]);
 

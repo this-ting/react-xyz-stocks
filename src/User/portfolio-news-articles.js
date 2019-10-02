@@ -81,7 +81,6 @@ const NewsArticles = ({ value, companies }) => {
             newData.sort(n => n.datetime);
             loaded++;
             if (loaded >= companies.length) {
-              console.log(newData);
               setNews(newData);
             }
           }

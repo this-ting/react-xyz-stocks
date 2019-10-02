@@ -23,11 +23,8 @@ const AddButton = ({ company }) => {
         .get()
         .then(doc => {
           if (doc.exists) {
-            console.log(doc);
-            console.log('following');
             setWatching(true);
           } else {
-            console.log('not following');
             setWatching(false);
           }
         })
@@ -45,7 +42,6 @@ const AddButton = ({ company }) => {
         .doc(input.toUpperCase())
         .delete()
         .then(() => {
-          console.log(`${input} successfully deleted!`);
           setWatching(false);
           setOpen(true);
         })
@@ -73,7 +69,6 @@ const AddButton = ({ company }) => {
           company: company.name
         })
         .then(() => {
-          console.log(`${input} successfully added!`);
           setWatching(true);
           setOpen(true);
         })

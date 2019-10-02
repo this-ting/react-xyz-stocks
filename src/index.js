@@ -25,7 +25,6 @@ const App = () => {
     const unregisterAuthObserver = auth.onAuthStateChanged(user => {
       if (user) {
         setUserID(user.uid);
-        console.log(user);
 
         // update user document in db
         db.collection('users')
@@ -38,15 +37,11 @@ const App = () => {
             },
             { merge: true }
           )
-          .then(() => {
-            console.log('Success updating user db');
-          })
           .catch(() => {
             console.error(error);
           });
       } else {
         setUserID('');
-        console.log('not signed in');
       }
     });
 
