@@ -10,46 +10,14 @@ import {
 import StockContext from '../StockContext.js';
 import formatNumber from '../lib';
 
-const CFS = props => {
-  const { index } = props;
+const CFS = ({ index }) => {
   // context
   const input = useContext(StockContext);
 
   // check for component mount
   const mounted = useRef(false);
 
-  const initialState = [
-    {
-      opCF: '',
-      invCF: '',
-      finCF: '',
-      netCF: '',
-      freeCF: ''
-    },
-    {
-      opCF: '',
-      invCF: '',
-      finCF: '',
-      netCF: '',
-      freeCF: ''
-    },
-    {
-      opCF: '',
-      invCF: '',
-      finCF: '',
-      netCF: '',
-      freeCF: ''
-    },
-    {
-      opCF: '',
-      invCF: '',
-      finCF: '',
-      netCF: '',
-      freeCF: ''
-    }
-  ];
-
-  const [cashFlow, setCashFlow] = useState(initialState);
+  const [cashFlow, setCashFlow] = useState('');
   useEffect(() => {
     mounted.current = true;
     fetch(
@@ -79,8 +47,7 @@ const CFS = props => {
     };
   }, [input]);
 
-  // if undefined, means data not rendered yet
-  if (cashFlow[index]) {
+  if (cashFlow) {
     const { opCF, invCF, finCF, netCF, freeCF } = cashFlow[index];
     return (
       <Table>

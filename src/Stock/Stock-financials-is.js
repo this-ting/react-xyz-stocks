@@ -10,58 +10,14 @@ import {
 import StockContext from '../StockContext.js';
 import formatNumber from '../lib';
 
-const IS = props => {
-  const { index } = props;
+const IS = ({ index }) => {
   // context
   const input = useContext(StockContext);
 
   // check for component mount
   const mounted = useRef(false);
 
-  const initialState = [
-    {
-      rev: '',
-      costOfRev: '',
-      gp: '',
-      gm: '',
-      opEx: '',
-      opIncome: '',
-      ni: '',
-      npm: ''
-    },
-    {
-      rev: '',
-      costOfRev: '',
-      gp: '',
-      gm: '',
-      opEx: '',
-      opIncome: '',
-      ni: '',
-      npm: ''
-    },
-    {
-      rev: '',
-      costOfRev: '',
-      gp: '',
-      gm: '',
-      opEx: '',
-      opIncome: '',
-      ni: '',
-      npm: ''
-    },
-    {
-      rev: '',
-      costOfRev: '',
-      gp: '',
-      gm: '',
-      opEx: '',
-      opIncome: '',
-      ni: '',
-      npm: ''
-    }
-  ];
-
-  const [income, setIncome] = useState(initialState);
+  const [income, setIncome] = useState('');
   useEffect(() => {
     mounted.current = true;
     fetch(
@@ -95,7 +51,7 @@ const IS = props => {
     };
   }, [input]);
 
-  if (income[index]) {
+  if (income) {
     const { rev, costOfRev, gp, gm, opEx, opIncome, ni, npm } = income[index];
     return (
       <Table>

@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
-import { makeStyles } from '@material-ui/core';
 import {
   Table,
   TableHead,
@@ -11,57 +10,14 @@ import {
 import StockContext from '../StockContext.js';
 import formatNumber from '../lib';
 
-const useStyles = makeStyles({
-  // tableHead: {
-  //   backgroundColor: '#333333'
-  // }
-});
-
-const BS = props => {
-  const classes = useStyles();
-  const { index } = props;
+const BS = ({ index }) => {
   // context
   const input = useContext(StockContext);
 
   // check for component mount
   const mounted = useRef(false);
 
-  const initialState = [
-    {
-      cash: '',
-      currAssets: '',
-      assets: '',
-      currLib: '',
-      lib: '',
-      shareholdersEq: ''
-    },
-    {
-      cash: '',
-      currAssets: '',
-      assets: '',
-      currLib: '',
-      lib: '',
-      shareholdersEq: ''
-    },
-    {
-      cash: '',
-      currAssets: '',
-      assets: '',
-      currLib: '',
-      lib: '',
-      shareholdersEq: ''
-    },
-    {
-      cash: '',
-      currAssets: '',
-      assets: '',
-      currLib: '',
-      lib: '',
-      shareholdersEq: ''
-    }
-  ];
-
-  const [balance, setBalance] = useState(initialState);
+  const [balance, setBalance] = useState('');
   useEffect(() => {
     mounted.current = true;
     fetch(
@@ -91,21 +47,20 @@ const BS = props => {
     };
   }, [input]);
 
-  if (balance[index]) {
+  if (balance) {
     const { cash, currAssets, assets, currLib, lib, shareholdersEq } = balance[
       index
     ];
     return (
       <Table>
         <TableHead>
-          <TableRow className={classes.tableHead}>
+          <TableRow>
             <Tooltip
               placement="right"
               title="A financial statement that reports a company's assets, liabilities and shareholders' equity at a specific point in time"
             >
               <TableCell>BALANCE STATEMENT</TableCell>
             </Tooltip>
-
             <TableCell align="right">(USD $)</TableCell>
           </TableRow>
         </TableHead>
