@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Paper,
@@ -10,6 +9,7 @@ import {
   TableRow,
   Hidden
 } from '@material-ui/core';
+import { Skeleton } from '@material-ui/lab';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 // import * as firebase from 'firebase/app';
@@ -152,7 +152,12 @@ const SectorList = ({ sector, getCompany }) => {
       </>
     );
   }
-  return <h3>Rendering..</h3>;
+  return (
+    <>
+      <h3>COMPANIES IN THE {sector.toUpperCase()} SECTOR</h3>
+      <Skeleton height="65vh" />
+    </>
+  );
 };
 
 export default SectorList;
