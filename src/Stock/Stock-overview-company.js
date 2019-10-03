@@ -7,6 +7,7 @@ import {
   TableRow,
   TableCell
 } from '@material-ui/core';
+import { Skeleton } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/styles';
 import StockContext from '../StockContext.js';
 
@@ -114,7 +115,7 @@ const Company = () => {
   }
   return (
     <>
-      <h1>LOADING</h1>
+      <Skeleton variant="rect" height="50vh" />
     </>
   );
 };
