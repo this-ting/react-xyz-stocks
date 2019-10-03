@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
+import { Skeleton } from '@material-ui/lab';
 
 import StockContext from '../StockContext.js';
 import formatNumber from '../lib';
@@ -114,7 +115,11 @@ const GraphStats = () => {
       </>
     );
   }
-  return null;
+  return (
+    <>
+      <Skeleton variant="rect" height="10vh" />
+    </>
+  );
 };
 
 export default GraphStats;
