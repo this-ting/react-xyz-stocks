@@ -48,9 +48,9 @@
     "@material-ui/lab": "^4.0.0-alpha.28",
     "@material-ui/styles": "^4.3.3",
     "firebase": "^6.5.0",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
+    "react": "^16.10.1",
+    "react-dom": "^16.10.1",
     "react-firebaseui": "^4.0.0",
-    "react-router-dom": "^5.0.1"
+    "react-router-dom": "^5.1.2"
   }
 }
