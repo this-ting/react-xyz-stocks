@@ -35,6 +35,9 @@ const useStyles = makeStyles({
     '&:hover': {
       cursor: 'pointer'
     }
+  },
+  skeleton: {
+    margin: '2px 0'
   }
 });
 
@@ -87,68 +90,76 @@ const Watchlist = ({
     }
   };
 
-  const renderRows = following
-    ? following.map(follow => {
-        return (
-          <TableRow hover key={follow.ticker} className={classes.row}>
+  const renderRows = following ? (
+    following.map(follow => {
+      return (
+        <TableRow hover key={follow.ticker} className={classes.row}>
+          <TableCell
+            {...{ ticker: follow.ticker }}
+            onClick={handleCompanyClick}
+          >
+            {follow.ticker}
+          </TableCell>
+          <Hidden smUp>
+            <TableCell align="right">{follow.close}</TableCell>
+          </Hidden>
+
+          <Hidden xsDown>
             <TableCell
               {...{ ticker: follow.ticker }}
               onClick={handleCompanyClick}
             >
-              {follow.ticker}
+              {follow.company}
             </TableCell>
-            <Hidden smUp>
-              <TableCell align="right">{follow.close}</TableCell>
-            </Hidden>
+            <TableCell align="right">{follow.close}</TableCell>
+            {/* {renderPriceColor(follow.change)} */}
+          </Hidden>
 
-            <Hidden xsDown>
-              <TableCell
-                {...{ ticker: follow.ticker }}
-                onClick={handleCompanyClick}
-              >
-                {follow.company}
-              </TableCell>
-              <TableCell align="right">{follow.close}</TableCell>
-              {/* {renderPriceColor(follow.change)} */}
-            </Hidden>
-
-            {renderPercentColor(follow.changePercent)}
-            <TableCell>
-              <IconButton
-                color="inherit"
-                onClick={handleDelete}
-                {...{ ticker: follow.ticker }}
-              >
-                <DeleteIcon />
-              </IconButton>
-              <Snackbar
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right'
-                }}
-                open={open}
-                autoHideDuration={3000}
-                onClose={handleClose}
-                ContentProps={{
-                  'aria-describedby': 'message-id'
-                }}
-                message={<span id="message-id">Removed from Watchlist!</span>}
-                action={[
-                  <IconButton
-                    key="close"
-                    aria-label="close"
-                    color="inherit"
-                    onClick={handleClose}
-                  >
-                    <CloseIcon />
-                  </IconButton>
-                ]}
-              />
-            </TableCell>
-          </TableRow>
-        );
-      })
-    : null;
+          {renderPercentColor(follow.changePercent)}
+          <TableCell>
+            <IconButton
+              color="inherit"
+              onClick={handleDelete}
+              {...{ ticker: follow.ticker }}
+            >
+              <DeleteIcon />
+            </IconButton>
+            <Snackbar
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right'
+              }}
+              open={open}
+              autoHideDuration={3000}
+              onClose={handleClose}
+              ContentProps={{
+                'aria-describedby': 'message-id'
+              }}
+              message={<span id="message-id">Removed from Watchlist!</span>}
+              action={[
+                <IconButton
+                  key="close"
+                  aria-label="close"
+                  color="inherit"
+                  onClick={handleClose}
+                >
+                  <CloseIcon />
+                </IconButton>
+              ]}
+            />
+          </TableCell>
+        </TableRow>
+      );
+    })
+  ) : (
+    <>
+      <TableRow>
+        <TableCell colSpan={5} align="center">
+          Add companies to your watchlist!
+        </TableCell>
+      </TableRow>
+    </>
+  );
 
   return (
     <>
