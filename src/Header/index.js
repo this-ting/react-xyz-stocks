@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { NavLink, Link, withRouter } from 'react-router-dom';
 import {
   AppBar,
   Tab,
@@ -36,10 +36,16 @@ const useStyles = makeStyles({
   }
 });
 
-const Header = ({ getCompany }) => {
+const Header = ({ getCompany, location }) => {
   const uid = useContext(LoginContext);
   const classes = useStyles();
   const [value, setValue] = useState(0);
+  useEffect(() => {
+    console.log(location.pathname);
+    if (location.pathname === '/') {
+      setValue(0);
+    }
+  });
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -105,8 +111,18 @@ const Header = ({ getCompany }) => {
               centered
               onClick={handleExitStock}
             >
-              <Tab label="Explore" to="/explore/" component={NavLink} />
-              <Tab label="Portfolio" to="/portfolio/" component={NavLink} />
+              <Tab
+                label="Explore"
+                to="/explore/"
+                component={NavLink}
+                value={1}
+              />
+              <Tab
+                label="Portfolio"
+                to="/portfolio/"
+                component={NavLink}
+                value={2}
+              />
             </Tabs>
           </Grid>
           <Grid item sm={2}>
@@ -123,4 +139,4 @@ const Header = ({ getCompany }) => {
   );
 };
 
-export default Header;
+export default withRouter(Header);
