@@ -35,6 +35,9 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       cursor: 'pointer'
     }
+  },
+  skeleton: {
+    margin: '2px 0'
   }
 }));
 
@@ -155,7 +158,17 @@ const SectorList = ({ sector, getCompany }) => {
   return (
     <>
       <h3>COMPANIES IN THE {sector.toUpperCase()} SECTOR</h3>
-      <Skeleton height="65vh" />
+      <Skeleton height={500}>
+        <Skeleton variant="rect" height={54} className={classes.skeleton} />
+        <Skeleton variant="rect" height={54} className={classes.skeleton} />
+        <Skeleton variant="rect" height={54} className={classes.skeleton} />
+        <Skeleton variant="rect" height={54} className={classes.skeleton} />
+        <Skeleton variant="rect" height={54} className={classes.skeleton} />
+        <Skeleton variant="rect" height={54} className={classes.skeleton} />
+        <Skeleton variant="rect" height={54} className={classes.skeleton} />
+        <Skeleton variant="rect" height={54} className={classes.skeleton} />
+        <Skeleton variant="rect" height={54} className={classes.skeleton} />
+      </Skeleton>
     </>
   );
 };
