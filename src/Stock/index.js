@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
-import { Link } from 'react-router-dom';
 import { Tabs, Tab, Typography, Box, Container, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
 // Import Components
+import ErrorMessage from './Stock-errorMessage.js';
 import Search from '../Search';
 import Ticker from './Stock-ticker.js';
 import PrevDayPrice from './Stock-PrevDayPrice.js';
@@ -84,7 +84,12 @@ const Stock = ({ getCompany }) => {
       `https://sandbox.iexapis.com/stable/stock/${input}/company?filter=symbol,companyName,exchange&token=Tpk_7190efa09280470180ab8bb6635da780`
       // `https://cloud.iexapis.com/stable/stock/${input}/company?filter=symbol,companyName,exchange&token=pk_0c6bc8f3cc794020a71b34f4fda09669`
     )
-      .then(response => response.json())
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw Error(`Request rejected with status ${response.status}`);
+      })
       .then(data => {
         const info = {};
         info.name = data.companyName;
@@ -94,7 +99,10 @@ const Stock = ({ getCompany }) => {
           setCompany(info);
         }
       })
-      .catch(error => console.error(`Stock component error: ${error}`));
+      .catch(error => {
+        console.error(`Stock component error: ${error}`);
+        setCompany('error');
+      });
 
     // Cleanup
     return () => {
@@ -102,38 +110,47 @@ const Stock = ({ getCompany }) => {
     };
   }, [input]);
 
+  const renderStock =
+    company === 'error' ? (
+      <ErrorMessage />
+    ) : (
+      <>
+        <br />
+        <Grid container justify="space-between" spacing={1}>
+          <Grid item>
+            <Ticker company={company} />
+          </Grid>
+          <Grid item>
+            <AddButton company={company} />
+          </Grid>
+        </Grid>
+        <PrevDayPrice />
+        <Tabs
+          className={classes.tabs}
+          value={value}
+          onChange={handleChange}
+          aria-label="stock tabs example"
+        >
+          <Tab label="Overview" {...a11yProps(0)} />
+          <Tab label="Quarterly Financials" {...a11yProps(1)} />
+          <Tab label="News" {...a11yProps(2)} />
+        </Tabs>
+        <TabPanel value={value} index={0}>
+          <Overview />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <Financials />
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <News />
+        </TabPanel>
+      </>
+    );
+
   return (
     <Container className={classes.root}>
       <Search getCompany={getCompany} />
-      <br />
-      <Grid container justify="space-between" spacing={1}>
-        <Grid item>
-          <Ticker company={company} />
-        </Grid>
-        <Grid item>
-          <AddButton company={company} />
-        </Grid>
-      </Grid>
-      <PrevDayPrice />
-      <Tabs
-        className={classes.tabs}
-        value={value}
-        onChange={handleChange}
-        aria-label="stock tabs example"
-      >
-        <Tab label="Overview" {...a11yProps(0)} />
-        <Tab label="Quarterly Financials" {...a11yProps(1)} />
-        <Tab label="News" {...a11yProps(2)} />
-      </Tabs>
-      <TabPanel value={value} index={0}>
-        <Overview />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <Financials />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <News />
-      </TabPanel>
+      {renderStock}
     </Container>
   );
 };
