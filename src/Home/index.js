@@ -49,7 +49,7 @@ const Banner2 = () => {
 
 const Home = ({ getCompany, company }) => {
   if (company !== '') {
-    return <Redirect to="/stock/" />;
+    return <Redirect push to="/stock/" />;
   }
 
   return (

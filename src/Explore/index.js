@@ -29,7 +29,7 @@ const Explore = ({ getCompany, company }) => {
   );
 
   if (company !== '') {
-    return <Redirect to="/stock/" />;
+    return <Redirect push to="/stock/" />;
   }
 
   return (
