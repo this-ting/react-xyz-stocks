@@ -36,12 +36,13 @@ const useStyles = makeStyles({
   }
 });
 
-const Header = ({ getCompany, location }) => {
+const Header = ({ getCompany, location, match }) => {
   const uid = useContext(LoginContext);
   const classes = useStyles();
   const [value, setValue] = useState(0);
   useEffect(() => {
-    console.log(location.pathname);
+    console.log(location);
+    console.log(match);
     if (location.pathname === '/') {
       setValue(0);
     }
