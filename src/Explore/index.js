@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import { Container } from '@material-ui/core';
 import ExploreSectors from './Explore-exploreSectors';
@@ -29,7 +29,15 @@ const Explore = ({ getCompany, company }) => {
   );
 
   if (company !== '') {
-    return <Redirect to="/stock/" />;
+    return (
+      <Redirect
+        push
+        to={{
+          pathname: '/stock',
+          search: `?utm=${company}`
+        }}
+      />
+    );
   }
 
   return (

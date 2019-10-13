@@ -8,6 +8,7 @@ import {
   Grid,
   Hidden
 } from '@material-ui/core';
+import { Skeleton } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles({
@@ -38,6 +39,10 @@ const useStyles = makeStyles({
   },
   link: {
     textDecoration: 'none'
+  },
+  skeleton: {
+    margin: '1rem 0',
+    maxWidth: 600
   }
 });
 
@@ -74,7 +79,7 @@ const NewsArticles = ({ value, companies }) => {
         .then(data => {
           let loaded = 0;
           for (let i = 0; i < companies.length; i++) {
-            let IEXarticles = data[companies[i]].news; // [{},{},{}]
+            const IEXarticles = data[companies[i]].news; // [{},{},{}]
             for (let a = 0; a < IEXarticles.length; a++) {
               newData.push(IEXarticles[a]);
             }
@@ -319,7 +324,34 @@ const NewsArticles = ({ value, companies }) => {
     );
   }
 
-  return null;
+  return (
+    <>
+      <Skeleton
+        variant="rect"
+        width="80vw"
+        height={140}
+        className={classes.skeleton}
+      />
+      <Skeleton
+        variant="rect"
+        width="80vw"
+        height={140}
+        className={classes.skeleton}
+      />
+      <Skeleton
+        variant="rect"
+        width="80vw"
+        height={140}
+        className={classes.skeleton}
+      />
+      <Skeleton
+        variant="rect"
+        width="80vw"
+        height={140}
+        className={classes.skeleton}
+      />
+    </>
+  );
 };
 
 export default NewsArticles;

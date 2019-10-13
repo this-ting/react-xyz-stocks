@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import { makeStyles } from '@material-ui/styles';
+import { Skeleton } from '@material-ui/lab';
 import StockContext from '../StockContext.js';
 
 const useStyles = makeStyles({
@@ -77,11 +78,16 @@ const Graph = ({ time }) => {
 
   if (graphInfo) {
     google.charts.load('current', { packages: ['line'], callback: drawChart });
+    return (
+      <>
+        <div id="chart_div" className={classes.root} />
+      </>
+    );
   }
 
   return (
     <>
-      <div id="chart_div" className={classes.root} />
+      <Skeleton variant="rect" height="30vh" />
     </>
   );
 };
