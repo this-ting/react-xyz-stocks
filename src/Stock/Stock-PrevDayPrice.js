@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import { Grid, Typography } from '@material-ui/core';
+import { Skeleton } from '@material-ui/lab';
 
 import StockContext from '../StockContext.js';
 
@@ -84,7 +85,7 @@ const PrevDayPrice = () => {
   }
   return (
     <>
-      <h1>LOADING</h1>
+      <Skeleton variant="rect" width="40%" height={30} />
     </>
   );
 };

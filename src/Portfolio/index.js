@@ -151,10 +151,18 @@ const Portfolio = ({ company, getCompany }) => {
   }
 
   if (uid && company) {
-    return <Redirect push to="/stock/" />;
+    return (
+      <Redirect
+        push
+        to={{
+          pathname: '/stock',
+          search: `?utm=${company}`
+        }}
+      />
+    );
   }
 
-  return <Redirect push to="/user/" />;
+  return <Redirect push to="/user" />;
 };
 
 export default Portfolio;

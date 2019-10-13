@@ -8,6 +8,7 @@ import {
   TableCell,
   Typography
 } from '@material-ui/core';
+import { Skeleton } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/styles';
 import StockContext from '../StockContext.js';
 import formatNumber from '../lib';
@@ -99,7 +100,7 @@ const KeyFin = () => {
   }
   return (
     <>
-      <h1>LOADING</h1>
+      <Skeleton variant="rect" height="15vh" />
     </>
   );
 };

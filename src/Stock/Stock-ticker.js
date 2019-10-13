@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
+import { Skeleton } from '@material-ui/lab';
 
 const Ticker = ({ company }) => {
   if (company) {
@@ -15,7 +16,7 @@ const Ticker = ({ company }) => {
   }
   return (
     <>
-      <h1>LOADING</h1>
+      <Skeleton variant="rect" width={100} height={30} />
     </>
   );
 };

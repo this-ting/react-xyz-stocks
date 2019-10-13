@@ -71,22 +71,22 @@ const App = () => {
             render={() => <Home company={company} getCompany={getCompany} />}
           />
           <Route
-            path="/explore/"
+            path="/explore"
             render={() => <Explore company={company} getCompany={getCompany} />}
           />
           <Route
-            path="/stock/"
+            path="/stock"
             render={() => <Stock getCompany={getCompany} />}
           />
 
           <Route
-            path="/portfolio/"
+            path="/portfolio"
             render={() => (
               <Portfolio company={company} getCompany={getCompany} />
             )}
           />
-          <Route path="/user/" component={User} />
-          <Route path="/terms/" component={Disclaimer} />
+          <Route path="/user" component={User} />
+          <Route path="/terms" component={Disclaimer} />
 
           <Footer getCompany={getCompany} />
         </StockProvider>
