@@ -1,0 +1,193 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render correctly 1`] = `
+Array [
+  <h3>
+    EXPLORE BY SECTOR
+  </h3>,
+  <div
+    className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 MuiGrid-align-items-xs-center MuiGrid-justify-xs-center"
+  >
+    <div
+      className="MuiGrid-root makeStyles-item-1 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+      onClick={[Function]}
+    >
+      <h6
+        className="MuiTypography-root makeStyles-header-2 MuiTypography-button MuiTypography-colorPrimary"
+      >
+        Technology
+      </h6>
+      <p
+        className="MuiTypography-root makeStyles-text-3 MuiTypography-body2 MuiTypography-colorTextSecondary"
+      >
+        U.S. electronics, computer software and hardware, & IT companies
+      </p>
+    </div>
+    <div
+      className="MuiGrid-root makeStyles-item-1 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+      onClick={[Function]}
+    >
+      <h6
+        className="MuiTypography-root makeStyles-header-2 MuiTypography-button MuiTypography-colorPrimary"
+      >
+        Healthcare
+      </h6>
+      <p
+        className="MuiTypography-root makeStyles-text-3 MuiTypography-body2 MuiTypography-colorTextSecondary"
+      >
+        U.S. healthcare equipment and services, pharmaceuticals, & biotech companies
+      </p>
+    </div>
+    <div
+      className="MuiGrid-root makeStyles-item-1 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+      onClick={[Function]}
+    >
+      <h6
+        className="MuiTypography-root makeStyles-header-2 MuiTypography-button MuiTypography-colorPrimary"
+      >
+        Consumer Services
+      </h6>
+      <p
+        className="MuiTypography-root makeStyles-text-3 MuiTypography-body2 MuiTypography-colorTextSecondary"
+      >
+        U.S. companies that distribute food, drugs, general retail items, & media
+      </p>
+    </div>
+    <div
+      className="MuiGrid-root makeStyles-item-1 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+      onClick={[Function]}
+    >
+      <h6
+        className="MuiTypography-root makeStyles-header-2 MuiTypography-button MuiTypography-colorPrimary"
+      >
+        Financials
+      </h6>
+      <p
+        className="MuiTypography-root makeStyles-text-3 MuiTypography-body2 MuiTypography-colorTextSecondary"
+      >
+        U.S. banks, insurers, & credit card companies
+      </p>
+    </div>
+    <div
+      className="MuiGrid-root makeStyles-item-1 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+      onClick={[Function]}
+    >
+      <h6
+        className="MuiTypography-root makeStyles-header-2 MuiTypography-button MuiTypography-colorPrimary"
+      >
+        Energy
+      </h6>
+      <p
+        className="MuiTypography-root makeStyles-text-3 MuiTypography-body2 MuiTypography-colorTextSecondary"
+      >
+        U.S. companies that produce and distribute oil & gas
+      </p>
+    </div>
+    <div
+      className="MuiGrid-root makeStyles-item-1 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+      onClick={[Function]}
+    >
+      <h6
+        className="MuiTypography-root makeStyles-header-2 MuiTypography-button MuiTypography-colorPrimary"
+      >
+        Basic Materials
+      </h6>
+      <p
+        className="MuiTypography-root makeStyles-text-3 MuiTypography-body2 MuiTypography-colorTextSecondary"
+      >
+        U.S. companies involved with the production of raw materials (eg. metals, chemicals & forestry products, etc)
+      </p>
+    </div>
+    <div
+      className="MuiGrid-root makeStyles-item-1 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+      onClick={[Function]}
+    >
+      <h6
+        className="MuiTypography-root makeStyles-header-2 MuiTypography-button MuiTypography-colorPrimary"
+      >
+        Consumer Goods
+      </h6>
+      <p
+        className="MuiTypography-root makeStyles-text-3 MuiTypography-body2 MuiTypography-colorTextSecondary"
+      >
+        U.S. companies that produce consumer goods (eg. food, automobiles, & household goods, etc)
+      </p>
+    </div>
+    <div
+      className="MuiGrid-root makeStyles-item-1 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+      onClick={[Function]}
+    >
+      <h6
+        className="MuiTypography-root makeStyles-header-2 MuiTypography-button MuiTypography-colorPrimary"
+      >
+        Financial Services
+      </h6>
+      <p
+        className="MuiTypography-root makeStyles-text-3 MuiTypography-body2 MuiTypography-colorTextSecondary"
+      >
+        U.S. investment / commercial banks, asset managers, & securities exchanges
+      </p>
+    </div>
+    <div
+      className="MuiGrid-root makeStyles-item-1 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+      onClick={[Function]}
+    >
+      <h6
+        className="MuiTypography-root makeStyles-header-2 MuiTypography-button MuiTypography-colorPrimary"
+      >
+        Industrials
+      </h6>
+      <p
+        className="MuiTypography-root makeStyles-text-3 MuiTypography-body2 MuiTypography-colorTextSecondary"
+      >
+        U.S. companies that produce goods used in construction & manufacturing
+      </p>
+    </div>
+    <div
+      className="MuiGrid-root makeStyles-item-1 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+      onClick={[Function]}
+    >
+      <h6
+        className="MuiTypography-root makeStyles-header-2 MuiTypography-button MuiTypography-colorPrimary"
+      >
+        Transportation
+      </h6>
+      <p
+        className="MuiTypography-root makeStyles-text-3 MuiTypography-body2 MuiTypography-colorTextSecondary"
+      >
+        U.S. airline, railroad, & trucking companies
+      </p>
+    </div>
+    <div
+      className="MuiGrid-root makeStyles-item-1 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+      onClick={[Function]}
+    >
+      <h6
+        className="MuiTypography-root makeStyles-header-2 MuiTypography-button MuiTypography-colorPrimary"
+      >
+        Telecommunications
+      </h6>
+      <p
+        className="MuiTypography-root makeStyles-text-3 MuiTypography-body2 MuiTypography-colorTextSecondary"
+      >
+        U.S. companies that provide telephone and internet products, services, & technologies
+      </p>
+    </div>
+    <div
+      className="MuiGrid-root makeStyles-item-1 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+      onClick={[Function]}
+    >
+      <h6
+        className="MuiTypography-root makeStyles-header-2 MuiTypography-button MuiTypography-colorPrimary"
+      >
+        Utilities
+      </h6>
+      <p
+        className="MuiTypography-root makeStyles-text-3 MuiTypography-body2 MuiTypography-colorTextSecondary"
+      >
+        U.S. companies that supply electricity, gas, & water
+      </p>
+    </div>
+  </div>,
+]
+`;
