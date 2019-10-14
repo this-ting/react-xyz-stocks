@@ -1,15 +1,16 @@
+<img src="https://react-xyz-stocks.firebaseapp.com/logo/logo_transparent_horizontal.png" alt="XYZ Stocks Logo" height="300px" display="block" margin="auto" />
+
 # XYZ Stocks
 
-![XYZ Stocks Logo](https://react-xyz-stocks.firebaseapp.com/logo/logo_transparent_horizontal.png)
 **NASDAQ & NYSE Financial Information Search & Portfolio Website.**
-
-## Overview
 
 A single-page application that displays aggregate stock data with a stock auto-complete search function and allows for portfolio watchlist
 
-## Demo - [https://react-xyz-stocks.web.app](https://react-xyz-stocks.web.app/)
+## Demo
 
-(INSERT GIF)
+Website: [https://react-xyz-stocks.web.app](https://react-xyz-stocks.web.app/)
+
+<img src="./readme-imgs/homepage.png" alt="Home Page Screenshot" />
 
 ## Key Features
 
