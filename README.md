@@ -21,13 +21,27 @@ Website: [https://react-xyz-stocks.web.app](https://react-xyz-stocks.web.app/)
 
 ### Auto-Complete Search
 
+Displays query suggestions based on search input to enhance user search experience
+
 <a href="https://react-xyz-stocks.web.app" target="_blank" rel="noopener noreferrer">
-<img src="./readme-imgs/auto-complete.gif" alt="Auto-Complete Search">
+<img src="./readme-imgs/auto-complete.gif" alt="Auto-Complete Search Demo">
 </a>
 
 ### Portfolio
 
+Portfolio allows user to manage stock watchlist and provides a personalized news feed according to watchlist
+
+<a href="https://react-xyz-stocks.web.app" target="_blank" rel="noopener noreferrer">
+<img src="./readme-imgs/portfolio.gif" alt="Portfolio Demo">
+</a>
+
 ### Sector Search
+
+Integrated 3 third-party financial and news RESTful API’s to aggregate stock data ([IEX Cloud](https://iexcloud.io/docs/api/),[News API](https://newsapi.org/docs) & [Financial Modeling Prep API](https://financialmodelingprep.com/developer/docs/))
+
+<a href="https://react-xyz-stocks.web.app" target="_blank" rel="noopener noreferrer">
+<img src="./readme-imgs/sector.gif" alt="Sector Search Demo">
+</a>
 
 ## Built with
 
