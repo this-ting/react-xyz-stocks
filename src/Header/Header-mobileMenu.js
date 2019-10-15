@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
-import { Container, Grid, List, ListItem, Typography } from '@material-ui/core';
+import { Container, List, ListItem, Typography } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 
 // import components

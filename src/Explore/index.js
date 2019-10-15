@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import { Container } from '@material-ui/core';
 import ExploreSectors from './Explore-exploreSectors';
