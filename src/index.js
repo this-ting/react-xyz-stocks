@@ -1,10 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-import { Button, Container } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import * as firebase from 'firebase/app';
 import { auth, db } from './Firebase.js';
 
 // import components
@@ -37,7 +34,7 @@ const App = () => {
             },
             { merge: true }
           )
-          .catch(() => {
+          .catch(error => {
             console.error(error);
           });
       } else {
@@ -61,9 +58,6 @@ const App = () => {
         <StockProvider value={company}>
           <CssBaseline />
           <Header getCompany={getCompany} />
-
-          {/* <Portfolio /> */}
-          {/* <Markets /> */}
 
           <Route
             path="/"
