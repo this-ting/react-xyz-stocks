@@ -16,8 +16,6 @@ import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-import { db } from '../Firebase.js';
-
 const useStyles = makeStyles({
   plusPercent: {
     color: '#4F9E59'
