@@ -18,8 +18,8 @@ const PrevDayPrice = () => {
   useEffect(() => {
     mounted.current = true;
     fetch(
-      `https://sandbox.iexapis.com/stable/stock/${input}/previous?filter=date,open,close,high,low,volume,changePercent,change&token=Tpk_7190efa09280470180ab8bb6635da780`
-      // `https://cloud.iexapis.com/stable/stock/${input}/previous?filter=date,open,close,high,low,volume,changePercent,change&token=pk_0c6bc8f3cc794020a71b34f4fda09669`
+      `https://sandbox.iexapis.com/stable/stock/${input}/previous?filter=date,close,changePercent,change&token=Tpk_7190efa09280470180ab8bb6635da780`
+      // `https://cloud.iexapis.com/stable/stock/${input}/previous?filter=date,close,changePercent,change&token=pk_0c6bc8f3cc794020a71b34f4fda09669`
     )
       .then(response => response.json())
       .then(data => {
@@ -45,16 +45,7 @@ const PrevDayPrice = () => {
   }, [input]);
 
   if (prevDay) {
-    const {
-      date,
-      open,
-      close,
-      high,
-      low,
-      volume,
-      changePercent,
-      change
-    } = prevDay;
+    const { date, close, changePercent, change } = prevDay;
 
     return (
       <>
@@ -74,11 +65,6 @@ const PrevDayPrice = () => {
 
         <Grid container direction="column">
           <Grid item> As of closing date: {date}</Grid>
-          {/* <Grid item> Open: {open}</Grid>
-          <Grid item> Close: {close}</Grid>
-          <Grid item> High: {high}</Grid>
-          <Grid item> Low: {low}</Grid>
-          <Grid item> Volume: {volume}</Grid> */}
         </Grid>
       </>
     );
