@@ -23,12 +23,13 @@ const Disclaimer = () => {
         Terms and Conditions
       </Typography>
       <Typography variant="body1" gutterBottom="true">
-        Please read these Terms and Conditions ("Terms", "Terms and Conditions")
-        carefully before using the{' '}
+        Please read these Terms and Conditions (&quot;Terms&quot;, &quot;Terms
+        and Conditions&quot;) carefully before using the
         <a href="https://react-xyz-stocks.firebaseapp.com/">
           https://react-xyz-stocks.firebaseapp.com/
-        </a>{' '}
-        website (the "Service") operated by XYZ Stocks ("us", "we", or "our").
+        </a>
+        website (the &quot;Service&quot;) operated by XYZ Stocks
+        (&quot;us&quot;, &quot;we&quot;, or &quot;our&quot;).
         <br />
         <br />
         Your access to and use of the Service is conditioned on your acceptance
@@ -150,8 +151,8 @@ const Disclaimer = () => {
         <a href="https://react-xyz-stocks.firebaseapp.com/">
           https://react-xyz-stocks.firebaseapp.com/
         </a>
-        website and XYZ Stocks mobile app (the "Service") is for general
-        information purposes only.
+        website and XYZ Stocks mobile app (the &quot;Service&quot;) is for
+        general information purposes only.
         <br />
         <br />
         XYZ Stocks assumes no responsibility for errors or omissions in the
@@ -184,7 +185,7 @@ const Disclaimer = () => {
       <Typography variant="body1" gutterBottom="true">
         <a href="https://react-xyz-stocks.firebaseapp.com/">
           https://react-xyz-stocks.firebaseapp.com/
-        </a>{' '}
+        </a>
         website and XYZ Stocks mobile app may contain links to external websites
         that are not provided or maintained by or in any way affiliated with XYZ
         Stocks
