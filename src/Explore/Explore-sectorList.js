@@ -99,14 +99,15 @@ const SectorList = ({ sector, getCompany }) => {
           <ArrowUpwardIcon />
         </TableCell>
       );
-    }
-    if (change < 0) {
+    } else if (change < 0) {
       return (
         <TableCell align="right" className={classes.minus}>
           {change} {symbol}
           <ArrowDownwardIcon />
         </TableCell>
       );
+    } else {
+      return;
     }
   };
 
