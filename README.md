@@ -21,9 +21,13 @@ Website: [https://react-xyz-stocks.web.app](https://react-xyz-stocks.web.app/)
 
 ### Auto-Complete Search
 
-### Sector Search
+<a href="https://react-xyz-stocks.web.app" target="_blank" rel="noopener noreferrer">
+<img src="./readme-imgs/auto-complete.gif" alt="Auto-Complete Search">
+</a>
 
 ### Portfolio
+
+### Sector Search
 
 ## Built with
 
@@ -43,7 +47,7 @@ Website: [https://react-xyz-stocks.web.app](https://react-xyz-stocks.web.app/)
 - [News API](https://newsapi.org/docs) - A JSON API for live news and blog articles
 - [Financial Modeling Prep API](https://financialmodelingprep.com/developer/docs/) - A free, web-based API providing stock related information
 
-## Alternatives
+## Inspiration
 
 - [Google Finance](https://www.google.com/finance) - Monitor the market with free stock quotes and up-to-date financial news.
 - [Wallmine](https://wallmine.com/) - Finance & Investing: Stocks, Crypto, Forex, ETFs
