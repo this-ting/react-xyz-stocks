@@ -11,6 +11,7 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import MenuIcon from '@material-ui/icons/Menu';
+import { auth } from '../Firebase.js';
 
 // import component
 import Home from '../Home';
@@ -73,8 +74,7 @@ const Header = ({ getCompany, location, match }) => {
     <Button
       variant="contained"
       color="secondary"
-      to="/user/"
-      component={NavLink}
+      onClick={() => auth.signOut()}
     >
       Log Out
     </Button>
