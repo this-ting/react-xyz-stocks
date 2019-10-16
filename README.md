@@ -4,7 +4,7 @@
 </a>
 </p>
 
-# XYZ Stocks
+# XYZ Stocks [![Codacy Badge](https://api.codacy.com/project/badge/Grade/350d0bf26d3b48a685b9f5eea4eeb8f6)](https://www.codacy.com/manual/this-ting/react-xyz-stocks?utm_source=github.com&utm_medium=referral&utm_content=this-ting/react-xyz-stocks&utm_campaign=Badge_Grade)
 
 **NASDAQ & NYSE Financial Information Search & Portfolio Website.**
 
