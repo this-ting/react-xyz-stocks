@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
 import { Box } from '@material-ui/core';
 import Login from './User-login.js';
-import Settings from './User-settings.js';
 import LoginContext from '../LoginContext.js';
+import Portfolio from '../Portfolio';
 
 const User = () => {
   const uid = useContext(LoginContext);
 
   if (uid) {
-    return <Settings />;
+    return <Portfolio />;
   }
   return (
     <Box>
