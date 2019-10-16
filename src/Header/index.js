@@ -101,6 +101,7 @@ const Header = ({ getCompany, location, match }) => {
               alt="logo"
               className={classes.logo}
               onClick={handleExitStock}
+              onKeyPress={handleExitStock}
             />
           </Link>
         </Grid>
