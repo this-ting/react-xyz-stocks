@@ -71,3 +71,7 @@ Integrated 3 third-party financial and news RESTful API’s to aggregate stock d
 Ting Chang
 
 - GitHub: [@this-ting](https://github.com/this-ting)
+
+## License
+
+This project is licensed under the MIT License.
