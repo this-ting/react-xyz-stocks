@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
-import { Typography, Grid } from '@material-ui/core';
+import { Typography, Grid, Container, Tooltip } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
+import InfoIcon from '@material-ui/icons/Info';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import * as firebase from 'firebase/app';
 import { auth } from '../Firebase.js';
@@ -8,22 +9,21 @@ import { auth } from '../Firebase.js';
 import LoginContext from '../LoginContext';
 
 const useStyles = makeStyles({
-  background: {
-    backgroundImage: `url(${'https://images.unsplash.com/photo-1501471463901-742b06720960?ixlib=rb-1.2.1&auto=format&fit=crop&w=1534&q=80'})`,
-    backgroundPostion: 'center',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    width: '50%',
-    height: '100vh'
+  root: {
+    marginTop: '11rem',
+    maxWidth: '980px',
+    marginBottom: '3em',
+    paddingTop: '3rem',
+    height: '75vh'
   },
   input: {
     textAlign: 'center'
   },
-  root: {
-    backgroundColor: '#031628',
-    opacity: '0.3',
-    height: '100vh',
-    width: '100vw'
+  infoIcon: {
+    color: 'rgba(0, 0, 0, 0.54)',
+    height: '15px',
+    width: '15px',
+    marginLeft: '0.5rem'
   }
 });
 
@@ -76,15 +76,31 @@ const Login = () => {
   }
 
   return (
-    <Grid container justify="center" alignItems="center">
-      <Grid item className={classes.background} xs={7} />
-      <Grid item xs={5} className={classes.input}>
-        <Typography variant="h5" color="textPrimary">
+    <>
+      <Container className={classes.root}>
+        <Typography
+          variant="h5"
+          color="textPrimary"
+          align="center"
+          gutterBottom
+        >
           Sign in to XYZ Stocks
+          <Tooltip title="For the test account: test@test.com / test123">
+            <InfoIcon className={classes.infoIcon} />
+          </Tooltip>
+        </Typography>
+        <Typography
+          variant="caption"
+          component="p"
+          color="textSecondary"
+          align="center"
+          gutterBottom
+        >
+          For the test account: test@test.com / test123
         </Typography>
         <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
-      </Grid>
-    </Grid>
+      </Container>
+    </>
   );
 };
 
