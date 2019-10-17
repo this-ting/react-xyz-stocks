@@ -33,6 +33,10 @@ const Portfolio = ({ company, getCompany }) => {
   const [following, setFollowing] = useState('');
   useEffect(() => {
     mounted.current = true;
+    gtag('config', 'G-08LSHJHZVV', {
+      page_title: 'Portfolio',
+      page_path: '/portfolio'
+    });
 
     if (uid) {
       // get user's following stocks from FireStore, then fetch API

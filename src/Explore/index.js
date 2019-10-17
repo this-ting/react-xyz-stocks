@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import { Container } from '@material-ui/core';
@@ -18,6 +18,12 @@ const Explore = ({ getCompany, company }) => {
   const classes = useStyles();
 
   const [sector, setSector] = useState('');
+  useEffect(() => {}, [
+    gtag('config', 'G-08LSHJHZVV', {
+      page_title: 'Explore',
+      page_path: '/Explore'
+    })
+  ]);
   const getSector = input => {
     setSector(input);
   };

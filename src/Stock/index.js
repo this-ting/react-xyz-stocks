@@ -80,6 +80,11 @@ const Stock = ({ getCompany }) => {
 
   useEffect(() => {
     mounted.current = true;
+    gtag('config', 'G-08LSHJHZVV', {
+      page_title: 'Stock',
+      page_path: '/stock'
+    });
+
     fetch(
       `https://sandbox.iexapis.com/stable/stock/${input}/company?filter=symbol,companyName,exchange&token=Tpk_7190efa09280470180ab8bb6635da780`
       // `https://cloud.iexapis.com/stable/stock/${input}/company?filter=symbol,companyName,exchange&token=pk_0c6bc8f3cc794020a71b34f4fda09669`
