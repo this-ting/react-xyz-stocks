@@ -8,12 +8,11 @@ const useStyles = makeStyles({
     maxWidth: 'none',
     backgroundColor: '#BDBDBD',
     height: '190px',
-    fontSize: '1.6rem',
-    fontWeight: 800,
     margin: '0.5rem',
     textAlign: 'center',
     borderRadius: '12px',
     opacity: 1,
+    overflow: 'auto',
     transition: 'all 0.3s ease',
     '&:hover': {
       transform: 'scale(1.05)',
@@ -48,7 +47,12 @@ const useStyles = makeStyles({
   },
   header: {
     fontSize: '1.4rem',
-    color: '#fafafa'
+    color: '#fafafa',
+    '@media (min-width: 601px)': {
+      fontSize: '1.6rem',
+      fontWeight: 800,
+      paddingTop: '3rem'
+    }
   },
   text: {
     display: 'none',
