@@ -1,21 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, Link, withRouter } from 'react-router-dom';
-import {
-  AppBar,
-  Container,
-  Tab,
-  Tabs,
-  Grid,
-  Hidden,
-  Button
-} from '@material-ui/core';
+import { AppBar, Container, Tab, Tabs, Grid, Hidden } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import MenuIcon from '@material-ui/icons/Menu';
-import { auth } from '../Firebase.js';
 
 // import component
 import Home from '../Home';
 import MobileMenu from './Header-mobileMenu.js';
+import LoginButton from './Header-loginButton.js';
 import LoginContext from '../LoginContext';
 
 const useStyles = makeStyles({
@@ -39,13 +31,10 @@ const useStyles = makeStyles({
   }
 });
 
-const Header = ({ getCompany, location, match }) => {
-  const uid = useContext(LoginContext);
+const Header = ({ getCompany, location }) => {
   const classes = useStyles();
   const [value, setValue] = useState(0);
   useEffect(() => {
-    console.log(location);
-    console.log(match);
     if (location.pathname === '/') {
       setValue(0);
     }
@@ -69,25 +58,6 @@ const Header = ({ getCompany, location, match }) => {
   const handleExitStock = () => {
     getCompany('');
   };
-
-  const renderLoginButton = uid ? (
-    <Button
-      variant="contained"
-      color="secondary"
-      onClick={() => auth.signOut()}
-    >
-      Log Out
-    </Button>
-  ) : (
-    <Button
-      variant="contained"
-      color="secondary"
-      to="/user/"
-      component={NavLink}
-    >
-      Login
-    </Button>
-  );
 
   const renderMobileMenu =
     showMenu === true ? (
@@ -136,7 +106,7 @@ const Header = ({ getCompany, location, match }) => {
               </Tabs>
             </Grid>
             <Grid item sm={2} className={classes.userIcon}>
-              {renderLoginButton}
+              <LoginButton />
             </Grid>
           </Hidden>
           <Hidden smUp>
