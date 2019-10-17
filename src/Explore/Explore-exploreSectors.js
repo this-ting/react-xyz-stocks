@@ -6,36 +6,38 @@ const useStyles = makeStyles({
   item: {
     flexGrow: 1,
     maxWidth: 'none',
-    backgroundColor: '#3f51b580',
+    backgroundColor: '#BDBDBD',
     height: '190px',
-    // border: '1px solid rgba(63, 81, 181, 0.5)',
-    margin: '1em',
+    fontSize: '1.6rem',
+    fontWeight: 800,
+    margin: '0.5rem',
     textAlign: 'center',
     borderRadius: '12px',
     opacity: 1,
     transition: 'all 0.3s ease',
     '&:hover': {
       transform: 'scale(1.05)',
-      boxShadow: '0px 1px 5px 0px #b4bbe0',
+      boxShadow: '0px 1px 5px 0px #E0E0E0',
       backgroundColor: '#fafafa'
     },
     '&:hover h6': {
-      textTransform: 'lowercase',
+      textTransform: 'uppercase',
       maxInlineSize: 'fit-content',
       fontSize: '1.6rem',
-      color: '#3f63b5'
+      color: '#546E7A'
     },
     '&:hover p': {
       display: 'inline-block'
     },
     '&:active': {
       transform: 'scale(1.05)',
-      boxShadow: '0px 1px 5px 0px #b4bbe0'
+      boxShadow: '0px 1px 5px 0px #E0E0E0'
     },
     '&:active h6': {
-      textTransform: 'lowercase',
+      textTransform: 'uppercase',
       maxInlineSize: 'fit-content',
-      fontSize: '1.6rem'
+      fontSize: '1.6rem',
+      color: '#546E7A'
     },
     '&:active p': {
       display: 'inline-block'
