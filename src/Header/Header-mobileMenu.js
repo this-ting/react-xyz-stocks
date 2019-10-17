@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
-import { Container, List, ListItem, Typography } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
+import { List, ListItem, ListItemText } from '@material-ui/core';
 
 // import components
 import Home from '../Home';
@@ -12,29 +11,6 @@ import Portfolio from '../Portfolio';
 import LoginContext from '../LoginContext';
 
 const useStyles = makeStyles({
-  root: {
-    height: '100vh',
-    width: '100vw',
-    backgroundColor: '#ECECEE',
-    position: 'fixed',
-    textAlign: 'right',
-    padding: '4.5rem',
-    animation: '$showMenu 0.3s both',
-    animationTimingFunction: 'ease-out'
-  },
-  '@keyframes showMenu': {
-    from: {
-      transform: 'translate3d(100vw, 0px, 0px)'
-    },
-    to: {
-      transform: 'translate3d(0px, 0px, 0px)'
-    }
-  },
-  closeIcon: {
-    textAlign: 'right',
-    height: '35px',
-    width: '35px'
-  },
   menu: {
     transition: 'color 0.3s ease',
     '&:hover': {
@@ -47,6 +23,9 @@ const useStyles = makeStyles({
     '&:visited': {
       color: 'inherit'
     }
+  },
+  list: {
+    width: '250px'
   }
 });
 
@@ -57,8 +36,7 @@ const MobileMenu = ({ handleMenuClick, handleExitStock }) => {
   const renderLogin = uid ? 'USER' : 'LOGIN / SIGNUP';
 
   return (
-    <Container className={classes.root} component="nav">
-      <CloseIcon className={classes.closeIcon} onClick={handleMenuClick} />
+    <div className={classes.list}>
       <List>
         <NavLink
           to="/"
@@ -69,8 +47,8 @@ const MobileMenu = ({ handleMenuClick, handleExitStock }) => {
             handleMenuClick();
           }}
         >
-          <ListItem className={classes.menu}>
-            <Typography variant="h6">HOME</Typography>
+          <ListItem className={classes.menu} key="HOME">
+            <ListItemText primary="HOME" />
           </ListItem>
         </NavLink>
 
@@ -83,8 +61,8 @@ const MobileMenu = ({ handleMenuClick, handleExitStock }) => {
             handleMenuClick();
           }}
         >
-          <ListItem className={classes.menu}>
-            <Typography variant="h6">EXPLORE</Typography>
+          <ListItem button className={classes.menu} key="EXPLORE">
+            <ListItemText primary="EXPLORE" />
           </ListItem>
         </NavLink>
         <NavLink
@@ -96,8 +74,8 @@ const MobileMenu = ({ handleMenuClick, handleExitStock }) => {
             handleMenuClick();
           }}
         >
-          <ListItem className={classes.menu}>
-            <Typography variant="h6">PORTFOLIO</Typography>
+          <ListItem className={classes.menu} key="PORTFOLIO">
+            <ListItemText primary="PORTFOLIO" />
           </ListItem>
         </NavLink>
         <NavLink
@@ -109,12 +87,12 @@ const MobileMenu = ({ handleMenuClick, handleExitStock }) => {
             handleMenuClick();
           }}
         >
-          <ListItem className={classes.menu}>
-            <Typography variant="h6">{renderLogin}</Typography>
+          <ListItem className={classes.menu} key="LOGIN">
+            <ListItemText primary={renderLogin} />
           </ListItem>
         </NavLink>
       </List>
-    </Container>
+    </div>
   );
 };
 

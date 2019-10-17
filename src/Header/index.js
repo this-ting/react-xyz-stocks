@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, withRouter } from 'react-router-dom';
-import { AppBar, Container, Tab, Tabs, Grid, Hidden } from '@material-ui/core';
+import {
+  AppBar,
+  Container,
+  Tab,
+  Tabs,
+  Grid,
+  Hidden,
+  Drawer
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 
@@ -8,7 +16,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Home from '../Home';
 import MobileMenu from './Header-mobileMenu.js';
 import LoginButton from './Header-loginButton.js';
-import LoginContext from '../LoginContext';
 
 const useStyles = makeStyles({
   header: {
@@ -59,17 +66,8 @@ const Header = ({ getCompany, location }) => {
     getCompany('');
   };
 
-  const renderMobileMenu =
-    showMenu === true ? (
-      <MobileMenu
-        handleMenuClick={handleMenuClick}
-        handleExitStock={handleExitStock}
-      />
-    ) : null;
-
   return (
     <AppBar position="absolute" color="default" className={classes.header}>
-      {renderMobileMenu}
       <Container>
         <Grid container alignItems="center" justify="space-evenly">
           <Grid item xs={10} sm={6} md={4}>
@@ -115,6 +113,12 @@ const Header = ({ getCompany, location }) => {
                 onClick={handleMenuClick}
                 className={classes.menuIcon}
               />
+              <Drawer anchor="right" open={showMenu} onClose={handleMenuClick}>
+                <MobileMenu
+                  handleMenuClick={handleMenuClick}
+                  handleExitStock={handleExitStock}
+                />
+              </Drawer>
             </Grid>
           </Hidden>
         </Grid>
