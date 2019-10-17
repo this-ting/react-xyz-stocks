@@ -89,15 +89,6 @@ const Login = () => {
             <InfoIcon className={classes.infoIcon} />
           </Tooltip>
         </Typography>
-        <Typography
-          variant="caption"
-          component="p"
-          color="textSecondary"
-          align="center"
-          gutterBottom
-        >
-          For the test account: test@test.com / test123
-        </Typography>
         <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
       </Container>
     </>
