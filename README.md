@@ -13,6 +13,10 @@ A single-page application that displays aggregate stock data with a stock auto-c
 ## Demo
 
 Website: [https://react-xyz-stocks.web.app](https://react-xyz-stocks.web.app/)
+Feel free to use the test login account supplied below:
+Test Login Account: test123@test.com
+Test Login Password: test123
+
 <a href="https://react-xyz-stocks.web.app" target="_blank" rel="noopener noreferrer">
 <img src="./readme-imgs/homepage.png" alt="Home Page Screenshot">
 </a>
