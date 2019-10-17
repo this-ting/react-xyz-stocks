@@ -7,6 +7,7 @@ import {
   TableBody,
   Tooltip
 } from '@material-ui/core';
+import InfoIcon from '@material-ui/icons/Info';
 import StockContext from '../StockContext.js';
 import formatNumber from '../lib';
 
@@ -57,12 +58,15 @@ const IS = ({ index }) => {
       <Table>
         <TableHead>
           <TableRow hover>
-            <Tooltip
-              placement="right"
-              title="Reports a company's financial performance over a specific accounting period"
-            >
-              <TableCell>INCOME STATEMENT</TableCell>
-            </Tooltip>
+            <TableCell>
+              INCOME STATEMENT
+              <Tooltip
+                placement="right"
+                title="Reports a company's financial performance over a specific accounting period"
+              >
+                <InfoIcon />
+              </Tooltip>
+            </TableCell>
             <TableCell align="right">(USD $)</TableCell>
           </TableRow>
         </TableHead>
