@@ -4,9 +4,12 @@ import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles({
   root: {
-    paddingTop: '2rem',
-    paddingBottom: '2rem',
-    maxWidth: '980px'
+    maxWidth: '980px',
+    height: '50vh',
+    marginTop: '11rem'
+  },
+  header: {
+    fontWeight: 'bolder'
   }
 });
 
@@ -14,8 +17,12 @@ const ErrorMessage = () => {
   const classes = useStyles();
   return (
     <Container className={classes.root}>
-      <Typography variant="h5">404 Not Found</Typography>
-      <Typography variant="body1">Resource not found :(</Typography>
+      <Typography variant="h3" gutterBottom className={classes.header}>
+        404 Not Found
+      </Typography>
+      <Typography variant="body1" color="textSecondary">
+        Uh oh... Resource not found :(
+      </Typography>
     </Container>
   );
 };
