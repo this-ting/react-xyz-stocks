@@ -9,6 +9,8 @@ import {
   Hidden
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
+
+// import components
 import StockContext from '../StockContext.js';
 
 const useStyles = makeStyles({

@@ -6,6 +6,7 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import * as firebase from 'firebase/app';
 import { auth } from '../Firebase.js';
 
+// import components
 import LoginContext from '../LoginContext';
 
 const useStyles = makeStyles({

@@ -2,8 +2,8 @@ import React from 'react';
 import { Tabs, Tab, Typography, Box } from '@material-ui/core';
 
 // import components
-import Graph from './Stock-overview-graph.js';
-import GraphStats from './Stock-overview-graphStats.js';
+import Graph from './Overview-graph';
+import GraphStats from './Overview-graphStats';
 
 const TabPanel = props => {
   const { children, value, index, ...other } = props;

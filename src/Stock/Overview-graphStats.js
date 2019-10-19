@@ -3,6 +3,7 @@ import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { Skeleton } from '@material-ui/lab';
 
+// import components
 import StockContext from '../StockContext.js';
 import formatNumber from '../lib';
 

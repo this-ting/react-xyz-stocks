@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 import { auth } from '../Firebase.js';
 
-// import component
+// import components
 import LoginContext from '../LoginContext';
 
 const LoginButton = () => {

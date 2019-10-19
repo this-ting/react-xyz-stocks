@@ -3,8 +3,8 @@ import { Container, TextField, InputAdornment } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import SearchIcon from '@material-ui/icons/Search';
 
-// import component
-import Dropdown from './Search-dropdown.js';
+// import components
+import Dropdown from './Dropdown';
 
 const useStyles = makeStyles({
   root: {

@@ -4,7 +4,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import * as firebase from 'firebase/app';
 import { db } from '../Firebase';
 
-// import Components
+// import components
 import LoginContext from '../LoginContext.js';
 import StockContext from '../StockContext';
 

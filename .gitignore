@@ -5,6 +5,7 @@
 **/node_modules/*
 **/.firebaserc
 *-firebase-adminsdk-*.json
+Firebase.js
 
 
 ### Firebase Patch ###

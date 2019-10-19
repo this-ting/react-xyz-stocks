@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext, useRef } from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
 
+// import components
 import StockContext from '../StockContext.js';
 
 // returns the the same values as historical prices, can change over to historical prices when doing charts

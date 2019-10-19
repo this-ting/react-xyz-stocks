@@ -2,15 +2,15 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import { Tabs, Tab, Typography, Box, Container, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
-// Import Components
-import ErrorMessage from './Stock-errorMessage.js';
+// import components
+import ErrorMessage from './ErrorMessage';
 import Search from '../Search';
-import Ticker from './Stock-ticker.js';
-import PrevDayPrice from './Stock-PrevDayPrice.js';
-import Overview from './Stock-overview.js';
-import Financials from './Stock-financials.js';
-import News from './Stock-news.js';
-import AddButton from './Stock-addButton.js';
+import Ticker from './Ticker';
+import PrevDayPrice from './PrevDayPrice';
+import Overview from './Overview';
+import Financials from './Financials';
+import News from './News';
+import AddButton from './AddButton';
 import StockContext from '../StockContext.js';
 
 const useStyles = makeStyles({

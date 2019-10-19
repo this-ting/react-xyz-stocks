@@ -1,8 +1,10 @@
 import React, { useContext, useEffect } from 'react';
 import { Box } from '@material-ui/core';
-import Login from './User-login.js';
-import LoginContext from '../LoginContext.js';
+
+// import components
+import Login from './Login';
 import Portfolio from '../Portfolio';
+import LoginContext from '../LoginContext.js';
 
 const User = () => {
   const uid = useContext(LoginContext);

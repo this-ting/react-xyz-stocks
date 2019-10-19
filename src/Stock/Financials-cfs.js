@@ -7,6 +7,8 @@ import {
   TableCell,
   Tooltip
 } from '@material-ui/core';
+
+// import components
 import StockContext from '../StockContext.js';
 import formatNumber from '../lib';
 

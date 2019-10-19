@@ -2,8 +2,8 @@ import React from 'react';
 import { Typography, Tabs, Tab, Box, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
-// import component
-import NewsArticles from './portfolio-news-articles';
+// import components
+import NewsArticles from './NewsArticles';
 
 const useStyles = makeStyles({
   root: {
