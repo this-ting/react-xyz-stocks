@@ -91,13 +91,13 @@ const Header = ({ getCompany, location }) => {
               >
                 <Tab
                   label="Explore"
-                  to="/explore/"
+                  to="/explore"
                   component={NavLink}
                   value={1}
                 />
                 <Tab
                   label="Portfolio"
-                  to="/portfolio/"
+                  to="/portfolio"
                   component={NavLink}
                   value={2}
                 />

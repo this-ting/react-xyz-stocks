@@ -65,7 +65,7 @@ const MobileMenu = ({ handleMenuClick, handleExitStock }) => {
         </NavLink>
 
         <NavLink
-          to="/explore/"
+          to="/explore"
           component={Explore}
           className={classes.menuItem}
           onClick={() => {
@@ -81,7 +81,7 @@ const MobileMenu = ({ handleMenuClick, handleExitStock }) => {
           </ListItem>
         </NavLink>
         <NavLink
-          to="/portfolio/"
+          to="/portfolio"
           component={Portfolio}
           className={classes.menuItem}
           onClick={() => {
