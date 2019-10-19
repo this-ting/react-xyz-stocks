@@ -31,7 +31,7 @@ const PrevDayPrice = () => {
         info.high = data.high;
         info.low = data.low;
         info.volume = data.volume;
-        info.changePercent = data.changePercent.toFixed(4);
+        info.changePercent = data.changePercent;
         info.change = data.change.toFixed(2);
         if (mounted.current) {
           setPrevDay(info);
@@ -59,7 +59,7 @@ const PrevDayPrice = () => {
           </Grid>
           <Grid item>
             <Typography variant="h6" color="secondary">
-              {change} ({changePercent * 100}%)
+              {change} ({changePercent}%)
             </Typography>
           </Grid>
         </Grid>
