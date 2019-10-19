@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { auth, db } from './Firebase.js';
 
@@ -15,6 +15,7 @@ import { LoginProvider } from './LoginContext';
 import { StockProvider } from './StockContext.js';
 import Stock from './Stock';
 import Explore from './Explore';
+import ErrorMessage from './Stock/ErrorMessage';
 
 const App = () => {
   const [userID, setUserID] = useState('');
@@ -59,28 +60,33 @@ const App = () => {
           <CssBaseline />
           <Header getCompany={getCompany} />
 
-          <Route
-            path="/"
-            exact
-            render={() => <Home company={company} getCompany={getCompany} />}
-          />
-          <Route
-            path="/explore"
-            render={() => <Explore company={company} getCompany={getCompany} />}
-          />
-          <Route
-            path="/stock"
-            render={() => <Stock getCompany={getCompany} />}
-          />
+          <Switch>
+            <Route
+              path="/"
+              exact
+              render={() => <Home company={company} getCompany={getCompany} />}
+            />
+            <Route
+              path="/explore"
+              render={() => (
+                <Explore company={company} getCompany={getCompany} />
+              )}
+            />
+            <Route
+              path="/stock"
+              render={() => <Stock getCompany={getCompany} />}
+            />
 
-          <Route
-            path="/portfolio"
-            render={() => (
-              <Portfolio company={company} getCompany={getCompany} />
-            )}
-          />
-          <Route path="/user" component={User} />
-          <Route path="/terms" component={Disclaimer} />
+            <Route
+              path="/portfolio"
+              render={() => (
+                <Portfolio company={company} getCompany={getCompany} />
+              )}
+            />
+            <Route path="/user" component={User} />
+            <Route path="/terms" component={Disclaimer} />
+            <Route component={ErrorMessage} />
+          </Switch>
 
           <Footer getCompany={getCompany} />
         </StockProvider>
