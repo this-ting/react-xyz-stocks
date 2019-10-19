@@ -51,6 +51,8 @@ const Dropdown = ({ input, setInput, getCompany }) => {
         .catch(error =>
           console.error(`There is an search FireStore error: ${error}`)
         );
+    } else {
+      setInfo('');
     }
     return () => {
       mounted.current = false;
@@ -88,13 +90,16 @@ const Dropdown = ({ input, setInput, getCompany }) => {
       })
     : null;
 
-  return (
-    <Container>
-      <ClickAwayListener onClickAway={handleClickAway}>
-        <List className={classes.root}>{renderDropdown}</List>
-      </ClickAwayListener>
-    </Container>
-  );
+  if (info) {
+    return (
+      <Container>
+        <ClickAwayListener onClickAway={handleClickAway}>
+          <List className={classes.root}>{renderDropdown}</List>
+        </ClickAwayListener>
+      </Container>
+    );
+  }
+  return null;
 };
 
 export default Dropdown;
