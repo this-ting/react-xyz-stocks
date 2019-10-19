@@ -70,7 +70,7 @@ const Footer = ({ getCompany }) => {
           <Grid item xs={12} sm={6} className={classes.item}>
             <Typography variant="overline">
               <NavLink
-                to="/explore/"
+                to="/explore"
                 component={Explore}
                 className={classes.links}
                 onClick={handleExitStock}
@@ -82,7 +82,7 @@ const Footer = ({ getCompany }) => {
           <Grid item xs={12} sm={6} className={classes.item}>
             <Typography variant="overline">
               <NavLink
-                to="/portfolio/"
+                to="/portfolio"
                 component={Portfolio}
                 className={classes.links}
                 onClick={handleExitStock}

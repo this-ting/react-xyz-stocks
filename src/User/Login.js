@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-import { Typography, Grid, Container, Tooltip } from '@material-ui/core';
+import { Redirect } from 'react-router-dom';
+import { Typography, Container, Tooltip } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import InfoIcon from '@material-ui/icons/Info';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
@@ -62,18 +63,7 @@ const Login = () => {
   };
 
   if (uid) {
-    return (
-      <Grid container justify="center" alignItems="center">
-        <Grid item className={classes.background} xs={7} />
-        <Grid item xs={5} className={classes.input}>
-          <Typography variant="h5" color="textPrimary">
-            XYZ Stocks
-          </Typography>
-          <p>Welcome {auth.currentUser.displayName}! You are now signed-in!</p>
-          <a onClick={() => auth.signOut()}>Sign-out</a>
-        </Grid>
-      </Grid>
-    );
+    return <Redirect push to="/portfolio" />;
   }
 
   return (

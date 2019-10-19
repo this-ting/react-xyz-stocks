@@ -108,7 +108,7 @@ const GraphStats = () => {
                 EPS:
               </Grid>
               <Grid item xs={3}>
-                ${ttmEPS}
+                ${ttmEPS.toFixed(2)}
               </Grid>
             </Grid>
           </Grid>

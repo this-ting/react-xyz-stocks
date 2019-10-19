@@ -1,9 +1,10 @@
 import React, { useContext, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
+
 import { Box } from '@material-ui/core';
 
 // import components
 import Login from './Login';
-import Portfolio from '../Portfolio';
 import LoginContext from '../LoginContext.js';
 
 const User = () => {
@@ -17,7 +18,7 @@ const User = () => {
   }, []);
 
   if (uid) {
-    return <Portfolio />;
+    return <Redirect push to="/portfolio" />;
   }
   return (
     <Box>

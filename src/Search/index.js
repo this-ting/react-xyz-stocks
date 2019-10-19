@@ -29,14 +29,6 @@ const Search = ({ getCompany }) => {
     setInput('');
   };
 
-  const renderDropdown = () => {
-    if (input) {
-      return (
-        <Dropdown input={input} setInput={setInput} getCompany={getCompany} />
-      );
-    }
-  };
-
   return (
     <Container className={classes.root}>
       <form onSubmit={handleSearchSubmit}>
@@ -56,7 +48,7 @@ const Search = ({ getCompany }) => {
           }}
         />
       </form>
-      {renderDropdown()}
+      <Dropdown input={input} setInput={setInput} getCompany={getCompany} />
     </Container>
   );
 };
