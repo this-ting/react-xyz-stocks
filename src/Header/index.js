@@ -12,10 +12,10 @@ import {
 import { makeStyles } from '@material-ui/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 
-// import component
+// import components
 import Home from '../Home';
-import MobileMenu from './Header-mobileMenu.js';
-import LoginButton from './Header-loginButton.js';
+import MobileMenu from './MobileMenu';
+import LoginButton from './LoginButton';
 
 const useStyles = makeStyles({
   header: {

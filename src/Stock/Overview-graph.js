@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Skeleton } from '@material-ui/lab';
+
+// import components
 import StockContext from '../StockContext.js';
 
 const useStyles = makeStyles({

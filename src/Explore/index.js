@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import { Container } from '@material-ui/core';
-import ExploreSectors from './Explore-exploreSectors';
-import SectorList from './Explore-sectorList';
+
+// import components
+import ExploreSectors from './ExploreSectors';
+import SectorList from './SectorList';
 import Search from '../Search';
 
 const useStyles = makeStyles({

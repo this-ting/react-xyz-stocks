@@ -9,6 +9,8 @@ import {
 } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/styles';
+
+// import components
 import StockContext from '../StockContext.js';
 
 const useStyles = makeStyles({

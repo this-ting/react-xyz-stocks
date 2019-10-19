@@ -1,6 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Container, Box, Typography, Paper } from '@material-ui/core';
+
+// import components
 import Search from '../Search';
 
 const useStyles = makeStyles({

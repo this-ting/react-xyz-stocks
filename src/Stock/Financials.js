@@ -1,10 +1,10 @@
 import React from 'react';
 import { Paper, Tabs, Tab, Typography, Box } from '@material-ui/core';
 
-// Import Components
-import IS from './Stock-financials-is.js';
-import BS from './Stock-financials-bs.js';
-import CFS from './Stock-financials-cfs.js';
+// import components
+import IS from './Financials-is';
+import BS from './Financials-bs';
+import CFS from './Financials-cfs';
 
 const TabPanel = props => {
   const { children, value, index, ...other } = props;

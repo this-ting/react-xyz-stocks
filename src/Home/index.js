@@ -2,9 +2,11 @@ import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Box, Typography } from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
-import SearchBanner from './Home-searchBanner.js';
-import StockBanner from './Home-stockBanner.js';
-import NewsBanner from './Home-newsBanner.js';
+
+// import components
+import SearchBanner from './SearchBanner';
+import StockBanner from './StockBanner';
+import NewsBanner from './NewsBanner';
 
 const useStyles = makeStyles({
   banner2: {

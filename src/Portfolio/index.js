@@ -6,8 +6,8 @@ import * as firebase from 'firebase/app';
 import { db } from '../Firebase.js';
 
 // import components
-import Watchlist from './portfolio-watchlist.js';
-import PortfolioNews from './portfolio-news.js';
+import Watchlist from './Watchlist';
+import PortfolioNews from './PortfolioNews';
 import LoginContext from '../LoginContext';
 
 const useStyles = makeStyles({

@@ -1,9 +1,9 @@
 import React from 'react';
 
-// Import Components
-import GraphContainer from './Stock-overview-graphContainer.js';
-import Company from './Stock-overview-company.js';
-import KeyFin from './Stock-overview-keyfin.js';
+// import components
+import GraphContainer from './Overview-graphContainer';
+import Company from './Overview-company';
+import KeyFin from './Overview-keyfin';
 
 const Overview = () => {
   return (

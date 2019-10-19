@@ -8,6 +8,8 @@ import {
   Tooltip
 } from '@material-ui/core';
 import InfoIcon from '@material-ui/icons/Info';
+
+// import components
 import StockContext from '../StockContext.js';
 import formatNumber from '../lib';
 
