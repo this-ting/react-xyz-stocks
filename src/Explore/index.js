@@ -20,12 +20,12 @@ const Explore = ({ getCompany, company }) => {
   const classes = useStyles();
 
   const [sector, setSector] = useState('');
-  useEffect(() => {}, [
+  useEffect(() => {
     gtag('config', 'G-08LSHJHZVV', {
       page_title: 'Explore',
       page_path: '/Explore'
-    })
-  ]);
+    });
+  }, []);
   const getSector = input => {
     setSector(input);
   };
