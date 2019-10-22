@@ -16,7 +16,7 @@ Website: [https://react-xyz-stocks.web.app](https://react-xyz-stocks.web.app/)
 
 Feel free to use the test login account supplied below:
 
-Test Login Account: test123@test.com
+Test Login Account: test@test.com
 
 Test Login Password: test123
 
