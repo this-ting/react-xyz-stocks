@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import { Container } from '@material-ui/core';
 
@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Explore = ({ getCompany, company }) => {
+const Explore = ({ history, match, getCompany, company }) => {
   const classes = useStyles();
 
   const [sector, setSector] = useState('');
@@ -25,13 +25,25 @@ const Explore = ({ getCompany, company }) => {
       page_title: 'Explore',
       page_path: '/Explore'
     });
-  }, []);
+  }, [sector]);
+
   const getSector = input => {
     setSector(input);
   };
 
+  // for browser back button
+  window.onpopstate = () => {
+    if (history.action === 'POP') {
+      if (match.path === '/explore') {
+        setSector('');
+      } else if (match.path !== '/explore') {
+        setSector(match.params.sectorName);
+      }
+    }
+  };
+
   const renderExplore = sector ? (
-    <SectorList sector={sector} getCompany={getCompany} />
+    <Redirect push to={`${match.path}/${sector}`} />
   ) : (
     <ExploreSectors getSector={getSector} />
   );
@@ -52,6 +64,17 @@ const Explore = ({ getCompany, company }) => {
     <Container className={classes.root}>
       <Search getCompany={getCompany} />
       {renderExplore}
+      <Route
+        path={`${match.path}/:sectorName`}
+        render={props => (
+          <SectorList
+            {...props}
+            sector={sector}
+            setSector={setSector}
+            getCompany={getCompany}
+          />
+        )}
+      />
     </Container>
   );
 };

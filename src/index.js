@@ -68,8 +68,8 @@ const App = () => {
             />
             <Route
               path="/explore"
-              render={() => (
-                <Explore company={company} getCompany={getCompany} />
+              render={props => (
+                <Explore {...props} company={company} getCompany={getCompany} />
               )}
             />
             <Route

@@ -41,8 +41,21 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const SectorList = ({ sector, getCompany }) => {
+const SectorList = ({ match, history, sector, setSector, getCompany }) => {
   const classes = useStyles();
+
+  useEffect(() => {}, [sector]);
+
+  // for browser back button
+  window.onpopstate = () => {
+    if (history.action === 'POP') {
+      if (match.path !== '/explore') {
+        setSector(match.params.sectorName);
+      } else if (match.path === '/explore') {
+        setSector('');
+      }
+    }
+  };
 
   // state for previous price
   const [previous, setPrevious] = useState('');
