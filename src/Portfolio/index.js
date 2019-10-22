@@ -55,7 +55,7 @@ const Portfolio = ({ company, getCompany }) => {
           for (let i = 0; i < data.length; i++) {
             fetch(
               `https://sandbox.iexapis.com/stable/stock/${data[i].ticker}/previous?filter=date,close,changePercent,change&token=Tpk_7190efa09280470180ab8bb6635da780`
-              // `https://cloud.iexapis.com/stable/stock/${data[i].ticker}/previous?filter=date,close,changePercent,change&token=pk_0c6bc8f3cc794020a71b34f4fda09669`
+              // `https://cloud.iexapis.com/stable/stock/${data[i].ticker}/previous?filter=date,close,changePercent,change&token=pk_38592a55ffa649d29612b2cc7fd81b7f`
             )
               .then(response => response.json())
               .then(apiData => {

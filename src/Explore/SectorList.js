@@ -68,7 +68,7 @@ const SectorList = ({ match, history, sector, setSector, getCompany }) => {
         .then(data =>
           fetch(
             `https://sandbox.iexapis.com/stable/stock/market/batch?symbols=${data}&types=chart,company&range=5d&token=Tpk_7190efa09280470180ab8bb6635da780&filter=date,close,changePercent,companyName`
-            // `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${data}&types=chart,company&range=5d&token=pk_0c6bc8f3cc794020a71b34f4fda09669&filter=date,close,changePercent,companyName`
+            // `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${data}&types=chart,company&range=5d&token=pk_38592a55ffa649d29612b2cc7fd81b7f&filter=date,close,changePercent,companyName`
           )
         )
         .then(response => response.json())

@@ -73,7 +73,7 @@ const NewsArticles = ({ value, companies }) => {
     if (value === 1 && companies) {
       let newData = [];
       fetch(
-        `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${companies}&types=news&last=2&filter=datetime,headline,source,url,image,related,summary&token=pk_0c6bc8f3cc794020a71b34f4fda09669`
+        `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${companies}&types=news&last=2&filter=datetime,headline,source,url,image,related,summary&token=pk_38592a55ffa649d29612b2cc7fd81b7f`
       )
         .then(response => response.json())
         .then(data => {

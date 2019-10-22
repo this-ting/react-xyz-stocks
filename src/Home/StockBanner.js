@@ -64,7 +64,7 @@ const StockBanner = ({ getCompany }) => {
   useEffect(() => {
     fetch(
       `https://sandbox.iexapis.com/stable/stock/market/collection/list?collectionName=mostactive&displayPercent=true&token=Tpk_7190efa09280470180ab8bb6635da780&filter=symbol,companyName,primaryExchange,latestPrice,changePercent`
-      // `https://cloud.iexapis.com/stable/stock/market/collection/list?collectionName=mostactive&displayPercent=true&token=pk_0c6bc8f3cc794020a71b34f4fda09669&filter=symbol,companyName,primaryExchange,latestPrice,changePercent`
+      // `https://cloud.iexapis.com/stable/stock/market/collection/list?collectionName=mostactive&displayPercent=true&token=pk_38592a55ffa649d29612b2cc7fd81b7f&filter=symbol,companyName,primaryExchange,latestPrice,changePercent`
     )
       .then(response => response.json())
       .then(data => {
@@ -134,7 +134,7 @@ const StockBanner = ({ getCompany }) => {
   useEffect(() => {
     fetch(
       `https://sandbox.iexapis.com/stable/stock/market/collection/list?collectionName=gainers&displayPercent=true&token=Tpk_7190efa09280470180ab8bb6635da780&filter=symbol,companyName,primaryExchange,latestPrice,changePercent`
-      // `https://cloud.iexapis.com/stable/stock/market/collection/list?collectionName=gainers&displayPercent=true&token=pk_0c6bc8f3cc794020a71b34f4fda09669&filter=symbol,companyName,primaryExchange,latestPrice,changePercent`
+      // `https://cloud.iexapis.com/stable/stock/market/collection/list?collectionName=gainers&displayPercent=true&token=pk_38592a55ffa649d29612b2cc7fd81b7f&filter=symbol,companyName,primaryExchange,latestPrice,changePercent`
     )
       .then(response => response.json())
       .then(data => {

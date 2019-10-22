@@ -87,7 +87,7 @@ const Stock = ({ getCompany }) => {
 
     fetch(
       `https://sandbox.iexapis.com/stable/stock/${input}/company?filter=symbol,companyName,exchange&token=Tpk_7190efa09280470180ab8bb6635da780`
-      // `https://cloud.iexapis.com/stable/stock/${input}/company?filter=symbol,companyName,exchange&token=pk_0c6bc8f3cc794020a71b34f4fda09669`
+      // `https://cloud.iexapis.com/stable/stock/${input}/company?filter=symbol,companyName,exchange&token=pk_38592a55ffa649d29612b2cc7fd81b7f`
     )
       .then(response => {
         if (response.ok) {
